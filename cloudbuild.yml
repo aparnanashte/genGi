@@ -3,8 +3,7 @@ steps:
   - name: gcr.io/cloud-builders/git
     args: ['clone','-b','main', 'https://github.com/aparnanashte/genGi.git']
   - name: gcr.io/cloud-builders/mvn
-    args:
-      - build
+    args: ['clean', 'install']
     dir: /workspace/genGi
   - name: gcr.io/cloud-builders/docker
     args:
