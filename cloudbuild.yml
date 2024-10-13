@@ -1,14 +1,21 @@
 steps:
+# Step 1: Clone the repository from GitHub
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/aparnanashte/genGi.git']
 - name: maven:3.8.6
   entrypoint: mvn
-  args: ['test']
-  # Step 2: Build the Docker image with an auto-generated tag using SHORT_SHA
+  args: ['build']
+  # Step 2: Build the Docker image with an auto-generated 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'europe-west3-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}:${SHORT_SHA}','/workspace/genGi/']
+  args: ['build', '-t', 'europe-west3-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}','/workspace/genGi/']
  
 # Step 3: Push the Docker image to the container registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'europe-west3-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}:${SHORT_SHA}']
+  args: ['push', 'europe-west3-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}']
+substitutions:
+  _IMAGE_NAME: 'genGi'
+  _PROJECT_ID: 'glb-fs-wgh-app-dev'
+  _REPO_NAME: 'genGi-Repo'  
 options:
   logging: CLOUD_LOGGING_ONLY
 
