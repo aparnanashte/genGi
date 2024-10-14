@@ -16,8 +16,9 @@ steps:
       - push
       - europe-west3-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['run', 'deploy', 'gengi-service', '--image', 'europe-west3-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}', '--platform', 'managed', --region europe-west3]
-  
+    args: ['run', 'deploy', 'gengi-service', '--image', 'europe-west3-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}', '--platform', 'managed']
+properties:
+  run/region: europe-west3 
 substitutions:
   _IMAGE_NAME: gengi
   _PROJECT_ID: glb-fs-wgh-app-dev
