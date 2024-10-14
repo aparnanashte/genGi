@@ -16,7 +16,7 @@ steps:
       - push
       - europe-west3-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['run', 'deploy', 'gengi-service', '--image', 'europe-west3-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}', '--platform', 'managed','--region', 'europe-west3','--set-env-vars', 'constraints/run.allowedIngress=internal']
+    args: ['run', 'deploy', 'gengi-service', '--image', 'europe-west3-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}', '--platform', 'managed','--region', 'europe-west3','--set-env-vars', 'constraints/run.allowedIngress=internal','--annotations', 'run.googleapis.com/ingress=internal']
 substitutions:
   _IMAGE_NAME: gengi
   _PROJECT_ID: glb-fs-wgh-app-dev
