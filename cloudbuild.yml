@@ -12,6 +12,6 @@ steps:
       - install
     dir: /workspace/genGi
   - name: gcr.io/cloud-builders/java
-    args: ['-jar', '/root/.m2/repository/com/bug-api/bug-api/0.0.1-SNAPSHOT/bug-api-0.0.1-SNAPSHOT.jar', 'genrate junit for bug class']  
+    args: ['-jar', '/root/.m2/repository/com/bug-api/bug-api/0.0.1-SNAPSHOT/bug-api-0.0.1-SNAPSHOT.jar', 'genratejunit for bug class']  
 options:
   logging: CLOUD_LOGGING_ONLY
