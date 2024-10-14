@@ -5,7 +5,7 @@ steps:
   - name: gcr.io/cloud-builders/mvn
     args: ['clean', 'install']
     dir: /workspace/genGi
-    run: |
-        java -jar target/bug-api-0.0.1-SNAPSHOT.jar "genrate junit for bug class"
+  - name: 'gcr.io/cloud-builders/mvn'
+    args: ['exec:java', '-Dexec.mainClass=com.bug.api.TextInput', '-Dexec.args="genrate junit for bug class"', '-Dclasspath=target/classes']
 options:
   logging: CLOUD_LOGGING_ONLY
