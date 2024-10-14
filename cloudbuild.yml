@@ -16,7 +16,7 @@ steps:
       - push
       - europe-west3-docker.pkg.dev/${_PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['run', 'docker', 'run', '--rm', 'gcr.io/glb-fs-wgh-app-dev/gengi', 'java', '-jar', 'target/bug-api-0.0.1-SNAPSHOT.jar', 'test case generation for Bug class', 'AIzaSyDLdXcMmjvLlvTEDwMeO1DR-8iYBjU6SFI', '500']
+    args: ['run', 'image', 'run', '--rm', 'gcr.io/glb-fs-wgh-app-dev/gengi', 'java', '-jar', 'target/bug-api-0.0.1-SNAPSHOT.jar', 'test case generation for Bug class', 'AIzaSyDLdXcMmjvLlvTEDwMeO1DR-8iYBjU6SFI', '500']
 substitutions:
   _IMAGE_NAME: gengi
   _PROJECT_ID: glb-fs-wgh-app-dev
