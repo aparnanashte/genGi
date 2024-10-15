@@ -7,10 +7,10 @@ steps:
       - main
       - https://github.com/aparnanashte/genGi.git
   - name: maven:3.8.3-openjdk-17
+    entrypoint: mvn
     args:
       - clean
-      - package
-      - -DskipTests=true
+      - install
   - name: openjdk:17
     entrypoint: java
     args:
