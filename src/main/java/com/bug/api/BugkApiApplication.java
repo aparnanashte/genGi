@@ -18,7 +18,7 @@ public class BugkApiApplication {
 		 String projectId = "glb-fs-wgh-app-dev";
 		    String location = "europe-west3";
 		    String modelName = "gemini-1.5-flash-001";
-		    String textPrompt ="genrate test cases for Bug class";
+		    String textPrompt ="genrate junit for om.bug.api.model.domain.Bug class in java and commit genrated class creating test package";
 		        
 
 		    String output = null;
