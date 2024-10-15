@@ -7,10 +7,14 @@ steps:
       - main
       - https://github.com/aparnanashte/genGi.git
   - name: maven:3.8.3-openjdk-17
-    entrypoint: mvn
     args:
       - clean
-      - install
-     
+      - package
+      - -DskipTests=true
+  - name: openjdk:17
+    entrypoint: java
+    args:
+      - -jar
+      - target/your-artifact.jar
 options:
   logging: CLOUD_LOGGING_ONLY
