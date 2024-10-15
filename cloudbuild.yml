@@ -6,12 +6,12 @@ steps:
       - -b
       - main
       - https://github.com/aparnanashte/genGi.git
-  - name: gcr.io/cloud-builders/mvn
+  - name: maven:3.8.3-openjdk-17
+    entrypoint: mvn
     args:
       - clean
       - install
-    dir: /workspace/genGi
-  - name: gcr.io/cloud-builders/java:17
-    args: ['-jar', '/root/.m2/repository/com/bug-api/bug-api/0.0.1-SNAPSHOT/bug-api-0.0.1-SNAPSHOT.jar', 'genratejunit for bug class']  
+      - exec:java
+      - -Dexec.mainClass=com.bug.api.TextInput
 options:
   logging: CLOUD_LOGGING_ONLY
