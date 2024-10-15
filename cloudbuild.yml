@@ -15,6 +15,6 @@ steps:
     entrypoint: java
     args:
       - -jar
-      - target/your-artifact.jar
+      - /root/.m2/repository/com/bug-api/bug-api/0.0.1-SNAPSHOT/bug-api-0.0.1-SNAPSHOT.jar
 options:
   logging: CLOUD_LOGGING_ONLY
