@@ -11,7 +11,6 @@ steps:
     args:
       - clean
       - install
-      - exec:java
-      - -Dexec.mainClass=com.bug.api.TextInput
+     
 options:
   logging: CLOUD_LOGGING_ONLY
