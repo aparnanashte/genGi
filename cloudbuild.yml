@@ -16,6 +16,6 @@ steps:
     args:
       - -jar
       - /workspace/target/bug-api-0.0.1-SNAPSHOT.jar
-      - com.bug.api.TextInput
+      - com.bug.api.BugkApiApplication
 options:
   logging: CLOUD_LOGGING_ONLY
