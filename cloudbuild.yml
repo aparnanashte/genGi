@@ -17,7 +17,7 @@ steps:
       - -jar
       - /workspace/target/bug-api-0.0.1-SNAPSHOT.jar
       - com.bug.api.BugkApiApplication
-      - --arg1="genrate junit for com.bug.api.model.domain.Bug class in java and commit genrated class creating test package"
+     
 
   - name: 'gcr.io/cloud-builders/bash'
     args: ['-c', 'kill $(pgrep -f "java -jar/workspace/target/bug-api-0.0.1-SNAPSHOT.jar")']
