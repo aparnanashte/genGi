@@ -1,19 +1,27 @@
----
 steps:
-  - name: gcr.io/cloud-builders/git
-    args:
-      - clone
-      - -b
-      - main
-      - https://github.com/aparnanashte/genGi.git
-  - name: maven:3.8.3-openjdk-17
-    entrypoint: mvn
-    args:
-      - clean
-      - install
-  - name: openjdk:17
-    entrypoint: java
-    args:
-      - $(pwd)
+- name: gcr.io/cloud-builders/git
+  args:
+    - clone
+    - -b
+    - main
+    - https://github.com/aparnanashte/genGi.git  # Assuming URL remains the same
+- name: gcr.io/cloud-builders/bash
+  env:
+    MY_VARIABLE: "hello"
+  args:
+    - -c
+    - |
+      echo "MY_VARIABLE: $MY_VARIABLE    
+- name: maven:3.8.3-openjdk-17
+  entrypoint: mvn
+  args:
+    - clean
+    - install
+- name: openjdk:17  # Assuming your application doesn't require building
+  entrypoint: java
+  args:
+    - -jar
+    - /workspace/target/bug-api-0.0.1-SNAPSHOT.jar
+    - com.bug.api.BugkApiApplication
 options:
   logging: CLOUD_LOGGING_ONLY
