@@ -9,6 +9,7 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
+@SpringBootApplication
 public class BugkApiApplication {
 	public static void main(String[] args) {
 		
