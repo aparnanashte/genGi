@@ -5,13 +5,6 @@ steps:
     - -b
     - main
     - https://github.com/aparnanashte/genGi.git  # Assuming URL remains the same
-- name: gcr.io/cloud-builders/bash
-  env:
-    MY_VARIABLE: "hello"
-  args:
-    - -c
-    - |
-      echo "MY_VARIABLE: $MY_VARIABLE    
 - name: maven:3.8.3-openjdk-17
   entrypoint: mvn
   args:
