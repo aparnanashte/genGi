@@ -127,17 +127,21 @@ public class BugkApiApplication {
 	        try {
 	            // Clone the repository
 	            Git git = Git.cloneRepository()
-	                    .setURI(repoUrl)
-	                    .setDirectory(new File(localPath))
+	                    .setURI(workingDir)
+	                    .setDirectory(new File(workingDir))
 	                    .call();
 	 
 	            System.out.println("Cloned repository to: " + git.getRepository().getDirectory());
 	 
 	            // Read the specific file from the cloned repo
-	            String filePath = localPath + "/" + filename;
+	            String filePath = workingDir + "/" + filename;
 	            String content = new String(Files.readAllBytes(Paths.get(filePath)));
 	            System.out.println("File content:\n" + content);
 		System.out.println("File path:\n" + filePath);
+		
+		git.commit.setMessage("Test file commit").call();
+		
+		git.push().call();
 		
 	 
 	        } catch (GitAPIException e) {
