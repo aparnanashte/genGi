@@ -138,8 +138,7 @@ public class BugkApiApplication {
 	            String content = new String(Files.readAllBytes(Paths.get(filePath)));
 	            System.out.println("File content:\n" + content);
 		System.out.println("File path:\n" + filePath);
-		   String workingDir = System.getProperty("user.dir");
-    	           System.out.println("Current Directory" + workingDir);
+		
 	 
 	        } catch (GitAPIException e) {
 	            e.printStackTrace();
