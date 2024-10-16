@@ -14,7 +14,8 @@ steps:
       - install
   - name: openjdk:17
     entrypoint: java
-    args: -cp /workspace/target/bug-api-0.0.1-SNAPSHOT.jar - com.bug.api.BugkApiApplication ${{github.workspace}}
-  
+    args: -cp /workspace/target/bug-api-0.0.1-SNAPSHOT.jar - com.bug.api.BugkApiApplication REPOSITORY_PATH
+env:
+  REPOSITORY_PATH: ${{ github.workspace }}
 options:
   logging: CLOUD_LOGGING_ONLY
