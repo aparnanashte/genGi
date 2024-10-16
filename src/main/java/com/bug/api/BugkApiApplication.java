@@ -139,7 +139,7 @@ public class BugkApiApplication {
 	            System.out.println("File content:\n" + content);
 		System.out.println("File path:\n" + filePath);
 		
-		git.commit.setMessage("Test file commit").call();
+		git.commit().setMessage("Test file commit").call();
 		
 		git.push().call();
 		
