@@ -1,47 +1,32 @@
-name: Clone and Push with GitHub Actions
-
-on:
-  push:
-    branches:
-      - main # This workflow triggers on pushes to the "main" branch.
-
-jobs:
-  clone-push:
-    runs-on: ubuntu-latest # You can also use a specific environment if required.
-
-    steps:
-    # Checkout the repo
-    - name: Checkout the code
-      uses: actions/checkout@v3
-
-    # Install Git (using Google Cloud's Cloud Builders)
-    - name: Install git from grc.io/cloud-builders
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y git
-
-    # Clone the repository
-    - name: Clone repository
-      run: |
-        git clone https://github.com/aparnanashte/genGi.git
-        echo "Repository cloned"
-
-    # Print the cloned repository path
-    - name: Print repository path
-      run: |
-        echo "Current Directory: $(pwd)"
-        echo "Cloned Directory: $(pwd)/Test1"
-
-    # Make some changes to the repository (optional)
-    - name: Make changes to the repo
-      run: |
-        cd https://github.com/aparnanashte/genGi.git
+---
+steps:
+  - name: gcr.io/cloud-builders/git
+    args:
+      - clone
+      - -b
+      - main
+      - https://github.com/aparnanashte/genGi.git
+  - name: maven:3.8.3-openjdk-17
+    entrypoint: mvn
+    args:
+      - clean
+      - install
+  - name: openjdk:17
+    entrypoint: java
+    args:
+      - -jar
+      - /workspace/target/bug-api-0.0.1-SNAPSHOT.jar
+      - com.bug.api.BugkApiApplication
+  - name: Make changes to the repo
+    run: |
+        cd genGi
         echo "Some changes" > changes.txt
         git add changes.txt
         git commit -m "Add changes via GitHub Actions"
 
-    # Push the changes back to the remote repository
-    - name: Push changes
-      run: |
-        cd Test1
-        git push https://github.com/aparnanashte/genGi.git
+  - name: Push changes
+    run: |
+        cd genGi
+        git push https://github.com/aparnanashte/genGi.git   
+options:
+  logging: CLOUD_LOGGING_ONLY
