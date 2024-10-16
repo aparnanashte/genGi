@@ -14,19 +14,6 @@ steps:
   - name: openjdk:17
     entrypoint: java
     args:
-      - -jar
-      - /workspace/target/bug-api-0.0.1-SNAPSHOT.jar
-      - com.bug.api.BugkApiApplication
-  - name: Make changes to the repo
-    run: |
-        cd genGi
-        echo "Some changes" > changes.txt
-        git add changes.txt
-        git commit -m "Add changes via GitHub Actions"
-
-  - name: Push changes
-    run: |
-        cd genGi
-        git push https://github.com/aparnanashte/genGi.git   
+      - $(pwd)
 options:
   logging: CLOUD_LOGGING_ONLY
