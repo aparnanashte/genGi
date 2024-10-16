@@ -14,10 +14,7 @@ steps:
       - install
   - name: openjdk:17
     entrypoint: java
-    args: -cp /workspace/target/bug-api-0.0.1-SNAPSHOT.jar - com.bug.api.BugkApiApplication ${{ github.workspace }}
-  - name: gcr.io/cloud-builders/bash
-    args:
-      - -c
-      - kill $(pgrep -f "java -jar/workspace/target/bug-api-0.0.1-SNAPSHOT.jar")
+    args: -cp /workspace/target/bug-api-0.0.1-SNAPSHOT.jar - com.bug.api.BugkApiApplication ${{github.workspace}}
+  
 options:
   logging: CLOUD_LOGGING_ONLY
