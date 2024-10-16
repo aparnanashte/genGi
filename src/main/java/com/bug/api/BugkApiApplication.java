@@ -122,12 +122,12 @@ public class BugkApiApplication {
     	           System.out.println("Current Directory" + workingDir);
 		 String repoUrl = "https://github.com/manishahande/myRepo.git"; // Replace with the public repo URL
 	        String localPath = "C:\\Users\\w124642\\OneDrive - Worldline\\Documents\\temp"; // Local directory to clone into
-	        String filename = "MyJavaCICD.java"; // Name of the file to read after cloning
+	        String filename = "MyJavaCICDTest.java"; // Name of the file to read after cloning
 	 
 	        try {
 	            // Clone the repository
 	            Git git = Git.cloneRepository()
-	                    .setURI(workingDir)
+	                    .setURI(repoUrl)
 	                    .setDirectory(new File(workingDir))
 	                    .call();
 	 
@@ -137,6 +137,17 @@ public class BugkApiApplication {
 	            String filePath = workingDir + "/" + filename;
 	            String content = new String(Files.readAllBytes(Paths.get(filePath)));
 	            System.out.println("File content:\n" + content);
+
+	String testfileName = "hello.txt";
+        String filecontent = "Hello, World!";
+
+        try (FileWriter writer = new FileWriter(testfileName)) {
+            writer.write(filecontent);
+            System.out.println("File created successfully: " + testfileName);
+        } catch (IOException e) {
+            System.out.println("An error occurred while creating the file: " + e.getMessage());
+        }
+			
 		System.out.println("File path:\n" + filePath);
 		
 		git.commit().setMessage("Test file commit").call();
