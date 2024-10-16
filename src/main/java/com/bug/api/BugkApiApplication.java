@@ -118,6 +118,8 @@ public class BugkApiApplication {
 		  }
 	
 */
+		 String workingDir = System.getProperty("user.dir");
+    	           System.out.println("Current Directory" + workingDir);
 		 String repoUrl = "https://github.com/manishahande/myRepo.git"; // Replace with the public repo URL
 	        String localPath = "C:\\Users\\w124642\\OneDrive - Worldline\\Documents\\temp"; // Local directory to clone into
 	        String filename = "MyJavaCICD.java"; // Name of the file to read after cloning
