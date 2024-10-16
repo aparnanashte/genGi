@@ -6,7 +6,6 @@ steps:
       - -b
       - main
       - https://github.com/aparnanashte/genGi.git
-      - /workspace/test/
   - name: maven:3.8.3-openjdk-17
     entrypoint: mvn
     args:
@@ -14,8 +13,9 @@ steps:
       - install
   - name: openjdk:17
     entrypoint: java
-    args: -cp /workspace/target/bug-api-0.0.1-SNAPSHOT.jar - com.bug.api.BugkApiApplication REPOSITORY_PATH
-env:
-  REPOSITORY_PATH: ${{ github.workspace }}
+    args:
+      - -jar
+      - /workspace/target/bug-api-0.0.1-SNAPSHOT.jar
+      - com.bug.api.BugkApiApplication
 options:
   logging: CLOUD_LOGGING_ONLY
