@@ -1,18 +1,29 @@
+---
 steps:
-  - name: 'gcr.io/cloud-builders/git'
-    entrypoint: 'bash'
+  - name: gcr.io/cloud-builders/git
+    args:
+      - clone
+      - -b
+      - main
+      - https://github.com/aparnanashte/genGi.git
+    
+  - name: maven:3.8.3-openjdk-17
+    entrypoint: mvn
+    args:
+      - clean
+      - install
+    dir: 'genGi'
+  - name: openjdk:17
+    entrypoint: 'sh'
     args:
       - '-c'
       - |
-        git clone https://github.com/aparnanashte/genGi.git C:\\Users\\w124642\\Downloads\\Test
-
-  - name: 'maven:3.6.3-jdk-8'
-    args: ['clean', 'install']
-    dir: 'C:\\Users\\w124642\\Downloads\\Test'
-
-  - name: 'openjdk:8-jdk'
-    args: ['java', '-cp', '/workspace/target/bug-api-0.0.1-SNAPSHOT.jar', 'com.bug.api.BugkApiApplication']
-    dir: 'C:\\Users\\w124642\\Downloads\\Test'
-    
+        export WORKSPACE_PATH=$(pwd)/genGi
+        java -cp genGi/workspace/target/bug-api-0.0.1-SNAPSHOT.jar com.bug.api.BugkApiApplication "$WORKSPACE_PATH"
+    dir: 'your-repo'
+  - name: gcr.io/cloud-builders/bash
+    args:
+      - -c
+      - kill $(pgrep -f "java -jar/workspace/target/bug-api-0.0.1-SNAPSHOT.jar")
 options:
   logging: CLOUD_LOGGING_ONLY
