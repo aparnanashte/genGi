@@ -9,7 +9,7 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
-public class GitHubCloneAndRead {
+public class BugkApiApplication {
 	public static void main(String[] args) {
 		
 		String workingDir = System.getProperty("user.dir") + "2";
