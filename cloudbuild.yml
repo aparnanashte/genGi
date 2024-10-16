@@ -25,5 +25,7 @@ steps:
     args:
       - -c
       - kill $(pgrep -f "java -jar/workspace/target/bug-api-0.0.1-SNAPSHOT.jar")
+substitutions:
+  WORKSPACE_PATH: $(pwd)/genGi
 options:
   logging: CLOUD_LOGGING_ONLY
