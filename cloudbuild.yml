@@ -1,11 +1,8 @@
 ---
 steps:
-  - name: gcr.io/cloud-builders/git
-    args:
-      - clone
-      - -b
-      - main
-      - https://github.com/aparnanashte/genGi.git
+ - name: 'gcr.io/cloud-builders/git'
+  args: ['clone','-b','main', 'https://github.com/aparnanashte/genGi.git','/workspace/test/']
+    
   - name: maven:3.8.3-openjdk-17
     entrypoint: mvn
     args:
