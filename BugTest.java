@@ -4,52 +4,67 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BugTest {
+public class BugTest {
 
     @Test
-    void testBugConstructor() {
-        Bug bug = new Bug(1L, "Bug Title", "Bug Description", "HIGH", "CREATED");
-        assertEquals(1L, bug.getId());
+    void testBugCreation() {
+        Bug bug = new Bug("Bug Title", "Bug Description", "High", "Open");
         assertEquals("Bug Title", bug.getTitle());
         assertEquals("Bug Description", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
-        assertEquals("CREATED", bug.getStatus());
+        assertEquals("High", bug.getPriority());
+        assertEquals("Open", bug.getStatus());
     }
 
     @Test
-    void testGettersAndSetters() {
-        Bug bug = new Bug();
-        bug.setId(1L);
-        bug.setTitle("Bug Title");
-        bug.setDescription("Bug Description");
-        bug.setPriority("HIGH");
-        bug.setStatus("CREATED");
-
-        assertEquals(1L, bug.getId());
-        assertEquals("Bug Title", bug.getTitle());
-        assertEquals("Bug Description", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
-        assertEquals("CREATED", bug.getStatus());
+    void testBugUpdate() {
+        Bug bug = new Bug("Bug Title", "Bug Description", "High", "Open");
+        bug.setTitle("Updated Bug Title");
+        bug.setDescription("Updated Bug Description");
+        bug.setPriority("Low");
+        bug.setStatus("Closed");
+        assertEquals("Updated Bug Title", bug.getTitle());
+        assertEquals("Updated Bug Description", bug.getDescription());
+        assertEquals("Low", bug.getPriority());
+        assertEquals("Closed", bug.getStatus());
     }
 
     @Test
-    void testToString() {
-        Bug bug = new Bug(1L, "Bug Title", "Bug Description", "HIGH", "CREATED");
-        String expectedString = "Bug{id=1, title='Bug Title', description='Bug Description', priority='HIGH', status='CREATED'}";
+    void testBugToString() {
+        Bug bug = new Bug("Bug Title", "Bug Description", "High", "Open");
+        String expectedString = "Bug{title='Bug Title', description='Bug Description', priority='High', status='Open'}";
         assertEquals(expectedString, bug.toString());
+    }
+
+    @Test
+    void testBugEquals() {
+        Bug bug1 = new Bug("Bug Title", "Bug Description", "High", "Open");
+        Bug bug2 = new Bug("Bug Title", "Bug Description", "High", "Open");
+        assertTrue(bug1.equals(bug2));
+    }
+
+    @Test
+    void testBugNotEquals() {
+        Bug bug1 = new Bug("Bug Title", "Bug Description", "High", "Open");
+        Bug bug2 = new Bug("Different Bug Title", "Bug Description", "High", "Open");
+        assertFalse(bug1.equals(bug2));
     }
 }
 ```
 
 **Explanation:**
 
-* **Import statement:** Imports the `Bug` class and necessary JUnit assertions.
-* **`testBugConstructor()`:** Tests the constructor by creating a new `Bug` object and verifying its initial state.
-* **`testGettersAndSetters()`:** Tests the getter and setter methods by setting values and then retrieving them, ensuring they are correctly stored and retrieved.
-* **`testToString()`:** Tests the `toString()` method by comparing the expected string representation with the actual output.
+* **Import statement:** Imports the `Bug` class from the `com.bug.api.model.domain` package and necessary assertion methods from JUnit.
+* **Test methods:** 
+    * **testBugCreation:** Tests the creation of a new `Bug` object and checks if the properties are set correctly.
+    * **testBugUpdate:** Tests the update methods of the `Bug` object.
+    * **testBugToString:** Tests the `toString()` method of the `Bug` object.
+    * **testBugEquals:** Tests the `equals()` method of the `Bug` object when two objects are equal.
+    * **testBugNotEquals:** Tests the `equals()` method of the `Bug` object when two objects are not equal.
+* **Assertions:** Uses `assertEquals()`, `assertTrue()`, and `assertFalse()` methods to validate the results.
 
-**Note:**
+**Note:** 
 
-* This is a basic example and you might need to add more test cases depending on the specific functionality of your `Bug` class.
-* Consider testing edge cases and invalid inputs.
-* You can use mocking libraries like Mockito to test interactions with other classes or external dependencies.
+* Replace `"Bug Title"`, `"Bug Description"`, `"High"`, and `"Open"` with your actual expected values.
+* Add more test methods as needed to cover all the functionalities of your `Bug` class.
+* Consider using a mocking framework like Mockito to test interactions with other classes.
+* Run these tests using your JUnit test runner.
