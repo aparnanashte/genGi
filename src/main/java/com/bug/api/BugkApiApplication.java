@@ -86,9 +86,6 @@ String projectId = "glb-fs-wgh-app-dev";
 				git.pull().setCredentialsProvider(credentialsProvider).call();
 			}*/
 			
-
-			
-
 			// Read the specific file from the cloned repo
 
 			String testfileName = workingDir + "/BugTest.java";
