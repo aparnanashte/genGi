@@ -1,16 +1,15 @@
 ```java
+import com.bug.api.model.domain.Bug;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
-import com.bug.api.model.domain.Bug;
 
 public class BugTest {
 
     @Test
     void testBugConstructor() {
         // Arrange
-        String title = "Bug Title";
-        String description = "Bug Description";
+        String title = "Bug title";
+        String description = "Bug description";
         String priority = "High";
         String status = "Open";
 
@@ -25,47 +24,70 @@ public class BugTest {
     }
 
     @Test
-    void testSettersAndGetters() {
+    void testSettersGetters() {
         // Arrange
         Bug bug = new Bug();
 
         // Act
-        bug.setTitle("Updated Title");
-        bug.setDescription("Updated Description");
+        bug.setTitle("New bug title");
+        bug.setDescription("New bug description");
         bug.setPriority("Medium");
-        bug.setStatus("Closed");
+        bug.setStatus("In Progress");
 
         // Assert
-        assertEquals("Updated Title", bug.getTitle());
-        assertEquals("Updated Description", bug.getDescription());
+        assertEquals("New bug title", bug.getTitle());
+        assertEquals("New bug description", bug.getDescription());
         assertEquals("Medium", bug.getPriority());
-        assertEquals("Closed", bug.getStatus());
+        assertEquals("In Progress", bug.getStatus());
+    }
+
+    @Test
+    void testToString() {
+        // Arrange
+        Bug bug = new Bug("Bug title", "Bug description", "High", "Open");
+
+        // Act
+        String toStringResult = bug.toString();
+
+        // Assert
+        assertTrue(toStringResult.contains("Bug title"));
+        assertTrue(toStringResult.contains("Bug description"));
+        assertTrue(toStringResult.contains("High"));
+        assertTrue(toStringResult.contains("Open"));
     }
 }
 ```
 
 **Explanation:**
 
-1. **Import Statements:** The test case imports necessary classes:
-   - `org.junit.jupiter.api.Test`: For defining test methods.
-   - `static org.junit.jupiter.api.Assertions.*`: For using assertion methods like `assertEquals`.
-   - `com.bug.api.model.domain.Bug`: The class under test.
+1. **Import Statements:**
+   - `com.bug.api.model.domain.Bug`: Imports the `Bug` class.
+   - `org.junit.jupiter.api.Test`: Imports the `Test` annotation for marking test methods.
+   - `static org.junit.jupiter.api.Assertions.*`: Imports all assertion methods from JUnit for easier use.
 
-2. **Test Class:** The `BugTest` class contains the test methods.
+2. **Test Class:**
+   - `public class BugTest`: Defines a test class named `BugTest`.
 
-3. **`testBugConstructor()`:**
-   - **Arrange:**  Creates test data for title, description, priority, and status.
-   - **Act:** Creates a `Bug` object using the constructor with the test data.
-   - **Assert:**  Uses `assertEquals` to verify that the getter methods return the expected values set by the constructor.
+3. **Test Methods:**
+   - **`testBugConstructor()`:**
+     - **Arrange:** Creates a `Bug` object with sample data.
+     - **Act:** None, the constructor is executed automatically.
+     - **Assert:** Uses `assertEquals` to check if the getter methods return the expected values initialized by the constructor.
+   - **`testSettersGetters()`:**
+     - **Arrange:** Creates an empty `Bug` object.
+     - **Act:** Sets values using the setter methods.
+     - **Assert:** Uses `assertEquals` to check if the getter methods return the expected values set by the setter methods.
+   - **`testToString()`:**
+     - **Arrange:** Creates a `Bug` object with sample data.
+     - **Act:** Calls the `toString()` method.
+     - **Assert:** Uses `assertTrue` to check if the generated string contains the expected values from the `Bug` object.
 
-4. **`testSettersAndGetters()`:**
-   - **Arrange:** Creates a `Bug` object.
-   - **Act:** Sets values for the title, description, priority, and status using the setter methods.
-   - **Assert:** Uses `assertEquals` to verify that the getter methods return the values set by the setter methods.
+**Running the Tests:**
 
-**To run these tests:**
+1. Make sure you have JUnit 5 installed in your project.
+2. Run the `BugTest` class as a JUnit test.
 
-1. Make sure you have JUnit 5 in your project dependencies.
-2. Right-click on the test class and select "Run As" -> "JUnit Test".
+**Note:**
 
-This test case covers basic functionality of the `Bug` class. You can add more test cases to cover edge cases, validation, and other methods you might have in your `Bug` class. 
+- This is a basic example, and you can expand it to cover more scenarios and aspects of the `Bug` class.
+- Adjust the test data and assertions based on your specific requirements and the functionality of your `Bug` class.
