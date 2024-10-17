@@ -86,12 +86,12 @@ String projectId = "glb-fs-wgh-app-dev";
 		 */
 
 		// Read the specific file from the cloned repo
-		File newDir = new File(workingDir+"/GenratedResult");            
-		if (newDir.mkdir()) {
+		String newDir = workingDir+"/GenratedResult";            
+		/*if (newDir.mkdir()) {
 			System.out.println("Directory created: " + newDir.getAbsolutePath());
 		} else {
 			System.out.println("Failed to create directory or it already exists.");
-		}
+		}*/
 		List<String> fieNames = FileFinder.findJavaFiles(workingDir);
 		String testfileName = null;
 		for (String name : fieNames) {
@@ -117,7 +117,7 @@ String projectId = "glb-fs-wgh-app-dev";
 
 		}
 		try {
-			git.add().addFilepattern("GenratedResult").call();
+			git.add().addFilepattern(.).call();
 			git.commit().setMessage("Commit messag2222").call();
 			// CredentialsProvider credentialsProvider = new
 			// UsernamePasswordCredentialsProvider(username, password);
