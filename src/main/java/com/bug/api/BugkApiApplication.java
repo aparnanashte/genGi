@@ -60,7 +60,7 @@ public class BugkApiApplication {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	        SecretVersionName secretVersionName = SecretVersionName.of(projectId, secretName,"1");
+	        SecretVersionName secretVersionName = SecretVersionName.of(projectId, secretName,"latest");
 	        String accessToken = client.accessSecretVersion(secretVersionName).getPayload().getData().toStringUtf8();
 
 	          System.out.println("AccessToken: " + accessToken);
