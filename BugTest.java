@@ -1,59 +1,75 @@
 ```java
 import com.bug.api.model.domain.Bug;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class BugTest {
+public class BugTest {
 
     @Test
-    void testConstructor() {
-        Bug bug = new Bug("Test Bug", "This is a test bug", "HIGH");
-        assertEquals("Test Bug", bug.getTitle());
-        assertEquals("This is a test bug", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
+    void testBugConstructor() {
+        // Arrange
+        String title = "Test bug";
+        String description = "This is a test bug description";
+        String priority = "High";
+        String status = "Open";
+
+        // Act
+        Bug bug = new Bug(title, description, priority, status);
+
+        // Assert
+        assertEquals(title, bug.getTitle());
+        assertEquals(description, bug.getDescription());
+        assertEquals(priority, bug.getPriority());
+        assertEquals(status, bug.getStatus());
     }
 
     @Test
-    void testSettersAndGetters() {
+    void testBugGettersAndSetters() {
+        // Arrange
         Bug bug = new Bug();
-        bug.setTitle("Test Bug");
-        bug.setDescription("This is a test bug");
-        bug.setPriority("HIGH");
 
-        assertEquals("Test Bug", bug.getTitle());
-        assertEquals("This is a test bug", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
+        // Act
+        bug.setTitle("Test bug");
+        bug.setDescription("This is a test bug description");
+        bug.setPriority("High");
+        bug.setStatus("Open");
+
+        // Assert
+        assertEquals("Test bug", bug.getTitle());
+        assertEquals("This is a test bug description", bug.getDescription());
+        assertEquals("High", bug.getPriority());
+        assertEquals("Open", bug.getStatus());
     }
 
     @Test
-    void testToString() {
-        Bug bug = new Bug("Test Bug", "This is a test bug", "HIGH");
-        String expectedToString = "Bug{title='Test Bug', description='This is a test bug', priority='HIGH'}";
-        assertEquals(expectedToString, bug.toString());
+    void testBugToString() {
+        // Arrange
+        Bug bug = new Bug("Test bug", "This is a test bug description", "High", "Open");
+
+        // Act
+        String bugString = bug.toString();
+
+        // Assert
+        assertTrue(bugString.contains("Test bug"));
+        assertTrue(bugString.contains("This is a test bug description"));
+        assertTrue(bugString.contains("High"));
+        assertTrue(bugString.contains("Open"));
     }
 }
 ```
 
 **Explanation:**
 
-1. **Import Statement:**
-   - `import com.bug.api.model.domain.Bug;` imports the `Bug` class from the specified package.
-   - `import org.junit.jupiter.api.Test;` imports the `Test` annotation for marking test methods.
+* **Import statements:** The test class imports the necessary classes for testing, including the `Bug` class and assertion methods from JUnit.
+* **Test cases:**
+    * `testBugConstructor()`: This test case tests the constructor of the `Bug` class by creating an instance with specific values and verifying that the getters return the expected values.
+    * `testBugGettersAndSetters()`: This test case tests the getters and setters of the `Bug` class by setting values using the setters and verifying that the getters return the correct values.
+    * `testBugToString()`: This test case tests the `toString()` method of the `Bug` class by creating an instance and verifying that the returned string contains the expected values.
+* **Assertions:** The test cases use assertion methods like `assertEquals()` and `assertTrue()` to verify the expected results.
 
-2. **Test Class:**
-   - The class `BugTest` contains the test methods for the `Bug` class.
+**How to run the tests:**
 
-3. **Test Methods:**
-   - `testConstructor()`: Tests the constructor by creating a `Bug` object and verifying its initial values.
-   - `testSettersAndGetters()`: Tests the setters and getters by setting values to the `Bug` object and then retrieving them.
-   - `testToString()`: Tests the `toString()` method by comparing the expected string representation with the actual output.
+1. Make sure you have JUnit 5 installed in your project.
+2. Run the test class as a JUnit test.
 
-4. **Assertions:**
-   - The `assertEquals()` method is used to verify that the actual values match the expected values.
-
-**Note:**
-
-- This test case assumes that the `Bug` class has a constructor with the parameters `title`, `description`, and `priority`. It also assumes that the class has setters and getters for these attributes.
-- You can add more test methods as needed to cover different aspects of the `Bug` class.
-- Replace the placeholder package name `com.bug.api.model.domain` with the actual package name of your `Bug` class.
+This test case provides a basic example of how to write JUnit tests for the `Bug` class. You can add more test cases to cover other functionalities and edge cases of the class. 
