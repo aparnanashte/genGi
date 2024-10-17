@@ -5,85 +5,56 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BugStatusTest {
 
     @Test
-    void testOpenStatus() {
-        BugStatus status = BugStatus.OPEN;
-        assertEquals("OPEN", status.getStatus());
+    void testBugStatusConstructor() {
+        BugStatus bugStatus = new BugStatus("Open", "Description");
+        assertEquals("Open", bugStatus.getStatus());
+        assertEquals("Description", bugStatus.getDescription());
     }
 
     @Test
-    void testInProgressStatus() {
-        BugStatus status = BugStatus.IN_PROGRESS;
-        assertEquals("IN_PROGRESS", status.getStatus());
+    void testGetStatus() {
+        BugStatus bugStatus = new BugStatus("Open", "Description");
+        assertEquals("Open", bugStatus.getStatus());
     }
 
     @Test
-    void testResolvedStatus() {
-        BugStatus status = BugStatus.RESOLVED;
-        assertEquals("RESOLVED", status.getStatus());
+    void testSetStatus() {
+        BugStatus bugStatus = new BugStatus("Open", "Description");
+        bugStatus.setStatus("Closed");
+        assertEquals("Closed", bugStatus.getStatus());
     }
 
     @Test
-    void testClosedStatus() {
-        BugStatus status = BugStatus.CLOSED;
-        assertEquals("CLOSED", status.getStatus());
+    void testGetDescription() {
+        BugStatus bugStatus = new BugStatus("Open", "Description");
+        assertEquals("Description", bugStatus.getDescription());
     }
 
     @Test
-    void testValueOf() {
-        assertEquals(BugStatus.OPEN, BugStatus.valueOf("OPEN"));
-        assertEquals(BugStatus.IN_PROGRESS, BugStatus.valueOf("IN_PROGRESS"));
-        assertEquals(BugStatus.RESOLVED, BugStatus.valueOf("RESOLVED"));
-        assertEquals(BugStatus.CLOSED, BugStatus.valueOf("CLOSED"));
-    }
-
-    @Test
-    void testValueOfInvalidStatus() {
-        assertThrows(IllegalArgumentException.class, () -> BugStatus.valueOf("INVALID_STATUS"));
-    }
-}
-```
-
-**BugStatus Class (Assuming):**
-
-```java
-public enum BugStatus {
-    OPEN("OPEN"),
-    IN_PROGRESS("IN_PROGRESS"),
-    RESOLVED("RESOLVED"),
-    CLOSED("CLOSED");
-
-    private final String status;
-
-    BugStatus(String status) {
-        this.status = status;
-    }
-
-    public String getStatus() {
-        return status;
+    void testSetDescription() {
+        BugStatus bugStatus = new BugStatus("Open", "Description");
+        bugStatus.setDescription("Updated Description");
+        assertEquals("Updated Description", bugStatus.getDescription());
     }
 }
 ```
 
 **Explanation:**
 
-1. **Import Statements:**
-   - `org.junit.jupiter.api.Test`: Imports the `Test` annotation for marking test methods.
-   - `static org.junit.jupiter.api.Assertions.*`: Imports assertion methods for verifying test results.
+* **Imports:** The `import` statements are used to bring in the necessary classes from JUnit 5.
+* **Test Class:** The `BugStatusTest` class contains the JUnit test methods.
+* **Test Methods:** Each test method tests a specific aspect of the `BugStatus` class:
+    * `testBugStatusConstructor()`: Checks that the constructor correctly initializes the status and description.
+    * `testGetStatus()`: Checks that the `getStatus()` method returns the correct status.
+    * `testSetStatus()`: Checks that the `setStatus()` method correctly updates the status.
+    * `testGetDescription()`: Checks that the `getDescription()` method returns the correct description.
+    * `testSetDescription()`: Checks that the `setDescription()` method correctly updates the description.
+* **Assertions:** The `assertEquals()` method is used to assert that the actual values match the expected values.
 
-2. **Test Methods:**
-   - **`testOpenStatus()`:**
-     - Creates a `BugStatus` object with the `OPEN` value.
-     - Uses `assertEquals()` to check if the `getStatus()` method returns "OPEN".
-   - **`testInProgressStatus()`**, **`testResolvedStatus()`**, **`testClosedStatus()`**: Similar to `testOpenStatus()`, but for other status values.
-   - **`testValueOf()`:**
-     - Tests the `valueOf()` method with valid status strings and asserts that the correct `BugStatus` enum values are returned.
-   - **`testValueOfInvalidStatus()`:**
-     - Uses `assertThrows()` to check that an `IllegalArgumentException` is thrown when an invalid status string is passed to `valueOf()`.
+**To run the tests:**
 
-**Running the Tests:**
+1. Make sure you have JUnit 5 installed in your project.
+2. Run the `BugStatusTest` class as a JUnit test.
+3. The tests will execute, and you will see the results in your IDE or test runner.
 
-1. Ensure you have JUnit Jupiter installed in your project.
-2. Run the `BugStatusTest` class.
-3. The tests will execute, and you can see the results in your IDE or test runner.
-
-**Note:** You need to have the `BugStatus` class defined in your project for these tests to work.
+**Note:** This is a basic example, and you can add more test methods to cover other aspects of the `BugStatus` class. You can also use other assertion methods from JUnit 5 to verify different conditions.

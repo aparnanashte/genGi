@@ -1,0 +1,9 @@
+com/bug/api/model/domain/Project.class
+com/bug/api/model/domain/User.class
+com/bug/api/model/enums/ProjectStatus.class
+com/bug/api/FileFinder.class
+com/bug/api/model/domain/Bug.class
+com/bug/api/model/enums/BugStatus.class
+com/bug/api/model/enums/Role.class
+BankAcc.class
+com/bug/api/BugkApiApplication.class

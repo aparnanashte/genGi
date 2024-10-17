@@ -6,29 +6,25 @@ public class ProjectStatusTest {
 
     @Test
     void testConstructor() {
-        ProjectStatus status = new ProjectStatus("In Progress", "Some progress made.");
+        ProjectStatus status = new ProjectStatus("In Progress", "Some details about the progress");
         assertEquals("In Progress", status.getStatus());
-        assertEquals("Some progress made.", status.getDescription());
+        assertEquals("Some details about the progress", status.getDescription());
     }
 
     @Test
-    void testSetStatus() {
-        ProjectStatus status = new ProjectStatus("In Progress", "Some progress made.");
+    void testGettersAndSetters() {
+        ProjectStatus status = new ProjectStatus();
         status.setStatus("Completed");
-        assertEquals("Completed", status.getStatus());
-    }
+        status.setDescription("Project completed successfully.");
 
-    @Test
-    void testSetDescription() {
-        ProjectStatus status = new ProjectStatus("In Progress", "Some progress made.");
-        status.setDescription("Project successfully completed.");
-        assertEquals("Project successfully completed.", status.getDescription());
+        assertEquals("Completed", status.getStatus());
+        assertEquals("Project completed successfully.", status.getDescription());
     }
 
     @Test
     void testToString() {
-        ProjectStatus status = new ProjectStatus("In Progress", "Some progress made.");
-        String expectedString = "ProjectStatus{status='In Progress', description='Some progress made.'}";
+        ProjectStatus status = new ProjectStatus("On Hold", "Project put on hold due to external factors.");
+        String expectedString = "ProjectStatus{status='On Hold', description='Project put on hold due to external factors.'}";
         assertEquals(expectedString, status.toString());
     }
 }
@@ -36,17 +32,16 @@ public class ProjectStatusTest {
 
 **Explanation:**
 
-1. **Import Statements:** The test case imports the necessary JUnit 5 classes for testing.
-2. **Test Class:** The `ProjectStatusTest` class contains the test methods.
-3. **`testConstructor()`:** This test method verifies the constructor of the `ProjectStatus` class by creating an instance and asserting the initial status and description values.
-4. **`testSetStatus()`:** This test method verifies the `setStatus()` method by setting a new status and asserting the updated value.
-5. **`testSetDescription()`:** This test method verifies the `setDescription()` method by setting a new description and asserting the updated value.
-6. **`testToString()`:** This test method verifies the `toString()` method by comparing the expected string representation with the actual string returned by the method.
+* **Import Statements:** Imports the necessary classes for JUnit testing.
+* **Test Class:** Creates a test class `ProjectStatusTest` to hold the test methods.
+* **Test Methods:**
+    * **testConstructor():** Tests the constructor by creating a `ProjectStatus` object and verifying its initial status and description.
+    * **testGettersAndSetters():** Tests the getter and setter methods by setting values and verifying the retrieved values.
+    * **testToString():** Tests the `toString()` method by creating a `ProjectStatus` object and comparing its string representation with the expected string.
 
-**To use this test case:**
+**Notes:**
 
-1. Make sure you have JUnit 5 added to your project's dependencies.
-2. Create a class named `ProjectStatus` with the methods tested in this example.
-3. Run the test case to verify the functionality of the `ProjectStatus` class.
-
-This example provides a basic set of test cases. You can add more test methods to cover different scenarios and edge cases of your `ProjectStatus` class.
+* Replace `ProjectStatus` with the actual name of your class.
+* This test case assumes that the `ProjectStatus` class has a constructor, getters, setters, and a `toString()` method.
+* Add more test cases to cover other functionalities of your class. 
+* Use annotations like `@BeforeEach` and `@AfterEach` to perform setup and cleanup actions before and after each test method.

@@ -1,0 +1,9 @@
+/workspace/src/main/java/com/bug/api/model/enums/Role.java
+/workspace/src/main/java/com/bug/api/model/domain/Bug.java
+/workspace/src/main/java/com/bug/api/BugkApiApplication.java
+/workspace/src/main/java/com/bug/api/FileFinder.java
+/workspace/src/main/java/com/bug/api/model/domain/Project.java
+/workspace/src/main/java/com/bug/api/model/enums/ProjectStatus.java
+/workspace/src/main/java/com/bug/api/BankAcc.java
+/workspace/src/main/java/com/bug/api/model/enums/BugStatus.java
+/workspace/src/main/java/com/bug/api/model/domain/User.java

@@ -4,86 +4,57 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ProjectClassTest {
 
-    @Test
-    void testMethod1() {
-        // Arrange
-        // ... (set up any necessary data or objects)
-
-        // Act
-        // ... (call the method you want to test)
-
-        // Assert
-        // ... (check the results of the method)
-    }
+    // Add your test methods here. For example:
 
     @Test
-    void testMethod2() {
+    void testMethod() {
         // Arrange
-        // ... (set up any necessary data or objects)
+        // ...
 
         // Act
-        // ... (call the method you want to test)
+        // ...
 
         // Assert
-        // ... (check the results of the method)
+        // ...
     }
-
-    // ... (add more test methods for other methods in ProjectClass)
 }
 ```
 
 **Explanation:**
 
-1. **Import Statements:**
-   - `import org.junit.jupiter.api.Test;` imports the `Test` annotation from JUnit 5.
-   - `import static org.junit.jupiter.api.Assertions.*;` imports all static methods from `Assertions` class, which allows you to use assertion methods like `assertEquals()`, `assertTrue()`, etc., without specifying the class name.
+* **Import Statements:** The code imports the necessary JUnit 5 classes for writing test cases.
+* **Test Class:** The `ProjectClassTest` class is a JUnit 5 test class.
+* **Test Method:** The `testMethod` is a placeholder for your actual test method. It should follow the Arrange-Act-Assert pattern:
+    * **Arrange:** Set up any necessary data or objects before running the test.
+    * **Act:** Execute the code you want to test.
+    * **Assert:** Verify the expected outcome of the code execution using assertions.
 
-2. **Test Class:**
-   - `public class ProjectClassTest { ... }` defines a test class named `ProjectClassTest`. Conventionally, test class names end with "Test".
-
-3. **Test Methods:**
-   - Each test method represents a specific test case for a method in your `ProjectClass`.
-   - Each test method is annotated with `@Test` to mark it as a test method.
-   - The `testMethod1()` and `testMethod2()` are just examples. Replace these with actual method names from your `ProjectClass`.
-
-4. **Test Method Structure (Arrange-Act-Assert):**
-   - **Arrange:** This section sets up the necessary data, objects, or conditions for your test case.
-   - **Act:** This section executes the method under test.
-   - **Assert:** This section verifies the expected outcome of the method using assertion methods.
-
-**How to Use:**
-
-1. **Replace Placeholders:**
-   - Replace `ProjectClassTest` with your actual test class name.
-   - Replace `testMethod1()` and `testMethod2()` with the actual method names you want to test in your `ProjectClass`.
-   - Fill in the `Arrange`, `Act`, and `Assert` sections with the specific logic for each test case.
-
-2. **Add More Tests:**
-   - Create additional test methods for each method in your `ProjectClass` that you want to test.
-
-3. **Run Tests:**
-   - Use your chosen testing framework (like JUnit) to run the test cases.
-
-**Example (Testing a `sum()` method):**
+**Example Test Method:**
 
 ```java
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CalculatorTest {
+public class ProjectClassTest {
 
     @Test
-    void testSum() {
+    void calculateSum_shouldReturnCorrectSum() {
         // Arrange
-        Calculator calculator = new Calculator();
-        int a = 5;
-        int b = 3;
+        ProjectClass projectClass = new ProjectClass();
+        int num1 = 5;
+        int num2 = 10;
 
         // Act
-        int result = calculator.sum(a, b);
+        int sum = projectClass.calculateSum(num1, num2);
 
         // Assert
-        assertEquals(8, result);
+        assertEquals(15, sum);
     }
 }
 ```
+
+**Note:**
+
+* Replace `ProjectClass` with the actual name of your class.
+* Add more test methods as needed to cover different scenarios and functionalities of your class.
+* Use appropriate assertions from the `org.junit.jupiter.api.Assertions` class to verify your expectations.
