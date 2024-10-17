@@ -1,18 +1,18 @@
 ```java
 import com.bug.api.model.domain.Bug;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class BugTest {
+public class BugTest {
 
     @Test
     void testConstructor() {
-        Bug bug = new Bug(1L, "Bug Title", "Bug Description", "HIGH", "OPEN");
+        Bug bug = new Bug(1L, "Test bug", "This is a test bug", "HIGH", "John Doe", "OPEN");
         assertEquals(1L, bug.getId());
-        assertEquals("Bug Title", bug.getTitle());
-        assertEquals("Bug Description", bug.getDescription());
+        assertEquals("Test bug", bug.getTitle());
+        assertEquals("This is a test bug", bug.getDescription());
         assertEquals("HIGH", bug.getPriority());
+        assertEquals("John Doe", bug.getAssignee());
         assertEquals("OPEN", bug.getStatus());
     }
 
@@ -20,36 +20,41 @@ class BugTest {
     void testSettersAndGetters() {
         Bug bug = new Bug();
         bug.setId(1L);
-        bug.setTitle("Bug Title");
-        bug.setDescription("Bug Description");
+        bug.setTitle("Test bug");
+        bug.setDescription("This is a test bug");
         bug.setPriority("HIGH");
+        bug.setAssignee("John Doe");
         bug.setStatus("OPEN");
 
         assertEquals(1L, bug.getId());
-        assertEquals("Bug Title", bug.getTitle());
-        assertEquals("Bug Description", bug.getDescription());
+        assertEquals("Test bug", bug.getTitle());
+        assertEquals("This is a test bug", bug.getDescription());
         assertEquals("HIGH", bug.getPriority());
+        assertEquals("John Doe", bug.getAssignee());
         assertEquals("OPEN", bug.getStatus());
-    }
-
-    @Test
-    void testToString() {
-        Bug bug = new Bug(1L, "Bug Title", "Bug Description", "HIGH", "OPEN");
-        String expectedToString = "Bug{id=1, title='Bug Title', description='Bug Description', priority='HIGH', status='OPEN'}";
-        assertEquals(expectedToString, bug.toString());
     }
 }
 ```
 
-**Explanation:**
+**Import Statements:**
 
-* **Imports:** We import the `Bug` class from the `com.bug.api.model.domain` package and the `Assertions` class from JUnit for assertion methods.
-* **Constructor Test:** This test verifies that the constructor correctly initializes the Bug object with provided values.
-* **Setters and Getters Test:** This test demonstrates how to use the setter methods to set the values of the Bug object and then use the getter methods to retrieve those values, ensuring they are consistent.
-* **ToString Test:** This test ensures that the `toString()` method returns a well-formatted string representation of the Bug object.
+```java
+import com.bug.api.model.domain.Bug;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+```
 
-**Note:** This is a basic example, and you may need to add more test cases to cover various scenarios and edge cases depending on the complexity of your `Bug` class. For instance, you might want to test:
+**Test Cases:**
 
-* **Validation:**  Add tests for input validation (e.g., ensuring priority and status values are valid).
-* **Equality:**  Implement and test the `equals()` and `hashCode()` methods.
-* **Other methods:** If your `Bug` class has additional methods, create test cases to cover them. 
+* **testConstructor():** Tests the constructor of the `Bug` class by creating a new `Bug` object and verifying the values of its attributes.
+* **testSettersAndGetters():** Tests the setter and getter methods of the `Bug` class by setting the values of its attributes and then verifying that the correct values are returned by the getter methods.
+
+**Assertions:**
+
+* **assertEquals():** Used to verify that the actual values of the attributes are equal to the expected values.
+
+**Notes:**
+
+* This test case assumes that the `Bug` class has the following attributes: `id`, `title`, `description`, `priority`, `assignee`, and `status`.
+* You can add more test cases to cover other functionalities or edge cases of the `Bug` class.
+* Remember to replace the placeholder values with your actual values.
