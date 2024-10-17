@@ -28,7 +28,7 @@ String projectId = "glb-fs-wgh-app-dev";
 
 		String location = "europe-west3";
 		String modelName = "gemini-1.5-flash-001";
-		String textPrompt = "Genrate Junit Test case for com.bug.api.model.domain.Bug java class along with import statement;";
+		String textPrompt = args[0];
 
 		String output = null;
 		try {
