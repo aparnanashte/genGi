@@ -1,79 +1,58 @@
 ```java
 import com.bug.api.model.domain.Bug;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class BugTest {
+public class BugTest {
 
     @Test
-    void testConstructor() {
-        // Arrange
-        String title = "Bug Title";
-        String description = "Bug Description";
-        String severity = "Major";
-        String status = "Open";
-        String priority = "High";
-
-        // Act
-        Bug bug = new Bug(title, description, severity, status, priority);
-
-        // Assert
-        assertEquals(title, bug.getTitle());
-        assertEquals(description, bug.getDescription());
-        assertEquals(severity, bug.getSeverity());
-        assertEquals(status, bug.getStatus());
-        assertEquals(priority, bug.getPriority());
+    void testBugConstructor() {
+        Bug bug = new Bug("Bug Title", "Description", "HIGH");
+        assertEquals("Bug Title", bug.getTitle());
+        assertEquals("Description", bug.getDescription());
+        assertEquals("HIGH", bug.getPriority());
     }
 
     @Test
-    void testGettersAndSetters() {
-        // Arrange
+    void testSettersAndGetters() {
         Bug bug = new Bug();
-
-        // Act
         bug.setTitle("Bug Title");
-        bug.setDescription("Bug Description");
-        bug.setSeverity("Major");
-        bug.setStatus("Open");
-        bug.setPriority("High");
-
-        // Assert
+        bug.setDescription("Description");
+        bug.setPriority("HIGH");
         assertEquals("Bug Title", bug.getTitle());
-        assertEquals("Bug Description", bug.getDescription());
-        assertEquals("Major", bug.getSeverity());
-        assertEquals("Open", bug.getStatus());
-        assertEquals("High", bug.getPriority());
+        assertEquals("Description", bug.getDescription());
+        assertEquals("HIGH", bug.getPriority());
     }
 
     @Test
     void testToString() {
-        // Arrange
-        Bug bug = new Bug("Bug Title", "Bug Description", "Major", "Open", "High");
-
-        // Act
-        String bugString = bug.toString();
-
-        // Assert
-        assertTrue(bugString.contains("Bug Title"));
-        assertTrue(bugString.contains("Bug Description"));
-        assertTrue(bugString.contains("Major"));
-        assertTrue(bugString.contains("Open"));
-        assertTrue(bugString.contains("High"));
+        Bug bug = new Bug("Bug Title", "Description", "HIGH");
+        String expectedString = "Bug{title='Bug Title', description='Description', priority='HIGH'}";
+        assertEquals(expectedString, bug.toString());
     }
 }
 ```
 
 **Explanation:**
 
-* **Imports:** The test class imports the `Bug` class and `Assertions` class from JUnit.
-* **Constructor Test:** This test verifies the constructor sets the correct values for the bug object.
-* **Getters and Setters Test:** This test ensures that the getters and setters for the bug object work correctly.
-* **toString Test:** This test verifies that the `toString()` method returns a string that contains all the bug's information.
+1. **Import statements:** The test class imports the `Bug` class and necessary assertion methods from JUnit.
+2. **`testBugConstructor`:** Tests the constructor of the `Bug` class.
+    - It creates a new `Bug` object with provided title, description, and priority.
+    - It then uses `assertEquals` to assert that the getters return the expected values.
+3. **`testSettersAndGetters`:** Tests the setters and getters of the `Bug` class.
+    - It creates a new `Bug` object.
+    - It sets the title, description, and priority using the setters.
+    - It uses `assertEquals` to assert that the getters return the expected values.
+4. **`testToString`:** Tests the `toString()` method of the `Bug` class.
+    - It creates a new `Bug` object.
+    - It uses `assertEquals` to assert that the `toString()` method returns the expected string representation of the `Bug` object.
 
-**Note:** This is a basic test case and may need to be expanded depending on the specific requirements of the `Bug` class. For example, you could add tests for:
+**Remember:**
 
-* Validation of input parameters
-* Handling of edge cases
-* Interactions with other classes or databases
-* Any other specific functionality of the `Bug` class.
+- These are basic test cases and you should add more tests to cover all the functionalities and edge cases of the `Bug` class.
+- This assumes the `Bug` class has the following attributes and methods:
+    - `title` (String)
+    - `description` (String)
+    - `priority` (String)
+    - `getTitle()`, `getDescription()`, `getPriority()`, `setTitle()`, `setDescription()`, `setPriority()`, and `toString()`.
+- You may need to modify the test cases based on the actual implementation of the `Bug` class. 
