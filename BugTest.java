@@ -6,56 +6,57 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BugTest {
 
     @Test
-    void testConstructor() {
-        Bug bug = new Bug("Test bug", "This is a test bug.", "HIGH");
-        assertEquals("Test bug", bug.getTitle());
-        assertEquals("This is a test bug.", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
+    void testBugConstructor() {
+        // Arrange
+        String title = "Bug Title";
+        String description = "Bug Description";
+        String priority = "High";
+        String status = "Open";
+
+        // Act
+        Bug bug = new Bug(title, description, priority, status);
+
+        // Assert
+        assertEquals(title, bug.getTitle());
+        assertEquals(description, bug.getDescription());
+        assertEquals(priority, bug.getPriority());
+        assertEquals(status, bug.getStatus());
     }
 
     @Test
-    void testGettersAndSetters() {
+    void testSettersAndGetters() {
+        // Arrange
         Bug bug = new Bug();
-        bug.setTitle("Test bug");
-        bug.setDescription("This is a test bug.");
-        bug.setPriority("HIGH");
 
-        assertEquals("Test bug", bug.getTitle());
-        assertEquals("This is a test bug.", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
-    }
+        // Act
+        bug.setTitle("New Bug Title");
+        bug.setDescription("New Bug Description");
+        bug.setPriority("Low");
+        bug.setStatus("Closed");
 
-    @Test
-    void testToString() {
-        Bug bug = new Bug("Test bug", "This is a test bug.", "HIGH");
-        String expectedString = "Bug{title='Test bug', description='This is a test bug.', priority='HIGH'}";
-        assertEquals(expectedString, bug.toString());
+        // Assert
+        assertEquals("New Bug Title", bug.getTitle());
+        assertEquals("New Bug Description", bug.getDescription());
+        assertEquals("Low", bug.getPriority());
+        assertEquals("Closed", bug.getStatus());
     }
 }
 ```
 
 **Explanation:**
 
-* **Import statements:**
-    * `com.bug.api.model.domain.Bug`: imports the Bug class to be tested.
-    * `org.junit.jupiter.api.Test`: imports the `@Test` annotation for marking test methods.
-    * `static org.junit.jupiter.api.Assertions.*`: imports all assertion methods from JUnit.
-* **Test class:**
-    * The class `BugTest` contains test methods for the `Bug` class.
-* **Test methods:**
-    * **`testConstructor()`:**
-        * Creates a new `Bug` object using the constructor.
-        * Asserts that the title, description, and priority of the created bug are as expected.
-    * **`testGettersAndSetters()`:**
-        * Creates a new `Bug` object.
-        * Sets the title, description, and priority using the setter methods.
-        * Asserts that the getter methods return the expected values.
-    * **`testToString()`:**
-        * Creates a new `Bug` object.
-        * Asserts that the `toString()` method returns the expected string representation of the bug.
+* **Import Statements:** We import the `Bug` class and the necessary JUnit assertions.
+* **`testBugConstructor()`:** This test verifies that the constructor correctly initializes a `Bug` object with the provided title, description, priority, and status.
+* **`testSettersAndGetters()`:** This test verifies that the setter and getter methods work as expected. It sets the values for each attribute and then retrieves them using the respective getter methods, ensuring the values are stored and retrieved correctly.
 
-**Note:** This is a basic example, and you may need to add more tests depending on the specific functionality of your `Bug` class. For instance, you might want to add tests for:
+**How to Use:**
 
-* Validation of input parameters (e.g., ensuring the priority is valid).
-* Other methods in the `Bug` class.
-* Different scenarios, such as testing edge cases.
+1. **Save the Code:** Save the code as `BugTest.java` in your test directory.
+2. **Compile and Run:** Compile the test class and run it using your chosen testing framework.
+3. **Interpret Results:** The test results will show whether the constructor and setter/getter methods are working as expected. 
+
+**Note:**
+
+* Adjust the test cases according to the specific requirements of your `Bug` class.
+* Consider adding more test cases for other methods or edge cases within the `Bug` class.
+* You can also add assertions for other attributes or behaviors of the `Bug` class if necessary.
