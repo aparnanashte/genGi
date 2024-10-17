@@ -16,8 +16,11 @@ import com.google.cloud.vertexai.VertexAI;
 import com.google.cloud.vertexai.api.GenerateContentResponse;
 import com.google.cloud.vertexai.generativeai.GenerativeModel;
 import com.google.cloud.vertexai.generativeai.ResponseHandler;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
+@SpringBootApplication
 public class BugkApiApplication {
 	public static void main(String[] args) {
 String projectId = "glb-fs-wgh-app-dev";
