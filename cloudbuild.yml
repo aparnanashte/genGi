@@ -9,7 +9,6 @@ steps:
     args:
       - -jar
       - /workspace/target/bug-api-0.0.1-SNAPSHOT.jar
-      - com.bug.api.BugkApiApplication "Genrate Junit Test case for
-        com.bug.api.model.domain.Bug java class along with import statement"
+      - com.bug.api.BugkApiApplication 
 options:
   logging: CLOUD_LOGGING_ONLY
