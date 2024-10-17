@@ -101,10 +101,10 @@ String projectId = "glb-fs-wgh-app-dev";
 		String testfileName = null;
 		for (String name : fieNames) {
 			
-			String name1= name.substring(name.lastIndexOf("/"),name.lastIndexOf("."));
+			String name1= name.substring(name.lastIndexOf("/")+1,name.lastIndexOf("."));
 
 			textPrompt = "Genrate Junit Test case for " + name1 + "class along with import statement";
-			testfileName = workingDir + "/" + name1 + "Test.java";
+			testfileName =   name1 + "Test.java";
 			Path filePath = folderPath.resolve(testfileName); 
 
 			try {
@@ -117,7 +117,7 @@ String projectId = "glb-fs-wgh-app-dev";
 
 			try  {
 				Files.write(filePath, Collections.singleton(output)); 
-				System.out.println("File created successfully: " + testfileName);
+				System.out.println("File created successfully: " + filePath.toAbsolutePath());
 			} catch (IOException e) {
 				System.out.println("An error occurred while creating the file: " + e.getMessage());
 			}
