@@ -88,7 +88,7 @@ String projectId = "glb-fs-wgh-app-dev";
 			
 			// Read the specific file from the cloned repo
 
-			String testfileName = workingDir + "/BugTest.java";
+			String testfileName = workingDir + "/BugTestNew.java";
 			String filecontent = output;
 
 			try (FileWriter writer = new FileWriter(testfileName)) {
@@ -100,7 +100,7 @@ String projectId = "glb-fs-wgh-app-dev";
 
 			try {
 				git.add().addFilepattern(".").call();
-				git.commit().setMessage("Commit messag2222").call();
+				git.commit().setMessage("Commit messag125").call();
 				// CredentialsProvider credentialsProvider = new
 				// UsernamePasswordCredentialsProvider(username, password);
 				// Replace with your Secret Manager secret project ID and secret name
