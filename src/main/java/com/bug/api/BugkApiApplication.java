@@ -113,7 +113,6 @@ String projectId = "glb-fs-wgh-app-dev";
 			}
 
 		}
-		
 		try {
 			git.add().addFilepattern(".").call();
 			git.commit().setMessage("Commit messag2222").call();
