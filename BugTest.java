@@ -1,60 +1,79 @@
 ```java
 import com.bug.api.model.domain.Bug;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BugTest {
+class BugTest {
 
     @Test
     void testConstructor() {
-        Bug bug = new Bug(1L, "Test bug", "This is a test bug", "HIGH", "John Doe", "OPEN");
-        assertEquals(1L, bug.getId());
-        assertEquals("Test bug", bug.getTitle());
-        assertEquals("This is a test bug", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
-        assertEquals("John Doe", bug.getAssignee());
-        assertEquals("OPEN", bug.getStatus());
+        // Arrange
+        String title = "Bug Title";
+        String description = "Bug Description";
+        String severity = "Major";
+        String status = "Open";
+        String priority = "High";
+
+        // Act
+        Bug bug = new Bug(title, description, severity, status, priority);
+
+        // Assert
+        assertEquals(title, bug.getTitle());
+        assertEquals(description, bug.getDescription());
+        assertEquals(severity, bug.getSeverity());
+        assertEquals(status, bug.getStatus());
+        assertEquals(priority, bug.getPriority());
     }
 
     @Test
-    void testSettersAndGetters() {
+    void testGettersAndSetters() {
+        // Arrange
         Bug bug = new Bug();
-        bug.setId(1L);
-        bug.setTitle("Test bug");
-        bug.setDescription("This is a test bug");
-        bug.setPriority("HIGH");
-        bug.setAssignee("John Doe");
-        bug.setStatus("OPEN");
 
-        assertEquals(1L, bug.getId());
-        assertEquals("Test bug", bug.getTitle());
-        assertEquals("This is a test bug", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
-        assertEquals("John Doe", bug.getAssignee());
-        assertEquals("OPEN", bug.getStatus());
+        // Act
+        bug.setTitle("Bug Title");
+        bug.setDescription("Bug Description");
+        bug.setSeverity("Major");
+        bug.setStatus("Open");
+        bug.setPriority("High");
+
+        // Assert
+        assertEquals("Bug Title", bug.getTitle());
+        assertEquals("Bug Description", bug.getDescription());
+        assertEquals("Major", bug.getSeverity());
+        assertEquals("Open", bug.getStatus());
+        assertEquals("High", bug.getPriority());
+    }
+
+    @Test
+    void testToString() {
+        // Arrange
+        Bug bug = new Bug("Bug Title", "Bug Description", "Major", "Open", "High");
+
+        // Act
+        String bugString = bug.toString();
+
+        // Assert
+        assertTrue(bugString.contains("Bug Title"));
+        assertTrue(bugString.contains("Bug Description"));
+        assertTrue(bugString.contains("Major"));
+        assertTrue(bugString.contains("Open"));
+        assertTrue(bugString.contains("High"));
     }
 }
 ```
 
-**Import Statements:**
+**Explanation:**
 
-```java
-import com.bug.api.model.domain.Bug;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-```
+* **Imports:** The test class imports the `Bug` class and `Assertions` class from JUnit.
+* **Constructor Test:** This test verifies the constructor sets the correct values for the bug object.
+* **Getters and Setters Test:** This test ensures that the getters and setters for the bug object work correctly.
+* **toString Test:** This test verifies that the `toString()` method returns a string that contains all the bug's information.
 
-**Test Cases:**
+**Note:** This is a basic test case and may need to be expanded depending on the specific requirements of the `Bug` class. For example, you could add tests for:
 
-* **testConstructor():** Tests the constructor of the `Bug` class by creating a new `Bug` object and verifying the values of its attributes.
-* **testSettersAndGetters():** Tests the setter and getter methods of the `Bug` class by setting the values of its attributes and then verifying that the correct values are returned by the getter methods.
-
-**Assertions:**
-
-* **assertEquals():** Used to verify that the actual values of the attributes are equal to the expected values.
-
-**Notes:**
-
-* This test case assumes that the `Bug` class has the following attributes: `id`, `title`, `description`, `priority`, `assignee`, and `status`.
-* You can add more test cases to cover other functionalities or edge cases of the `Bug` class.
-* Remember to replace the placeholder values with your actual values.
+* Validation of input parameters
+* Handling of edge cases
+* Interactions with other classes or databases
+* Any other specific functionality of the `Bug` class.
