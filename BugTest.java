@@ -8,61 +8,44 @@ class BugTest {
 
     @Test
     void testConstructor() {
-        // Arrange
-        Long id = 1L;
-        String title = "Test Bug";
-        String description = "This is a test bug.";
-        String severity = "High";
-        String status = "Open";
-
-        // Act
-        Bug bug = new Bug(id, title, description, severity, status);
-
-        // Assert
-        assertEquals(id, bug.getId());
-        assertEquals(title, bug.getTitle());
-        assertEquals(description, bug.getDescription());
-        assertEquals(severity, bug.getSeverity());
-        assertEquals(status, bug.getStatus());
-    }
-
-    @Test
-    void testSettersAndGetters() {
-        // Arrange
-        Bug bug = new Bug();
-
-        // Act
-        bug.setId(1L);
-        bug.setTitle("Test Bug");
-        bug.setDescription("This is a test bug.");
-        bug.setSeverity("High");
-        bug.setStatus("Open");
-
-        // Assert
+        Bug bug = new Bug(1L, "Test Bug", "This is a test bug.", "HIGH");
         assertEquals(1L, bug.getId());
         assertEquals("Test Bug", bug.getTitle());
         assertEquals("This is a test bug.", bug.getDescription());
-        assertEquals("High", bug.getSeverity());
-        assertEquals("Open", bug.getStatus());
+        assertEquals("HIGH", bug.getPriority());
+    }
+
+    @Test
+    void testGettersAndSetters() {
+        Bug bug = new Bug();
+        bug.setId(1L);
+        bug.setTitle("Test Bug");
+        bug.setDescription("This is a test bug.");
+        bug.setPriority("HIGH");
+
+        assertEquals(1L, bug.getId());
+        assertEquals("Test Bug", bug.getTitle());
+        assertEquals("This is a test bug.", bug.getDescription());
+        assertEquals("HIGH", bug.getPriority());
     }
 }
 ```
 
 **Explanation:**
 
-* **Import statement:** This imports the `Bug` class from the specified package.
-* **Test class:**  This is the JUnit test class named `BugTest`.
-* **`@Test` annotation:** This marks each method as a test case.
-* **`testConstructor()`:** This test case checks that the constructor properly initializes a `Bug` object with the provided parameters.
-* **`testSettersAndGetters()`:** This test case verifies that the setter and getter methods work correctly by setting values and then retrieving them.
-* **`assertEquals()`:** This assertion method checks if the expected value matches the actual value.
+* **Import Statement:** This imports the `Bug` class from the `com.bug.api.model.domain` package.
+* **Test Class:** The `BugTest` class is annotated with `@Test` to indicate it's a JUnit test class.
+* **`testConstructor()`:** This test method checks if the constructor correctly initializes the Bug object with given values.
+    * It creates a new Bug object using the constructor.
+    * It then uses `assertEquals()` to verify that the id, title, description, and priority of the object are set as expected.
+* **`testGettersAndSetters()`:** This test method verifies that the getters and setters work correctly.
+    * It creates a new Bug object.
+    * It sets the values for id, title, description, and priority using the setters.
+    * It then uses `assertEquals()` to verify that the getters return the correct values.
 
-**How to use this test case:**
+**To run the test:**
 
-1. Save this code as a Java file (e.g., `BugTest.java`).
-2. Make sure you have JUnit added to your project's dependencies.
-3. Run the test class to execute the tests.
+1. Ensure you have JUnit installed in your project.
+2. Right-click on the test class and select "Run 'BugTest'".
 
-**Note:** 
-You might need to adjust the test case based on the specific requirements of your `Bug` class. 
-For example, if you have other fields or methods in your class, you should add more test cases to cover those aspects. 
+This will run the test methods and show the results in the JUnit view.
