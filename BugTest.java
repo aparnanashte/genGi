@@ -1,41 +1,37 @@
 ```java
 import com.bug.api.model.domain.Bug;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class BugTest {
+public class BugTest {
 
     @Test
-    void testConstructor() {
-        Bug bug = new Bug(1L, "Test Bug", "This is a test bug", "HIGH", "FIXED");
-        assertEquals(1L, bug.getId());
+    void testBugConstructor() {
+        Bug bug = new Bug("Test Bug", "This is a test bug.", "High", "John Doe");
         assertEquals("Test Bug", bug.getTitle());
-        assertEquals("This is a test bug", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
-        assertEquals("FIXED", bug.getStatus());
+        assertEquals("This is a test bug.", bug.getDescription());
+        assertEquals("High", bug.getSeverity());
+        assertEquals("John Doe", bug.getReporter());
     }
 
     @Test
-    void testGettersAndSetters() {
+    void testSettersAndGetters() {
         Bug bug = new Bug();
-        bug.setId(2L);
-        bug.setTitle("Another Test Bug");
-        bug.setDescription("This is another test bug");
-        bug.setPriority("MEDIUM");
-        bug.setStatus("IN_PROGRESS");
+        bug.setTitle("Test Bug");
+        bug.setDescription("This is a test bug.");
+        bug.setSeverity("High");
+        bug.setReporter("John Doe");
 
-        assertEquals(2L, bug.getId());
-        assertEquals("Another Test Bug", bug.getTitle());
-        assertEquals("This is another test bug", bug.getDescription());
-        assertEquals("MEDIUM", bug.getPriority());
-        assertEquals("IN_PROGRESS", bug.getStatus());
+        assertEquals("Test Bug", bug.getTitle());
+        assertEquals("This is a test bug.", bug.getDescription());
+        assertEquals("High", bug.getSeverity());
+        assertEquals("John Doe", bug.getReporter());
     }
 
     @Test
     void testToString() {
-        Bug bug = new Bug(3L, "Third Test Bug", "This is the third test bug", "LOW", "OPEN");
-        String expectedString = "Bug{id=3, title='Third Test Bug', description='This is the third test bug', priority='LOW', status='OPEN'}";
+        Bug bug = new Bug("Test Bug", "This is a test bug.", "High", "John Doe");
+        String expectedString = "Bug{title='Test Bug', description='This is a test bug.', severity='High', reporter='John Doe'}";
         assertEquals(expectedString, bug.toString());
     }
 }
@@ -43,16 +39,11 @@ class BugTest {
 
 **Explanation:**
 
-* The test class is named `BugTest` and uses JUnit 5 annotations like `@Test`.
-* **`testConstructor()`:**
-    * Creates a `Bug` object with sample data using the constructor.
-    * Uses `assertEquals` to verify that the getter methods return the correct values.
-* **`testGettersAndSetters()`:**
-    * Creates a `Bug` object.
-    * Sets the values for all attributes using the setter methods.
-    * Uses `assertEquals` to verify that the getter methods return the correct values after setting them.
-* **`testToString()`:**
-    * Creates a `Bug` object with sample data.
-    * Uses `assertEquals` to verify that the `toString()` method returns a string representation of the `Bug` object with expected values.
+* **Import Statements:** The test class imports the `Bug` class and the necessary assertion methods from JUnit.
+* **Test Methods:**
+    * `testBugConstructor()`: Tests the constructor by creating a `Bug` object and verifying its attributes.
+    * `testSettersAndGetters()`: Tests the setter and getter methods by setting and retrieving the attributes of a `Bug` object.
+    * `testToString()`: Tests the `toString()` method by verifying the expected string representation of a `Bug` object.
+* **Assertions:** The test methods use the `assertEquals()` method from JUnit to assert that the actual values match the expected values. 
 
-**Note:** This is a basic example of JUnit test cases for the `Bug` class. You can expand upon this by adding more tests for different scenarios, edge cases, and boundary conditions based on your specific requirements.
+**Note:** This test case provides a basic set of tests for the `Bug` class. You may need to add more comprehensive tests depending on the specific requirements of your application.
