@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.MergeCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
@@ -60,9 +62,11 @@ String projectId = "glb-fs-wgh-app-dev";
 		try {
 
 			if (localDir.exists() && localDir.isDirectory()) {
-
-				git = Git.open(localDir);
-				git.pull().call();
+				 Repository repository  = Git.open(localDir).getRepository();
+				  git = new Git(repository);
+				git.checkout().setName("master");
+				MergeCommand merge = git.merge();
+	            merge.include(repository.resolve("main")).call();
 				System.out.println("Pulled the latest changes.");
 
 			} else {
