@@ -117,7 +117,7 @@ String projectId = "glb-fs-wgh-app-dev";
 
 		}
 		try {
-			git.add().addFilepattern(.).call();
+			git.add().addFilepattern(".").call();
 			git.commit().setMessage("Commit messag2222").call();
 			// CredentialsProvider credentialsProvider = new
 			// UsernamePasswordCredentialsProvider(username, password);
