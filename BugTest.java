@@ -4,44 +4,65 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BugTest {
+class BugTest {
 
     @Test
-    void testBugCreation() {
-        Bug bug = new Bug("Test Bug", "Description", "HIGH");
+    void testConstructor() {
+        // Arrange
+        Long id = 1L;
+        String title = "Test Bug";
+        String description = "This is a test bug.";
+        String severity = "High";
+        String status = "Open";
 
-        assertEquals("Test Bug", bug.getTitle());
-        assertEquals("Description", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
+        // Act
+        Bug bug = new Bug(id, title, description, severity, status);
+
+        // Assert
+        assertEquals(id, bug.getId());
+        assertEquals(title, bug.getTitle());
+        assertEquals(description, bug.getDescription());
+        assertEquals(severity, bug.getSeverity());
+        assertEquals(status, bug.getStatus());
     }
 
     @Test
-    void testSetters() {
-        Bug bug = new Bug("Test Bug", "Description", "HIGH");
+    void testSettersAndGetters() {
+        // Arrange
+        Bug bug = new Bug();
 
-        bug.setTitle("Updated Title");
-        bug.setDescription("Updated Description");
-        bug.setPriority("LOW");
+        // Act
+        bug.setId(1L);
+        bug.setTitle("Test Bug");
+        bug.setDescription("This is a test bug.");
+        bug.setSeverity("High");
+        bug.setStatus("Open");
 
-        assertEquals("Updated Title", bug.getTitle());
-        assertEquals("Updated Description", bug.getDescription());
-        assertEquals("LOW", bug.getPriority());
+        // Assert
+        assertEquals(1L, bug.getId());
+        assertEquals("Test Bug", bug.getTitle());
+        assertEquals("This is a test bug.", bug.getDescription());
+        assertEquals("High", bug.getSeverity());
+        assertEquals("Open", bug.getStatus());
     }
 }
 ```
 
-**Import statements:**
+**Explanation:**
 
-```java
-import com.bug.api.model.domain.Bug;
-import org.junit.jupiter.api.Test;
+* **Import statement:** This imports the `Bug` class from the specified package.
+* **Test class:**  This is the JUnit test class named `BugTest`.
+* **`@Test` annotation:** This marks each method as a test case.
+* **`testConstructor()`:** This test case checks that the constructor properly initializes a `Bug` object with the provided parameters.
+* **`testSettersAndGetters()`:** This test case verifies that the setter and getter methods work correctly by setting values and then retrieving them.
+* **`assertEquals()`:** This assertion method checks if the expected value matches the actual value.
 
-import static org.junit.jupiter.api.Assertions.*;
-```
+**How to use this test case:**
 
-**Test cases:**
+1. Save this code as a Java file (e.g., `BugTest.java`).
+2. Make sure you have JUnit added to your project's dependencies.
+3. Run the test class to execute the tests.
 
-* **testBugCreation:** This test case creates a `Bug` object with sample data and asserts that the getter methods return the expected values.
-* **testSetters:** This test case creates a `Bug` object and then uses the setter methods to update its properties. It then asserts that the getter methods return the updated values.
-
-**Note:** You will need to replace the placeholders in the test cases with the actual properties and methods of your `Bug` class. You should also add more test cases to cover all the methods and functionalities of your class.
+**Note:** 
+You might need to adjust the test case based on the specific requirements of your `Bug` class. 
+For example, if you have other fields or methods in your class, you should add more test cases to cover those aspects. 
