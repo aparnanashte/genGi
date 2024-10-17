@@ -34,7 +34,7 @@ String projectId = "glb-fs-wgh-app-dev";
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String workingDir = System.getProperty("user.dir") ;
+		String workingDir = System.getProperty("user.dir");
 		System.out.println("Current Directory" + workingDir);
 		String repoUrl = "https://github.com/aparnanashte/genGi.git"; // Replace with the public repo URL
 
@@ -52,12 +52,10 @@ String projectId = "glb-fs-wgh-app-dev";
 		CredentialsProvider credentialsProvider = new UsernamePasswordCredentialsProvider("aparnanashte@gmail.com",
 				accessToken);
 
-		
-			
-			File localDir = new File(workingDir);    
-			Git git = null;
+		File localDir = new File(workingDir);
+		Git git = null;
 		try {
-			
+
 			if (localDir.exists() && localDir.isDirectory()) {
 
 				git = Git.open(localDir);
@@ -67,7 +65,7 @@ String projectId = "glb-fs-wgh-app-dev";
 			} else {
 				git = Git.cloneRepository().setURI(repoUrl).setDirectory(new File(workingDir))
 						.setCredentialsProvider(credentialsProvider).call();
-				
+
 				System.out.println("Cloned repository to: " + git.getRepository().getDirectory());
 
 			}
@@ -75,20 +73,36 @@ String projectId = "glb-fs-wgh-app-dev";
 		} catch (GitAPIException | IOException e) {
 			e.printStackTrace();
 		}
-				 
-		
-			// Clone the repository
-			/*
-			if (Files.notExists(Paths.get(workingDir))) {
-				 git = Git.cloneRepository().setURI(repoUrl).setDirectory(new File(workingDir))
-						.setCredentialsProvider(credentialsProvider).call();
-			}else {
-				git.pull().setCredentialsProvider(credentialsProvider).call();
-			}*/
-			
-			// Read the specific file from the cloned repo
 
-			String testfileName = workingDir + "/BugTestNew.java";
+		// Clone the repository
+		/*
+		 * if (Files.notExists(Paths.get(workingDir))) { git =
+		 * Git.cloneRepository().setURI(repoUrl).setDirectory(new File(workingDir))
+		 * .setCredentialsProvider(credentialsProvider).call(); }else {
+		 * git.pull().setCredentialsProvider(credentialsProvider).call(); }
+		 */
+
+		// Read the specific file from the cloned repo
+		File newDir = new File(workingDir+"/GenratedResult");            
+		if (newDir.mkdir()) {
+			System.out.println("Directory created: " + newDir.getAbsolutePath());
+		} else {
+			System.out.println("Failed to create directory or it already exists.");
+		}
+		List<String> fieNames = FileFinder.findJavaFiles(workingDir);
+		String testfileName = null;
+		for (String name : fieNames) {
+
+			textPrompt = "Genrate Junit Test case for " + name + "class along with import statement";
+			testfileName = newDir + "/" + name + "Test.java";
+
+			try {
+				output = textInput(projectId, location, modelName, textPrompt);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 			String filecontent = output;
 
 			try (FileWriter writer = new FileWriter(testfileName)) {
@@ -98,26 +112,27 @@ String projectId = "glb-fs-wgh-app-dev";
 				System.out.println("An error occurred while creating the file: " + e.getMessage());
 			}
 
-			try {
-				git.add().addFilepattern(".").call();
-				git.commit().setMessage("Commit messag125").call();
-				// CredentialsProvider credentialsProvider = new
-				// UsernamePasswordCredentialsProvider(username, password);
-				// Replace with your Secret Manager secret project ID and secret name
+		}
+		
+		try {
+			git.add().addFilepattern(".").call();
+			git.commit().setMessage("Commit messag2222").call();
+			// CredentialsProvider credentialsProvider = new
+			// UsernamePasswordCredentialsProvider(username, password);
+			// Replace with your Secret Manager secret project ID and secret name
 
-				// Create credentials provider
+			// Create credentials provider
 
-				git.push().setCredentialsProvider(credentialsProvider).call();
-				git.close();
-			} catch (GitAPIException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-
-		/*} catch (GitAPIException e) {
+			git.push().setCredentialsProvider(credentialsProvider).call();
+			git.close();
+		} catch (GitAPIException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
+
+		/*
+		 * } catch (GitAPIException e) { e.printStackTrace(); }
+		 */
 	}
 
 	public static String textInput(String projectId, String location, String modelName, String textPrompt)
@@ -132,5 +147,4 @@ String projectId = "glb-fs-wgh-app-dev";
 			return output;
 		}
 	}
-
 }
