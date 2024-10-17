@@ -12,11 +12,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.google.cloud.secretmanager.v1.SecretManagerServiceClient;
 import com.google.cloud.secretmanager.v1.SecretVersionName;
+import com.google.cloud.vertexai.VertexAI;
+import com.google.cloud.vertexai.api.GenerateContentResponse;
+import com.google.cloud.vertexai.generativeai.GenerativeModel;
+import com.google.cloud.vertexai.generativeai.ResponseHandler;
 
 @SpringBootApplication
 public class BugkApiApplication {
 	public static void main(String[] args) {
+		String projectId = "glb-fs-wgh-app-dev";
+	        String secretName = "github-access-token-fs-4-19";
+
 		
+		String location = "europe-west3";
+	    String modelName = "gemini-1.5-flash-001";
+	    String textPrompt ="Generate junit test cases for com.bug.api.model.domain.Bug Class with proper import statement";
 		String workingDir = System.getProperty("user.dir") + "2";
 		System.out.println("Current Directory" + workingDir);
 		String repoUrl = "https://github.com/aparnanashte/genGi.git"; // Replace with the public repo URL
@@ -40,8 +50,7 @@ public class BugkApiApplication {
 			}
 
 			String username = "aparnanashte@gmail.com";
-			  String projectId = "glb-fs-wgh-app-dev";
-	        String secretName = "github-access-token-fs-4-19";
+			 
 
 	        // Access Secret Manager
 	        SecretManagerServiceClient client = null;
@@ -54,7 +63,7 @@ public class BugkApiApplication {
 	        SecretVersionName secretVersionName = SecretVersionName.of(projectId, secretName,"1");
 	        String accessToken = client.accessSecretVersion(secretVersionName).getPayload().getData().toStringUtf8();
 
-	        
+	          System.out.println("AccessToken: " + accessToken);
 
 			
 
