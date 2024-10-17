@@ -37,7 +37,7 @@ String projectId = "glb-fs-wgh-app-dev";
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String workingDir = System.getProperty("user.dir");
+		String workingDir = System.getProperty("user.dir")+"new";
 		System.out.println("Current Directory" + workingDir);
 		String repoUrl = "https://github.com/aparnanashte/genGi.git"; // Replace with the public repo URL
 
