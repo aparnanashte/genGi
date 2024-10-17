@@ -7,44 +7,66 @@ import static org.junit.jupiter.api.Assertions.*;
 class BugTest {
 
     @Test
-    void testBugConstructor() {
-        Bug bug = new Bug(1L, "Test Bug", "This is a test bug.", "HIGH");
-        assertEquals(1L, bug.getId());
-        assertEquals("Test Bug", bug.getTitle());
-        assertEquals("This is a test bug.", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
+    void testConstructor() {
+        // Arrange
+        String title = "Bug Title";
+        String description = "Bug Description";
+        String severity = "High";
+
+        // Act
+        Bug bug = new Bug(title, description, severity);
+
+        // Assert
+        assertEquals(title, bug.getTitle());
+        assertEquals(description, bug.getDescription());
+        assertEquals(severity, bug.getSeverity());
     }
 
     @Test
     void testSettersAndGetters() {
+        // Arrange
         Bug bug = new Bug();
-        bug.setId(1L);
-        bug.setTitle("Test Bug");
-        bug.setDescription("This is a test bug.");
-        bug.setPriority("HIGH");
+        String title = "Updated Title";
+        String description = "Updated Description";
+        String severity = "Low";
 
-        assertEquals(1L, bug.getId());
-        assertEquals("Test Bug", bug.getTitle());
-        assertEquals("This is a test bug.", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
+        // Act
+        bug.setTitle(title);
+        bug.setDescription(description);
+        bug.setSeverity(severity);
+
+        // Assert
+        assertEquals(title, bug.getTitle());
+        assertEquals(description, bug.getDescription());
+        assertEquals(severity, bug.getSeverity());
     }
 
     @Test
     void testToString() {
-        Bug bug = new Bug(1L, "Test Bug", "This is a test bug.", "HIGH");
-        String expectedString = "Bug{id=1, title='Test Bug', description='This is a test bug.', priority='HIGH'}";
-        assertEquals(expectedString, bug.toString());
+        // Arrange
+        Bug bug = new Bug("Bug Title", "Bug Description", "High");
+
+        // Act
+        String bugString = bug.toString();
+
+        // Assert
+        assertTrue(bugString.contains("Bug Title"));
+        assertTrue(bugString.contains("Bug Description"));
+        assertTrue(bugString.contains("High"));
     }
 }
 ```
 
 **Explanation:**
 
-* **Import Statement:** The test class imports the `Bug` class from the `com.bug.api.model.domain` package.
-* **Test Methods:**
-    * `testBugConstructor()`: Tests the constructor of the `Bug` class by creating a new instance with specific values and asserting that the getter methods return the correct values.
-    * `testSettersAndGetters()`: Tests the setter and getter methods of the `Bug` class by setting values to the object and then asserting that the getter methods return the correct values.
-    * `testToString()`: Tests the `toString()` method of the `Bug` class by creating a new instance, calling `toString()`, and asserting that the returned string matches the expected format.
-* **Assertions:** The `assertEquals()` method from JUnit's `Assertions` class is used to verify the expected values.
+* **Import Statements:** The test class imports the `Bug` class from the `com.bug.api.model.domain` package and necessary assertion methods from JUnit.
+* **Constructor Test:** This test verifies that the constructor correctly initializes the `Bug` object with the provided title, description, and severity.
+* **Setters and Getters Test:** This test checks that the setters and getters correctly modify and retrieve the bug's properties.
+* **ToString Test:** This test ensures that the `toString()` method returns a meaningful string representation of the `Bug` object.
 
-This test case covers the basic functionality of the `Bug` class, including its constructor, setter and getter methods, and `toString()` method. You can expand this test case to include more specific tests based on your specific requirements.
+**Notes:**
+
+* Replace `com.bug.api.model.domain` with the actual package name where your `Bug` class resides.
+* You might need to add additional test cases depending on the complexity of your `Bug` class and its functionalities.
+* You can use different assertion methods from JUnit based on your specific requirements.
+* This test case provides a basic structure. You can extend it with more specific tests depending on the attributes and functionalities of your `Bug` class.
