@@ -7,58 +7,38 @@ public class BugTest {
 
     @Test
     void testBugConstructor() {
-        // Arrange
-        String title = "Title";
-        String description = "Description";
-        String priority = "High";
-        String status = "Open";
-
-        // Act
-        Bug bug = new Bug(title, description, priority, status);
-
-        // Assert
-        assertEquals(title, bug.getTitle());
-        assertEquals(description, bug.getDescription());
-        assertEquals(priority, bug.getPriority());
-        assertEquals(status, bug.getStatus());
+        Bug bug = new Bug("Test bug", "This is a test bug", "HIGH");
+        assertEquals("Test bug", bug.getTitle());
+        assertEquals("This is a test bug", bug.getDescription());
+        assertEquals("HIGH", bug.getPriority());
     }
 
     @Test
-    void testBugGettersAndSetters() {
-        // Arrange
+    void testSettersAndGetters() {
         Bug bug = new Bug();
+        bug.setTitle("New bug title");
+        bug.setDescription("New bug description");
+        bug.setPriority("LOW");
 
-        // Act
-        bug.setTitle("Title");
-        bug.setDescription("Description");
-        bug.setPriority("High");
-        bug.setStatus("Open");
-
-        // Assert
-        assertEquals("Title", bug.getTitle());
-        assertEquals("Description", bug.getDescription());
-        assertEquals("High", bug.getPriority());
-        assertEquals("Open", bug.getStatus());
+        assertEquals("New bug title", bug.getTitle());
+        assertEquals("New bug description", bug.getDescription());
+        assertEquals("LOW", bug.getPriority());
     }
 }
 ```
 
 **Explanation:**
 
-- **Import statements:** The code imports the `Bug` class from the `com.bug.api.model.domain` package and necessary assertion methods from JUnit.
-- **`testBugConstructor()`:** This test checks that the `Bug` constructor correctly initializes the bug object with the provided title, description, priority, and status.
-- **`testBugGettersAndSetters()`:** This test verifies that the getter and setter methods for the bug object work as expected by setting values and then retrieving them.
+* **Import Statement:** The `import` statement imports the necessary class `Bug` from the package `com.bug.api.model.domain`.
+* **Test Class:** The `BugTest` class contains the test methods.
+* **`testBugConstructor()`:** This method tests the constructor of the `Bug` class by creating an instance with some initial values and then verifying that these values are correctly set.
+* **`testSettersAndGetters()`:** This method tests the setter and getter methods of the `Bug` class by setting values to the object and then verifying that the correct values are retrieved using the getter methods.
+* **`assertEquals()`:** The `assertEquals()` method from the `Assert` class is used to verify that the expected values match the actual values. 
 
-**To run the tests:**
+**To run these tests:**
 
-1. Ensure that you have JUnit 5 installed in your project.
-2. Create a new test class named `BugTest.java` in the `test` directory of your project.
-3. Copy the above code into the `BugTest.java` file.
-4. Run the tests using your IDE or by executing the `BugTest` class as a JUnit test.
+1. Save the code as `BugTest.java`.
+2. Ensure you have JUnit 5 installed in your project.
+3. Run the tests using your IDE or the command line. 
 
-**Note:** This is a basic example of JUnit tests for the `Bug` class. You can add more tests to cover other aspects of the class, such as:
-
-- Testing the `toString()` method
-- Testing the `equals()` and `hashCode()` methods
-- Testing the validation of the input parameters
-- Testing the interaction with other classes or methods that depend on the `Bug` class.
+**Note:** This is a basic example and you may need to add more test cases depending on the complexity of the `Bug` class and the specific functionalities you need to test.
