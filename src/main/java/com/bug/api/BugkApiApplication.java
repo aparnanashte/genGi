@@ -95,9 +95,9 @@ String projectId = "glb-fs-wgh-app-dev";
 		List<String> fieNames = FileFinder.findJavaFiles(workingDir);
 		String testfileName = null;
 		for (String name : fieNames) {
-
-			textPrompt = "Genrate Junit Test case for " + name + "class along with import statement";
-			testfileName = newDir + "/" + name + "Test.java";
+			String name1= name.substring(name.lastIndexOf("/"),name.lastIndexOf("."));
+			textPrompt = "Genrate Junit Test case for " + name1 + "class along with import statement";
+			testfileName = newDir + "/" + name1 + "Test.java";
 
 			try {
 				output = textInput(projectId, location, modelName, textPrompt);
