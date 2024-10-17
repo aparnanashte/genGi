@@ -26,6 +26,7 @@ public class BugkApiApplication {
 		String location = "europe-west3";
 		String modelName = "gemini-1.5-flash-001";
 		String textPrompt = args[0];
+		System.out.println("TextPrompt" + textPrompt);
 		String workingDir = System.getProperty("user.dir");
 		System.out.println("Current Directory" + workingDir);
 		String repoUrl = "https://github.com/aparnanashte/genGi.git"; 
@@ -59,7 +60,7 @@ public class BugkApiApplication {
 			List<String> fieNames = FileFinder.findJavaFiles(workingDir);
 			String testfileName = null;
 			for (String name : fieNames) {
-				String name1 = name.substring(name.lastIndexOf("/"), name.lastIndexOf("."));
+				String name1 = name.substring(name.lastIndexOf("/")+1, name.lastIndexOf("."));
 
 				textPrompt = "Genrate Junit Test case for " + name1 + "class along with import statement";
 				testfileName = workingDir + "/" + name1 + "Test.java";
