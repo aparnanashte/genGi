@@ -1,0 +1,77 @@
+```java
+import com.bug.api.model.domain.Bug;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class BugTest {
+
+    @Test
+    void testConstructor() {
+        // Arrange
+        String title = "Bug Title";
+        String description = "Bug Description";
+        String priority = "High";
+        String status = "Open";
+
+        // Act
+        Bug bug = new Bug(title, description, priority, status);
+
+        // Assert
+        assertEquals(title, bug.getTitle());
+        assertEquals(description, bug.getDescription());
+        assertEquals(priority, bug.getPriority());
+        assertEquals(status, bug.getStatus());
+    }
+
+    @Test
+    void testSettersAndGetters() {
+        // Arrange
+        Bug bug = new Bug();
+
+        // Act
+        bug.setTitle("New Bug Title");
+        bug.setDescription("New Bug Description");
+        bug.setPriority("Medium");
+        bug.setStatus("Resolved");
+
+        // Assert
+        assertEquals("New Bug Title", bug.getTitle());
+        assertEquals("New Bug Description", bug.getDescription());
+        assertEquals("Medium", bug.getPriority());
+        assertEquals("Resolved", bug.getStatus());
+    }
+}
+```
+
+**Explanation:**
+
+1. **Import Statements:**
+   - `com.bug.api.model.domain.Bug`: Imports the `Bug` class.
+   - `org.junit.jupiter.api.Test`: Imports the `Test` annotation for marking test methods.
+   - `static org.junit.jupiter.api.Assertions.*`: Imports static assertion methods from JUnit.
+
+2. **`BugTest` Class:**
+   - Defines a test class named `BugTest` to contain the test methods.
+
+3. **`testConstructor()` Method:**
+   - Tests the constructor of the `Bug` class.
+   - **Arrange:** Creates a new `Bug` object with sample data.
+   - **Act:**  Initializes a `Bug` object using the constructor.
+   - **Assert:** Verifies that the values set during construction are correctly stored in the object using `assertEquals` assertions.
+
+4. **`testSettersAndGetters()` Method:**
+   - Tests the setter and getter methods of the `Bug` class.
+   - **Arrange:** Creates a new `Bug` object.
+   - **Act:** Sets values using setter methods.
+   - **Assert:** Verifies that the values are correctly retrieved using getter methods using `assertEquals` assertions.
+
+**How to run the test:**
+
+1. Ensure that you have JUnit 5 added to your project dependencies.
+2. Run the `BugTest` class as a JUnit test.
+
+This test case provides a basic foundation for testing the `Bug` class. You can expand it to cover other functionalities like:
+
+- Testing validation logic for input parameters.
+- Testing the behavior of any specific methods you have in the `Bug` class.
+- Testing any interactions with other classes the `Bug` class depends on.
