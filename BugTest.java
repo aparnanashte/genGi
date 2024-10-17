@@ -9,69 +9,67 @@ class BugTest {
     @Test
     void testBugConstructor() {
         // Arrange
-        String title = "Bug Title";
-        String description = "Bug Description";
+        String title = "Test Bug";
+        String description = "This is a test bug.";
         String status = "Open";
         String priority = "High";
-        String assignedTo = "John Doe";
-
-        // Act
-        Bug bug = new Bug(title, description, status, priority, assignedTo);
+        Bug bug = new Bug(title, description, status, priority);
 
         // Assert
         assertEquals(title, bug.getTitle());
         assertEquals(description, bug.getDescription());
         assertEquals(status, bug.getStatus());
         assertEquals(priority, bug.getPriority());
-        assertEquals(assignedTo, bug.getAssignedTo());
     }
 
     @Test
-    void testGettersAndSetters() {
+    void testSettersAndGetters() {
         // Arrange
-        Bug bug = new Bug();
+        Bug bug = new Bug("Test Bug", "This is a test bug.", "Open", "High");
 
         // Act
-        bug.setTitle("Bug Title");
-        bug.setDescription("Bug Description");
-        bug.setStatus("Open");
-        bug.setPriority("High");
-        bug.setAssignedTo("John Doe");
+        bug.setTitle("Updated Title");
+        bug.setDescription("Updated Description");
+        bug.setStatus("Closed");
+        bug.setPriority("Low");
 
         // Assert
-        assertEquals("Bug Title", bug.getTitle());
-        assertEquals("Bug Description", bug.getDescription());
-        assertEquals("Open", bug.getStatus());
-        assertEquals("High", bug.getPriority());
-        assertEquals("John Doe", bug.getAssignedTo());
+        assertEquals("Updated Title", bug.getTitle());
+        assertEquals("Updated Description", bug.getDescription());
+        assertEquals("Closed", bug.getStatus());
+        assertEquals("Low", bug.getPriority());
+    }
+
+    @Test
+    void testToString() {
+        // Arrange
+        Bug bug = new Bug("Test Bug", "This is a test bug.", "Open", "High");
+
+        // Act
+        String toStringOutput = bug.toString();
+
+        // Assert
+        assertTrue(toStringOutput.contains("Test Bug"));
+        assertTrue(toStringOutput.contains("This is a test bug."));
+        assertTrue(toStringOutput.contains("Open"));
+        assertTrue(toStringOutput.contains("High"));
     }
 }
 ```
 
 **Explanation:**
 
-1. **Import Statements:** We import the necessary classes:
-   - `com.bug.api.model.domain.Bug`: The class we are testing.
-   - `org.junit.jupiter.api.Test`: Annotation for test methods.
-   - `static org.junit.jupiter.api.Assertions.*`: Import assertion methods.
-
-2. **Test Class:** We create a JUnit test class named `BugTest`.
-
-3. **Test Method 1: `testBugConstructor()`:**
-   - **Arrange:** Define sample values for the bug attributes.
-   - **Act:** Create a `Bug` object using the constructor with the sample values.
-   - **Assert:** Use `assertEquals()` to verify that the values of the bug object match the expected values.
-
-4. **Test Method 2: `testGettersAndSetters()`:**
-   - **Arrange:** Create a `Bug` object.
-   - **Act:** Use the setter methods to set the attributes of the bug object.
-   - **Assert:** Use `assertEquals()` to verify that the values returned by the getter methods match the values set by the setter methods.
+* **Import statements:** Include the necessary import statements to access the `Bug` class and JUnit framework.
+* **Test class:** Create a test class named `BugTest`.
+* **Test methods:**
+    * **`testBugConstructor()`:** This method tests the constructor of the `Bug` class by creating a `Bug` object and asserting that its attributes are correctly initialized.
+    * **`testSettersAndGetters()`:** This method tests the setter and getter methods of the `Bug` class by setting and retrieving attribute values and verifying their consistency.
+    * **`testToString()`:** This method tests the `toString()` method of the `Bug` class by asserting that the output string contains the expected attributes.
+* **Assertions:** The `assertEquals()` and `assertTrue()` methods are used to assert the expected behavior of the `Bug` class.
 
 **To run these tests:**
 
-1. Ensure you have JUnit 5 installed in your project.
-2. Create a `Test` class in your project (e.g., `BugTest.java`).
-3. Add the code above to the `BugTest.java` file.
-4. Run the tests using your IDE's JUnit test runner or the `mvn test` command.
+1. Ensure that you have JUnit installed in your project.
+2. Run the test class `BugTest`.
 
-This test case provides basic validation for the `Bug` class, covering its constructor and getter/setter methods. You can expand these tests by adding more methods to cover other aspects of the class, such as validation rules for attributes, interactions with other objects, or specific business logic. 
+This test case provides a basic foundation for testing the `Bug` class. You can further extend this test case by adding more test scenarios based on the specific functionality of your `Bug` class.
