@@ -6,53 +6,58 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BugTest {
 
     @Test
-    void testGetId() {
-        Bug bug = new Bug(1L, "Test bug", "Description", "HIGH");
-        assertEquals(1L, bug.getId());
+    void testConstructor() {
+        // Arrange
+        String title = "Test Bug";
+        String description = "This is a test bug.";
+        Bug bug = new Bug(title, description);
+
+        // Assert
+        assertEquals(title, bug.getTitle());
+        assertEquals(description, bug.getDescription());
     }
 
     @Test
-    void testGetTitle() {
-        Bug bug = new Bug(1L, "Test bug", "Description", "HIGH");
-        assertEquals("Test bug", bug.getTitle());
-    }
+    void testSettersGetters() {
+        // Arrange
+        Bug bug = new Bug();
 
-    @Test
-    void testGetDescription() {
-        Bug bug = new Bug(1L, "Test bug", "Description", "HIGH");
-        assertEquals("Description", bug.getDescription());
-    }
+        // Act
+        bug.setTitle("Test Bug");
+        bug.setDescription("This is a test bug.");
 
-    @Test
-    void testGetPriority() {
-        Bug bug = new Bug(1L, "Test bug", "Description", "HIGH");
-        assertEquals("HIGH", bug.getPriority());
+        // Assert
+        assertEquals("Test Bug", bug.getTitle());
+        assertEquals("This is a test bug.", bug.getDescription());
     }
 
     @Test
     void testToString() {
-        Bug bug = new Bug(1L, "Test bug", "Description", "HIGH");
-        String expectedString = "Bug{id=1, title='Test bug', description='Description', priority='HIGH'}";
-        assertEquals(expectedString, bug.toString());
+        // Arrange
+        Bug bug = new Bug("Test Bug", "This is a test bug.");
+
+        // Act
+        String toStringResult = bug.toString();
+
+        // Assert
+        assertTrue(toStringResult.contains("Bug{"));
+        assertTrue(toStringResult.contains("title='Test Bug'"));
+        assertTrue(toStringResult.contains("description='This is a test bug.'"));
     }
 }
 ```
 
 **Explanation:**
 
-* **Imports:** We import the `Bug` class and necessary assertion methods from JUnit.
-* **Test Class:** The `BugTest` class holds all the test methods.
-* **Test Methods:** Each test method tests a specific functionality of the `Bug` class:
-    * **`testGetId`:** Tests that the `getId` method returns the correct ID.
-    * **`testGetTitle`:** Tests that the `getTitle` method returns the correct title.
-    * **`testGetDescription`:** Tests that the `getDescription` method returns the correct description.
-    * **`testGetPriority`:** Tests that the `getPriority` method returns the correct priority.
-    * **`testToString`:** Tests that the `toString` method returns the expected string representation of the `Bug` object.
-* **Assertions:** We use `assertEquals` to verify that the actual values returned by the methods match the expected values.
+- **Import statements:** The code starts with import statements to bring in the required classes from the `com.bug.api.model.domain` package and the JUnit framework.
+- **Test class:** The `BugTest` class contains the test methods.
+- **Test methods:**
+    - **`testConstructor()`:** This test checks if the constructor correctly initializes the `title` and `description` fields.
+    - **`testSettersGetters()`:** This test checks if the setter and getter methods work as expected.
+    - **`testToString()`:** This test checks if the `toString()` method returns a string representation of the `Bug` object that includes the expected information.
+- **Assertions:** Each test method uses assertion methods from the `org.junit.jupiter.api.Assertions` class to verify the expected behavior.
 
-**To run the tests:**
+**Note:**
 
-1. Make sure you have JUnit 5 added as a dependency to your project.
-2. Run the `BugTest` class as a JUnit test.
-
-This test case covers the basic functionality of the `Bug` class. You can add more tests as needed to cover additional functionalities and edge cases.
+- This is a basic example of JUnit test cases for the `Bug` class. You can add more tests to cover other functionalities or edge cases of the class.
+- You should replace `com.bug.api.model.domain` with the actual package name of your `Bug` class.
