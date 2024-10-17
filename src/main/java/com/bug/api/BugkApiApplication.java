@@ -54,8 +54,8 @@ String projectId = "glb-fs-wgh-app-dev";
 		System.out.println("accessToken: " + accessToken);
 		CredentialsProvider credentialsProvider = new UsernamePasswordCredentialsProvider("aparnanashte@gmail.com",
 				accessToken);
-
-		File localDir = new File(workingDir);
+		Git git =null;
+		/*File localDir = new File(workingDir);
 		Git git = null;
 		try {
 
@@ -65,15 +65,16 @@ String projectId = "glb-fs-wgh-app-dev";
 				git.fetch().call();
 				System.out.println("Pulled the latest changes.");
 
-			} else {
-				git = Git.cloneRepository().setURI(repoUrl).setDirectory(new File(workingDir))
+			} else {*/
+		try {
+				 git = Git.cloneRepository().setURI(repoUrl).setDirectory(new File(workingDir))
 						.setCredentialsProvider(credentialsProvider).call();
 
 				System.out.println("Cloned repository to: " + git.getRepository().getDirectory());
 
-			}
+			//}
 
-		} catch (GitAPIException | IOException e) {
+		} catch (GitAPIException e) {
 			e.printStackTrace();
 		}
 
