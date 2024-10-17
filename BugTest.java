@@ -7,51 +7,59 @@ public class BugTest {
 
     @Test
     void testBugConstructor() {
-        Bug bug = new Bug("Test Bug", "This is a test bug.", "HIGH", "John Doe", "Feature");
+        Bug bug = new Bug("Test Bug", "This is a test bug", "LOW", "NEW");
         assertEquals("Test Bug", bug.getTitle());
-        assertEquals("This is a test bug.", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
-        assertEquals("John Doe", bug.getReporter());
-        assertEquals("Feature", bug.getCategory());
+        assertEquals("This is a test bug", bug.getDescription());
+        assertEquals("LOW", bug.getPriority());
+        assertEquals("NEW", bug.getStatus());
     }
 
     @Test
-    void testSettersGetters() {
+    void testGettersAndSetters() {
         Bug bug = new Bug();
         bug.setTitle("Test Bug");
-        bug.setDescription("This is a test bug.");
-        bug.setPriority("HIGH");
-        bug.setReporter("John Doe");
-        bug.setCategory("Feature");
+        bug.setDescription("This is a test bug");
+        bug.setPriority("MEDIUM");
+        bug.setStatus("IN_PROGRESS");
 
         assertEquals("Test Bug", bug.getTitle());
-        assertEquals("This is a test bug.", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
-        assertEquals("John Doe", bug.getReporter());
-        assertEquals("Feature", bug.getCategory());
+        assertEquals("This is a test bug", bug.getDescription());
+        assertEquals("MEDIUM", bug.getPriority());
+        assertEquals("IN_PROGRESS", bug.getStatus());
+    }
+
+    @Test
+    void testToString() {
+        Bug bug = new Bug("Test Bug", "This is a test bug", "LOW", "NEW");
+        String expectedString = "Bug{title='Test Bug', description='This is a test bug', priority='LOW', status='NEW'}";
+        assertEquals(expectedString, bug.toString());
     }
 }
 ```
 
 **Explanation:**
 
-1. **Import Statements:**
-   - `import com.bug.api.model.domain.Bug;`: This line imports the `Bug` class from the specified package.
-   - `import org.junit.jupiter.api.Test;`: This line imports the `Test` annotation from JUnit 5.
-   - `import static org.junit.jupiter.api.Assertions.*;`: This line imports static methods from the `Assertions` class for writing assertions.
+* **Import Statements:**
+    * `com.bug.api.model.domain.Bug`: Imports the `Bug` class from the specified package.
+    * `org.junit.jupiter.api.Test`: Imports the `Test` annotation from JUnit 5.
+    * `static org.junit.jupiter.api.Assertions.*`: Imports all static assertion methods from JUnit 5.
+* **Test Class:**
+    * `public class BugTest`: Declares a test class named `BugTest`.
+* **Test Methods:**
+    * **`testBugConstructor()`:**
+        * Creates a new `Bug` object using the constructor.
+        * Verifies that the constructor correctly sets the values of the fields using the `assertEquals()` method.
+    * **`testGettersAndSetters()`:**
+        * Creates a new `Bug` object.
+        * Uses the setter methods to set the values of the fields.
+        * Verifies that the getter methods return the correct values using the `assertEquals()` method.
+    * **`testToString()`:**
+        * Creates a new `Bug` object.
+        * Calls the `toString()` method and compares the returned string with the expected string using the `assertEquals()` method.
 
-2. **Test Class:**
-   - `public class BugTest {}`: This defines a JUnit test class named `BugTest`.
+**Running the Test:**
 
-3. **Test Methods:**
-   - **`testBugConstructor()`:**
-     - Creates a new `Bug` object using the constructor.
-     - Uses `assertEquals()` to assert that the values set in the constructor are correctly stored in the object's fields.
-   - **`testSettersGetters()`:**
-     - Creates a new `Bug` object.
-     - Uses the setters to set values for each field.
-     - Uses `assertEquals()` to assert that the values returned by the getters match the values set using the setters.
+1. Ensure you have JUnit 5 added to your project.
+2. Run the `BugTest` class.
 
-**Running the Tests:**
-
-To run these tests, you will need a JUnit runner or an IDE that supports JUnit testing. The test methods will be executed, and any failed assertions will be reported.
+This test case will execute the three test methods and provide feedback on whether the `Bug` class is functioning as expected.
