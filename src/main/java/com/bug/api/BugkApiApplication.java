@@ -1,14 +1,18 @@
 package com.bug.api;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.google.cloud.secretmanager.v1.SecretManagerServiceClient;
 import com.google.cloud.secretmanager.v1.SecretVersionName;
@@ -16,8 +20,6 @@ import com.google.cloud.vertexai.VertexAI;
 import com.google.cloud.vertexai.api.GenerateContentResponse;
 import com.google.cloud.vertexai.generativeai.GenerativeModel;
 import com.google.cloud.vertexai.generativeai.ResponseHandler;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
@@ -77,16 +79,33 @@ String projectId = "glb-fs-wgh-app-dev";
 			e.printStackTrace();
 		}
 
-		
+		// Clone the repository
+		/*
+		 * if (Files.notExists(Paths.get(workingDir))) { git =
+		 * Git.cloneRepository().setURI(repoUrl).setDirectory(new File(workingDir))
+		 * .setCredentialsProvider(credentialsProvider).call(); }else {
+		 * git.pull().setCredentialsProvider(credentialsProvider).call(); }
+		 */
 
 		// Read the specific file from the cloned repo
+		/*File newDir = new File(workingDir+"/GenratedResult");            
+		if (newDir.mkdir()) {
+			System.out.println("Directory created: " + newDir.getAbsolutePath());
+		} else {
+			System.out.println("Failed to create directory or it already exists.");
+		}*/
 		
+
 		List<String> fieNames = FileFinder.findJavaFiles(workingDir);
+		Path folderPath = Paths.get("NewGenratedResult"); 
 		String testfileName = null;
 		for (String name : fieNames) {
+			
 			String name1= name.substring(name.lastIndexOf("/"),name.lastIndexOf("."));
+
 			textPrompt = "Genrate Junit Test case for " + name1 + "class along with import statement";
 			testfileName = workingDir + "/" + name1 + "Test.java";
+			Path filePath = folderPath.resolve(testfileName); 
 
 			try {
 				output = textInput(projectId, location, modelName, textPrompt);
@@ -94,11 +113,10 @@ String projectId = "glb-fs-wgh-app-dev";
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 
-			String filecontent = output;
-
-			try (FileWriter writer = new FileWriter(testfileName)) {
-				writer.write(filecontent);
+			try  {
+				Files.write(filePath, Collections.singleton(output)); 
 				System.out.println("File created successfully: " + testfileName);
 			} catch (IOException e) {
 				System.out.println("An error occurred while creating the file: " + e.getMessage());
@@ -106,7 +124,7 @@ String projectId = "glb-fs-wgh-app-dev";
 
 		}
 		try {
-			git.add().addFilepattern(".").call();
+			git.add().addFilepattern(folderPath.toString()).call();
 			git.commit().setMessage("Commit messag2222").call();
 			// CredentialsProvider credentialsProvider = new
 			// UsernamePasswordCredentialsProvider(username, password);
