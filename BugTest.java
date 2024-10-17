@@ -5,74 +5,71 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BugClassTest {
 
     @Test
-    void testMethod1() {
+    void testBugClassMethod1() {
         // Arrange
-        // ... set up any necessary data or objects for the test
-
+        BugClass bugClass = new BugClass();
         // Act
-        // ... call the method under test
-
+        // Call the method you want to test on bugClass
+        // ...
         // Assert
-        // ... verify the expected outcome
+        // Assert the expected result
+        // ...
     }
 
     @Test
-    void testMethod2() {
+    void testBugClassMethod2() {
         // Arrange
-        // ... set up any necessary data or objects for the test
-
+        BugClass bugClass = new BugClass();
         // Act
-        // ... call the method under test
-
+        // Call the method you want to test on bugClass
+        // ...
         // Assert
-        // ... verify the expected outcome
+        // Assert the expected result
+        // ...
     }
 
-    // Add more test methods for other methods in BugClass
+    // Add more test methods for each method in BugClass
 }
 ```
 
 **Explanation:**
 
-1. **Import statements:**
-   - `import org.junit.jupiter.api.Test;` imports the `Test` annotation, which marks a method as a test case.
-   - `import static org.junit.jupiter.api.Assertions.*;` imports static assertion methods from JUnit, allowing us to use assertions like `assertEquals`, `assertTrue`, etc., directly.
+1. **Import Statements:**
+   - `import org.junit.jupiter.api.Test;`: Imports the `Test` annotation to mark methods as test methods.
+   - `import static org.junit.jupiter.api.Assertions.*;`: Imports all static methods from the `Assertions` class for making assertions in your tests.
 
-2. **Test class:**
-   - The test class is named `BugClassTest`, following the convention of appending "Test" to the class being tested.
+2. **Test Class:**
+   - Create a public class named `BugClassTest` (replace "BugClass" with the actual name of your class).
 
-3. **Test methods:**
-   - Each `@Test` annotated method represents a separate test case.
-   - Test methods should follow the Arrange-Act-Assert pattern:
-     - **Arrange:** Set up any necessary data or objects for the test.
-     - **Act:** Call the method under test.
-     - **Assert:** Verify the expected outcome using JUnit assertions.
+3. **Test Methods:**
+   - Each test method should have the `@Test` annotation.
+   - Follow the Arrange-Act-Assert pattern:
+      - **Arrange:** Set up any necessary objects or data for the test.
+      - **Act:** Execute the method you're testing.
+      - **Assert:** Use assertion methods from `Assertions` to verify the expected results.
 
-**Example with a specific BugClass:**
+**Example Test Method:**
 
 ```java
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+@Test
+void testCalculateSum() {
+    // Arrange
+    BugClass bugClass = new BugClass();
+    int num1 = 5;
+    int num2 = 10;
 
-class BugClassTest {
+    // Act
+    int sum = bugClass.calculateSum(num1, num2);
 
-    @Test
-    void testGetBugName() {
-        BugClass bug = new BugClass("Beetle", 6);
-        assertEquals("Beetle", bug.getBugName());
-    }
-
-    @Test
-    void testGetNumberOfLegs() {
-        BugClass bug = new BugClass("Spider", 8);
-        assertEquals(8, bug.getNumberOfLegs());
-    }
+    // Assert
+    assertEquals(15, sum);
 }
 ```
 
-**Remember to:**
+**Remember:**
 
 - Replace `BugClass` with the actual name of your class.
-- Fill in the details for the `Arrange`, `Act`, and `Assert` steps in each test method, based on the specific method you are testing.
-- Add more test methods for other methods in your `BugClass`.
-- Run the tests using your IDE or JUnit runner to ensure your code is working as expected.
+- Replace `testBugClassMethod1`, `testBugClassMethod2`, etc. with meaningful names that describe the tested functionality.
+- Write tests for all the methods in your `BugClass` class.
+- Provide different test cases for each method to cover various scenarios (e.g., boundary conditions, edge cases, typical inputs).
+- Use the appropriate assertion methods from `Assertions` to check your expectations.

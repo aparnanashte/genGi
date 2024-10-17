@@ -7,83 +7,78 @@ public class ProjectClassTest {
     @Test
     void testMethod1() {
         // Arrange
-        // ... (set up any necessary data or objects)
+        // Create an instance of the ProjectClass
+        ProjectClass projectClass = new ProjectClass();
 
         // Act
-        // ... (call the method you want to test)
+        // Call the method to be tested
+        // ...
 
         // Assert
-        // ... (check the results of the method)
+        // Verify the expected outcome
+        // ...
     }
 
     @Test
     void testMethod2() {
         // Arrange
-        // ... (set up any necessary data or objects)
+        // ...
 
         // Act
-        // ... (call the method you want to test)
+        // ...
 
         // Assert
-        // ... (check the results of the method)
+        // ...
     }
 
-    // ... (add more test methods for other methods in ProjectClass)
+    // Add more test cases for other methods in ProjectClass
 }
 ```
 
 **Explanation:**
 
-1. **Import Statements:**
-   - `import org.junit.jupiter.api.Test;` imports the `Test` annotation from JUnit 5.
-   - `import static org.junit.jupiter.api.Assertions.*;` imports all static methods from `Assertions` class, which allows you to use assertion methods like `assertEquals()`, `assertTrue()`, etc., without specifying the class name.
+1. **Import statement:**
+   - `import org.junit.jupiter.api.Test;` imports the `Test` annotation from JUnit 5 for marking methods as test cases.
+   - `import static org.junit.jupiter.api.Assertions.*;` imports the assertion methods from JUnit 5 for verifying test results.
 
 2. **Test Class:**
-   - `public class ProjectClassTest { ... }` defines a test class named `ProjectClassTest`. Conventionally, test class names end with "Test".
+   - The `ProjectClassTest` class is a JUnit test class, named after the class being tested.
 
 3. **Test Methods:**
-   - Each test method represents a specific test case for a method in your `ProjectClass`.
-   - Each test method is annotated with `@Test` to mark it as a test method.
-   - The `testMethod1()` and `testMethod2()` are just examples. Replace these with actual method names from your `ProjectClass`.
+   - Each method annotated with `@Test` represents a test case.
+   - **Arrange:** This section sets up the necessary data and objects before executing the method being tested.
+   - **Act:** This section performs the action or method call being tested.
+   - **Assert:** This section uses assertion methods to verify the expected outcome of the action.
 
-4. **Test Method Structure (Arrange-Act-Assert):**
-   - **Arrange:** This section sets up the necessary data, objects, or conditions for your test case.
-   - **Act:** This section executes the method under test.
-   - **Assert:** This section verifies the expected outcome of the method using assertion methods.
-
-**How to Use:**
-
-1. **Replace Placeholders:**
-   - Replace `ProjectClassTest` with your actual test class name.
-   - Replace `testMethod1()` and `testMethod2()` with the actual method names you want to test in your `ProjectClass`.
-   - Fill in the `Arrange`, `Act`, and `Assert` sections with the specific logic for each test case.
-
-2. **Add More Tests:**
-   - Create additional test methods for each method in your `ProjectClass` that you want to test.
-
-3. **Run Tests:**
-   - Use your chosen testing framework (like JUnit) to run the test cases.
-
-**Example (Testing a `sum()` method):**
+**Example Test Case:**
 
 ```java
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CalculatorTest {
+public class ProjectClassTest {
 
     @Test
-    void testSum() {
+    void testCalculateSum() {
         // Arrange
-        Calculator calculator = new Calculator();
-        int a = 5;
-        int b = 3;
+        ProjectClass projectClass = new ProjectClass();
+        int num1 = 5;
+        int num2 = 10;
 
         // Act
-        int result = calculator.sum(a, b);
+        int result = projectClass.calculateSum(num1, num2);
 
         // Assert
-        assertEquals(8, result);
+        assertEquals(15, result);
     }
 }
 ```
+
+**Remember to:**
+
+- Replace `ProjectClass` with the actual name of your class.
+- Replace `testMethod1`, `testMethod2`, etc., with meaningful names for your test cases.
+- Implement the Arrange, Act, Assert steps specific to each test case.
+- Use appropriate assertion methods to verify the expected outcomes.
+
+This is a basic structure for writing JUnit test cases. You can add more tests, different types of assertions, and more complex logic depending on the methods and functionality of your `ProjectClass`.

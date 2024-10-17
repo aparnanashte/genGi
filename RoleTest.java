@@ -2,72 +2,68 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RoleClassTest {
+public class RoleclassTest {
+
+    // Assuming you have a Roleclass class with appropriate methods
 
     @Test
-    void testGetRoleName() {
-        // Arrange
-        RoleClass roleClass = new RoleClass("Admin");
-
-        // Act
-        String roleName = roleClass.getRoleName();
-
-        // Assert
-        assertEquals("Admin", roleName);
+    void testConstructor() {
+        // Test the constructor with various valid inputs
+        // Example:
+        Roleclass roleclass = new Roleclass("Admin", "Administrator");
+        assertNotNull(roleclass);
+        assertEquals("Admin", roleclass.getName());
+        assertEquals("Administrator", roleclass.getDescription());
     }
 
     @Test
-    void testSetRoleName() {
-        // Arrange
-        RoleClass roleClass = new RoleClass("User");
-
-        // Act
-        roleClass.setRoleName("Manager");
-
-        // Assert
-        assertEquals("Manager", roleClass.getRoleName());
+    void testGetName() {
+        // Test getName() method with a valid Roleclass object
+        // Example:
+        Roleclass roleclass = new Roleclass("User", "Regular User");
+        assertEquals("User", roleclass.getName());
     }
 
     @Test
-    void testToString() {
-        // Arrange
-        RoleClass roleClass = new RoleClass("Developer");
-
-        // Act
-        String toStringOutput = roleClass.toString();
-
-        // Assert
-        assertTrue(toStringOutput.contains("RoleClass{roleName='Developer'}"));
+    void testGetDescription() {
+        // Test getDescription() method with a valid Roleclass object
+        // Example:
+        Roleclass roleclass = new Roleclass("Guest", "Guest Access");
+        assertEquals("Guest Access", roleclass.getDescription());
     }
+
+    @Test
+    void testSetDescription() {
+        // Test setDescription() method with a valid Roleclass object
+        // Example:
+        Roleclass roleclass = new Roleclass("Manager", "Manager Role");
+        roleclass.setDescription("Manager Access");
+        assertEquals("Manager Access", roleclass.getDescription());
+    }
+
+    // Add more test cases for other methods in the Roleclass class
+    // Example:
+    // @Test
+    // void testSomeMethod() {
+    //     // ...
+    // }
+
 }
 ```
 
-**Assumptions:**
-
-* You have a class named `RoleClass` with the following methods:
-    * `getRoleName()`: Returns the role name as a String.
-    * `setRoleName(String roleName)`: Sets the role name.
-    * `toString()`: Returns a String representation of the `RoleClass` object.
-
 **Explanation:**
 
-1. **Import Statements:** We import `org.junit.jupiter.api.Test` for writing test methods and `static org.junit.jupiter.api.Assertions.*` for using assertion methods like `assertEquals` and `assertTrue`.
+* **Import Statements:** The code imports necessary classes from JUnit to perform testing.
+* **Test Class:** The `RoleclassTest` class is a JUnit test class that contains test methods for the `Roleclass` class.
+* **Test Methods:** Each test method represents a specific test case.
+    * `testConstructor()`: Tests the constructor of the `Roleclass` class with different valid inputs.
+    * `testGetName()`, `testGetDescription()`: Tests getter methods for name and description.
+    * `testSetDescription()`: Tests the setter method for description.
+* **Assertions:** Inside each test method, `assert` statements are used to verify the expected results. For example, `assertEquals()` asserts that two values are equal.
 
-2. **Test Class:** We define a test class named `RoleClassTest`.
+**How to Run Tests:**
 
-3. **Test Methods:**
-   * **`testGetRoleName()`:** This test verifies that the `getRoleName()` method correctly returns the role name. 
-   * **`testSetRoleName()`:** This test verifies that the `setRoleName()` method successfully updates the role name.
-   * **`testToString()`:** This test verifies that the `toString()` method returns a string representation of the `RoleClass` object containing the role name.
+1. **Set up JUnit:** Ensure that you have JUnit added to your project dependencies.
+2. **Run the Test Class:** Run the `RoleclassTest` class to execute all the test methods.
 
-4. **Assertions:**
-   * `assertEquals` compares the actual and expected values.
-   * `assertTrue` checks if a condition is true.
-
-**How to use the test cases:**
-
-1. Make sure you have JUnit 5 in your project dependencies.
-2. Create a `RoleClass` class with the required methods.
-3. Run the test cases to verify the functionality of your `RoleClass` implementation.
-
-**Note:** You might need to modify the test cases based on the specific implementation of your `RoleClass` class. 
+**Note:** You need to have a `Roleclass` class defined with appropriate methods. Replace the comments and placeholders with your actual code to test the methods of your `Roleclass` class.

@@ -2,64 +2,73 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class UserClassTest {
+// Import any necessary classes for your Userclass 
+import your.package.name.Userclass; 
+
+class UserclassTest {
 
     @Test
     void testConstructor() {
-        User user = new User("John Doe", "john.doe@example.com");
+        // Create an instance of Userclass
+        Userclass user = new Userclass("John Doe", 25);
+        
+        // Assert that the constructor initializes the object correctly
         assertEquals("John Doe", user.getName());
-        assertEquals("john.doe@example.com", user.getEmail());
+        assertEquals(25, user.getAge());
     }
 
     @Test
     void testGetName() {
-        User user = new User("Jane Doe", "jane.doe@example.com");
+        // Create an instance of Userclass
+        Userclass user = new Userclass("Jane Doe", 30);
+        
+        // Assert that the getName() method returns the correct name
         assertEquals("Jane Doe", user.getName());
     }
 
     @Test
-    void testSetName() {
-        User user = new User("John Doe", "john.doe@example.com");
-        user.setName("Jane Doe");
-        assertEquals("Jane Doe", user.getName());
+    void testGetAge() {
+        // Create an instance of Userclass
+        Userclass user = new Userclass("Bob Smith", 40);
+        
+        // Assert that the getAge() method returns the correct age
+        assertEquals(40, user.getAge());
     }
 
-    @Test
-    void testGetEmail() {
-        User user = new User("John Doe", "john.doe@example.com");
-        assertEquals("john.doe@example.com", user.getEmail());
-    }
+    // Add more test methods for other methods in your Userclass
+    // For example:
+    // @Test
+    // void testSetAge() { ... }
 
-    @Test
-    void testSetEmail() {
-        User user = new User("John Doe", "john.doe@example.com");
-        user.setEmail("jane.doe@example.com");
-        assertEquals("jane.doe@example.com", user.getEmail());
-    }
-
-    @Test
-    void testToString() {
-        User user = new User("John Doe", "john.doe@example.com");
-        assertEquals("User{name='John Doe', email='john.doe@example.com'}", user.toString());
-    }
+    // @Test
+    // void testSomeOtherMethod() { ... }
 }
 ```
 
 **Explanation:**
 
-* **Import statements:** The code starts with `import` statements to import necessary classes from JUnit and the class under test (`User`).
-* **Test class:** The test class `UserClassTest` contains multiple test methods.
-* **Test methods:** Each test method tests a specific functionality of the `User` class using assertions.
-* **Assertions:** Assertions are used to verify the expected results of the tests.
-    * `assertEquals()` checks if two values are equal.
-    * `assertTrue()` checks if a condition is true.
-    * `assertFalse()` checks if a condition is false.
-* **Test data:** Test methods use sample data to test different scenarios.
+1. **Import statements:** 
+   - Import `org.junit.jupiter.api.Test` for the `@Test` annotation.
+   - Import `static org.junit.jupiter.api.Assertions.*` for assertion methods.
+   - Import your `Userclass` class from the appropriate package.
 
-**To run the test cases:**
+2. **Test Class:**
+   - Create a test class named `UserclassTest`.
 
-1. Save the code as `UserClassTest.java`.
-2. Compile the test class using a Java compiler.
-3. Run the test class using a JUnit test runner.
+3. **Test Methods:**
+   - Each test method is annotated with `@Test`.
+   - **`testConstructor()`:** 
+     - Creates an instance of `Userclass` with test data.
+     - Uses `assertEquals()` to verify that the constructor correctly sets the name and age.
+   - **`testGetName()` and `testGetAge()`:**
+     - Similar to `testConstructor()`, they create an instance and use `assertEquals()` to assert the expected values returned by the respective methods.
+   - **Add more test methods:** Add test methods for other methods in your `Userclass`.
 
-This test suite covers the basic functionalities of the `User` class, including its constructor, getter and setter methods, and `toString()` method. You can add more test cases to cover other functionalities or edge cases of your `User` class. 
+**Remember to:**
+
+- Replace `"your.package.name.Userclass"` with the actual package name of your `Userclass`.
+- Add test methods for all the public methods in your `Userclass`.
+- Use appropriate test data for each method.
+- Use assertion methods from `org.junit.jupiter.api.Assertions` to verify the expected behavior of your methods.
+
+This example provides a basic framework for testing your `Userclass`. You should adapt it to your specific needs and create comprehensive test cases to ensure the quality of your code. 

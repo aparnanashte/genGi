@@ -5,58 +5,84 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BankAccountTest {
 
     @Test
-    public void testDeposit() {
+    void testDeposit() {
         BankAccount account = new BankAccount(100);
         account.deposit(50);
         assertEquals(150, account.getBalance());
     }
 
     @Test
-    public void testWithdraw() {
+    void testWithdraw() {
         BankAccount account = new BankAccount(100);
         account.withdraw(20);
         assertEquals(80, account.getBalance());
     }
 
     @Test
-    public void testWithdrawInsufficientFunds() {
+    void testWithdrawInsufficientFunds() {
         BankAccount account = new BankAccount(100);
         assertThrows(IllegalArgumentException.class, () -> account.withdraw(150));
     }
 
     @Test
-    public void testGetBalance() {
+    void testGetBalance() {
         BankAccount account = new BankAccount(100);
         assertEquals(100, account.getBalance());
+    }
+
+    // Add more test cases as needed, for example:
+    // - Test for negative deposit
+    // - Test for withdraw with zero balance
+    // - Test for edge cases
+}
+```
+
+**BankAccount class:**
+
+```java
+public class BankAccount {
+
+    private double balance;
+
+    public BankAccount(double initialBalance) {
+        this.balance = initialBalance;
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        } else {
+            throw new IllegalArgumentException("Deposit amount must be positive.");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+        } else {
+            throw new IllegalArgumentException("Insufficient funds or invalid withdrawal amount.");
+        }
+    }
+
+    public double getBalance() {
+        return balance;
     }
 }
 ```
 
 **Explanation:**
 
-* **Import Statements:**
-    * `import org.junit.jupiter.api.Test;` imports the `Test` annotation from JUnit 5, which marks a method as a test case.
-    * `import static org.junit.jupiter.api.Assertions.*;` imports all static methods from `Assertions` class, which provides methods for asserting conditions in tests.
-* **Test Cases:**
-    * **`testDeposit()`:**
-        * Creates a new `BankAccount` object with an initial balance of 100.
-        * Calls the `deposit()` method to add 50 to the balance.
-        * Uses `assertEquals()` to assert that the balance is now 150.
-    * **`testWithdraw()`:**
-        * Creates a new `BankAccount` object with an initial balance of 100.
-        * Calls the `withdraw()` method to subtract 20 from the balance.
-        * Uses `assertEquals()` to assert that the balance is now 80.
-    * **`testWithdrawInsufficientFunds()`:**
-        * Creates a new `BankAccount` object with an initial balance of 100.
-        * Uses `assertThrows()` to assert that calling `withdraw()` with an amount greater than the balance (150) throws an `IllegalArgumentException`.
-    * **`testGetBalance()`:**
-        * Creates a new `BankAccount` object with an initial balance of 100.
-        * Uses `assertEquals()` to assert that the `getBalance()` method returns the correct initial balance of 100.
+* **Import Statements:** The code imports the necessary JUnit 5 classes (`@Test`, `assertEquals`, `assertThrows`) for writing tests.
+* **Test Class:** The `BankAccountTest` class contains multiple test methods for different scenarios of the `BankAccount` class.
+* **Test Methods:** Each test method tests a specific functionality of the `BankAccount` class.
+    * **`testDeposit()`:** Tests depositing a positive amount and checks if the balance is updated correctly.
+    * **`testWithdraw()`:** Tests withdrawing a valid amount and checks if the balance is updated correctly.
+    * **`testWithdrawInsufficientFunds()`:** Tests withdrawing an amount exceeding the balance and asserts that an `IllegalArgumentException` is thrown.
+    * **`testGetBalance()`:** Tests retrieving the current balance.
 
-**Note:**
+**Running the Tests:**
 
-* You will need to have the JUnit 5 library added to your project's dependencies.
-* Replace `BankAccount` with the actual name of your class.
-* You may need to adjust the test cases based on the specific functionality of your `BankAccount` class.
+1. Save the `BankAccountTest.java` and `BankAccount.java` files.
+2. Use a JUnit test runner (e.g., in an IDE like Eclipse or IntelliJ) to execute the tests.
 
-This test case provides a basic example of how to write JUnit tests for a bank account class. It covers the deposit, withdraw, and get balance functionalities. You can extend this test case to include more complex scenarios, such as testing transactions, account creation, and other bank account operations.
+**Note:** This example assumes that the `BankAccount` class is defined in the same package as the test class. You may need to adjust the import statements and class path if your project structure is different.

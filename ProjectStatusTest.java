@@ -5,48 +5,78 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ProjectStatusTest {
 
     @Test
-    void testConstructor() {
-        ProjectStatus status = new ProjectStatus("In Progress", "Some progress made.");
-        assertEquals("In Progress", status.getStatus());
-        assertEquals("Some progress made.", status.getDescription());
+    void testGetStatus() {
+        // Arrange
+        ProjectStatus status = new ProjectStatus("InProgress");
+
+        // Act
+        String actualStatus = status.getStatus();
+
+        // Assert
+        assertEquals("InProgress", actualStatus);
     }
 
     @Test
     void testSetStatus() {
-        ProjectStatus status = new ProjectStatus("In Progress", "Some progress made.");
-        status.setStatus("Completed");
-        assertEquals("Completed", status.getStatus());
+        // Arrange
+        ProjectStatus status = new ProjectStatus("Completed");
+
+        // Act
+        status.setStatus("In Review");
+
+        // Assert
+        assertEquals("In Review", status.getStatus());
     }
 
     @Test
-    void testSetDescription() {
-        ProjectStatus status = new ProjectStatus("In Progress", "Some progress made.");
-        status.setDescription("Project successfully completed.");
-        assertEquals("Project successfully completed.", status.getDescription());
+    void testEquals() {
+        // Arrange
+        ProjectStatus status1 = new ProjectStatus("Completed");
+        ProjectStatus status2 = new ProjectStatus("Completed");
+        ProjectStatus status3 = new ProjectStatus("In Progress");
+
+        // Assert
+        assertTrue(status1.equals(status2));
+        assertFalse(status1.equals(status3));
+    }
+
+    @Test
+    void testHashCode() {
+        // Arrange
+        ProjectStatus status1 = new ProjectStatus("Completed");
+        ProjectStatus status2 = new ProjectStatus("Completed");
+
+        // Assert
+        assertEquals(status1.hashCode(), status2.hashCode());
     }
 
     @Test
     void testToString() {
-        ProjectStatus status = new ProjectStatus("In Progress", "Some progress made.");
-        String expectedString = "ProjectStatus{status='In Progress', description='Some progress made.'}";
-        assertEquals(expectedString, status.toString());
+        // Arrange
+        ProjectStatus status = new ProjectStatus("In Review");
+
+        // Act
+        String actualString = status.toString();
+
+        // Assert
+        assertEquals("ProjectStatus{status='In Review'}", actualString);
     }
 }
 ```
 
-**Explanation:**
+**Import Statements:**
 
-1. **Import Statements:** The test case imports the necessary JUnit 5 classes for testing.
-2. **Test Class:** The `ProjectStatusTest` class contains the test methods.
-3. **`testConstructor()`:** This test method verifies the constructor of the `ProjectStatus` class by creating an instance and asserting the initial status and description values.
-4. **`testSetStatus()`:** This test method verifies the `setStatus()` method by setting a new status and asserting the updated value.
-5. **`testSetDescription()`:** This test method verifies the `setDescription()` method by setting a new description and asserting the updated value.
-6. **`testToString()`:** This test method verifies the `toString()` method by comparing the expected string representation with the actual string returned by the method.
+```java
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+```
 
-**To use this test case:**
+**Notes:**
 
-1. Make sure you have JUnit 5 added to your project's dependencies.
-2. Create a class named `ProjectStatus` with the methods tested in this example.
-3. Run the test case to verify the functionality of the `ProjectStatus` class.
+* This test case assumes you have a `ProjectStatus` class with a `status` property.
+* The test methods cover the core functionalities of the `ProjectStatus` class, including getting and setting the status, checking for equality, and generating a string representation.
+* You can add more test cases to cover additional functionality or edge cases in your `ProjectStatus` class.
+* Remember to replace the placeholder comments with appropriate descriptions and assertions based on your actual implementation.
+* You can use different testing frameworks, such as JUnit 4 or TestNG, and adjust the code accordingly.
 
-This example provides a basic set of test cases. You can add more test methods to cover different scenarios and edge cases of your `ProjectStatus` class.
+This is a basic example, and you might need to adjust it to fit your specific needs and the actual implementation of your `ProjectStatus` class. 
