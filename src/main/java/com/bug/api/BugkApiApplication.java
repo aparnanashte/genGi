@@ -27,7 +27,7 @@ public class BugkApiApplication {
 		String modelName = "gemini-1.5-flash-001";
 		String textPrompt = args[0];
 		System.out.println("TextPrompt" + textPrompt);
-		String workingDir = System.getProperty("user.dir");
+		String workingDir = System.getProperty("user.dir")+1;
 		System.out.println("Current Directory" + workingDir);
 		String repoUrl = "https://github.com/aparnanashte/genGi.git"; 
 
