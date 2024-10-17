@@ -5,75 +5,69 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RoleClassTest {
 
     @Test
-    void testRoleClassCreation() {
+    void testGetRoleName() {
         // Arrange
-        String roleName = "Admin";
-        String description = "Administrator role with full access.";
+        RoleClass roleClass = new RoleClass("Admin");
 
         // Act
-        RoleClass role = new RoleClass(roleName, description);
+        String roleName = roleClass.getRoleName();
 
         // Assert
-        assertEquals(roleName, role.getRoleName());
-        assertEquals(description, role.getDescription());
+        assertEquals("Admin", roleName);
     }
 
     @Test
-    void testRoleClassGettersAndSetters() {
+    void testSetRoleName() {
         // Arrange
-        RoleClass role = new RoleClass();
-        String roleName = "User";
-        String description = "Standard user role.";
+        RoleClass roleClass = new RoleClass("User");
 
         // Act
-        role.setRoleName(roleName);
-        role.setDescription(description);
+        roleClass.setRoleName("Manager");
 
         // Assert
-        assertEquals(roleName, role.getRoleName());
-        assertEquals(description, role.getDescription());
+        assertEquals("Manager", roleClass.getRoleName());
     }
 
     @Test
-    void testRoleClassToString() {
+    void testToString() {
         // Arrange
-        RoleClass role = new RoleClass("Manager", "Manager role with access to specific functionalities.");
+        RoleClass roleClass = new RoleClass("Developer");
 
         // Act
-        String expectedString = "RoleClass{roleName='Manager', description='Manager role with access to specific functionalities.'}";
+        String toStringOutput = roleClass.toString();
 
         // Assert
-        assertEquals(expectedString, role.toString());
+        assertTrue(toStringOutput.contains("RoleClass{roleName='Developer'}"));
     }
-
-    // Add more test cases based on your specific requirements, such as testing
-    // methods related to permissions, access control, etc.
 }
 ```
 
+**Assumptions:**
+
+* You have a class named `RoleClass` with the following methods:
+    * `getRoleName()`: Returns the role name as a String.
+    * `setRoleName(String roleName)`: Sets the role name.
+    * `toString()`: Returns a String representation of the `RoleClass` object.
+
 **Explanation:**
 
-1. **Import Statements:**
-   - `org.junit.jupiter.api.Test`: Imports the `Test` annotation for defining test methods.
-   - `static org.junit.jupiter.api.Assertions.*`: Imports static methods from `Assertions` class for performing assertions.
+1. **Import Statements:** We import `org.junit.jupiter.api.Test` for writing test methods and `static org.junit.jupiter.api.Assertions.*` for using assertion methods like `assertEquals` and `assertTrue`.
 
-2. **Test Class:**
-   - `RoleClassTest`: Defines a JUnit test class named `RoleClassTest`.
+2. **Test Class:** We define a test class named `RoleClassTest`.
 
 3. **Test Methods:**
-   - **`testRoleClassCreation()`:**
-     - Tests the creation of a `RoleClass` object with specified role name and description.
-     - Uses `assertEquals()` to verify that the role name and description are correctly set.
-   - **`testRoleClassGettersAndSetters()`:**
-     - Tests the getter and setter methods of `RoleClass`.
-     - Sets the role name and description using setters and verifies their values using getters.
-   - **`testRoleClassToString()`:**
-     - Tests the `toString()` method of `RoleClass`.
-     - Creates a `RoleClass` object and compares its expected string representation with the actual string returned by `toString()`.
+   * **`testGetRoleName()`:** This test verifies that the `getRoleName()` method correctly returns the role name. 
+   * **`testSetRoleName()`:** This test verifies that the `setRoleName()` method successfully updates the role name.
+   * **`testToString()`:** This test verifies that the `toString()` method returns a string representation of the `RoleClass` object containing the role name.
 
-**Note:**
+4. **Assertions:**
+   * `assertEquals` compares the actual and expected values.
+   * `assertTrue` checks if a condition is true.
 
-- You need to replace `RoleClass` with the actual name of your role class.
-- Add more test cases based on the functionality of your `RoleClass` class.
-- Remember to replace `assertEquals()` with other assertion methods from `Assertions` class as needed.
-- This test suite assumes that your `RoleClass` class has a constructor that takes role name and description, getter and setter methods for these properties, and a `toString()` method.
+**How to use the test cases:**
+
+1. Make sure you have JUnit 5 in your project dependencies.
+2. Create a `RoleClass` class with the required methods.
+3. Run the test cases to verify the functionality of your `RoleClass` implementation.
+
+**Note:** You might need to modify the test cases based on the specific implementation of your `RoleClass` class. 

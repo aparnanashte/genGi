@@ -4,58 +4,67 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ProjectClassTest {
 
-    // Add your test cases here. 
-    // Example: 
-
     @Test
     void testMethod1() {
         // Arrange
-        // Create an instance of ProjectClass and set up the required data.
+        // ... (set up any necessary data or objects)
 
         // Act
-        // Call the method under test.
+        // ... (call the method you want to test)
 
         // Assert
-        // Verify the expected outcome.
+        // ... (check the results of the method)
     }
 
     @Test
     void testMethod2() {
         // Arrange
-        // ...
+        // ... (set up any necessary data or objects)
 
         // Act
-        // ...
+        // ... (call the method you want to test)
 
         // Assert
-        // ...
+        // ... (check the results of the method)
     }
+
+    // ... (add more test methods for other methods in ProjectClass)
 }
 ```
 
 **Explanation:**
 
-* **Import statements:**
-    * `import org.junit.jupiter.api.Test;` imports the `@Test` annotation used to mark test methods.
-    * `import static org.junit.jupiter.api.Assertions.*;` imports all assertion methods from JUnit Jupiter for easier use.
-* **Test class:**
-    * `public class ProjectClassTest { ... }` defines the test class.
-* **Test methods:**
-    * Each test method should be annotated with `@Test`.
-    * Inside the test method:
-        * **Arrange:** Set up the necessary data and objects for the test.
-        * **Act:** Call the method under test.
-        * **Assert:** Verify the expected outcome using assertion methods (e.g., `assertEquals`, `assertTrue`, `assertFalse`).
+1. **Import Statements:**
+   - `import org.junit.jupiter.api.Test;` imports the `Test` annotation from JUnit 5.
+   - `import static org.junit.jupiter.api.Assertions.*;` imports all static methods from `Assertions` class, which allows you to use assertion methods like `assertEquals()`, `assertTrue()`, etc., without specifying the class name.
 
-**Replace placeholders:**
+2. **Test Class:**
+   - `public class ProjectClassTest { ... }` defines a test class named `ProjectClassTest`. Conventionally, test class names end with "Test".
 
-* Replace `ProjectClass` with the actual name of your class.
-* Replace `testMethod1`, `testMethod2`, etc. with meaningful names for your test methods.
-* Replace the comments within each test method with your actual test logic.
+3. **Test Methods:**
+   - Each test method represents a specific test case for a method in your `ProjectClass`.
+   - Each test method is annotated with `@Test` to mark it as a test method.
+   - The `testMethod1()` and `testMethod2()` are just examples. Replace these with actual method names from your `ProjectClass`.
 
-**Example:**
+4. **Test Method Structure (Arrange-Act-Assert):**
+   - **Arrange:** This section sets up the necessary data, objects, or conditions for your test case.
+   - **Act:** This section executes the method under test.
+   - **Assert:** This section verifies the expected outcome of the method using assertion methods.
 
-Let's say you have a class called `Calculator` with a method `add(int a, int b)`:
+**How to Use:**
+
+1. **Replace Placeholders:**
+   - Replace `ProjectClassTest` with your actual test class name.
+   - Replace `testMethod1()` and `testMethod2()` with the actual method names you want to test in your `ProjectClass`.
+   - Fill in the `Arrange`, `Act`, and `Assert` sections with the specific logic for each test case.
+
+2. **Add More Tests:**
+   - Create additional test methods for each method in your `ProjectClass` that you want to test.
+
+3. **Run Tests:**
+   - Use your chosen testing framework (like JUnit) to run the test cases.
+
+**Example (Testing a `sum()` method):**
 
 ```java
 import org.junit.jupiter.api.Test;
@@ -64,17 +73,17 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CalculatorTest {
 
     @Test
-    void testAdd() {
+    void testSum() {
         // Arrange
         Calculator calculator = new Calculator();
+        int a = 5;
+        int b = 3;
 
         // Act
-        int result = calculator.add(2, 3);
+        int result = calculator.sum(a, b);
 
         // Assert
-        assertEquals(5, result);
+        assertEquals(8, result);
     }
 }
 ```
-
-This test case creates a `Calculator` object, calls its `add` method with values 2 and 3, and asserts that the result is equal to 5.

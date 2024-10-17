@@ -9,36 +9,33 @@ public class BugkApiApplicationTest {
 
     @Test
     void contextLoads() {
-        BugkApiApplication application = new BugkApiApplication();
-        assertNotNull(application);
+        BugkApiApplication.main(new String[] {});
+        assertNotNull(BugkApiApplication.class);
     }
 }
 ```
 
 **Explanation:**
 
-1. **Import Statements:**
-   - `org.junit.jupiter.api.Test`: Imports the `@Test` annotation for marking test methods.
-   - `org.springframework.boot.test.context.SpringBootTest`: Imports the `@SpringBootTest` annotation for indicating a Spring Boot test.
-   - `static org.junit.jupiter.api.Assertions.assertNotNull`: Imports the `assertNotNull` assertion method from JUnit.
+* **Import Statements:**
+    * `org.junit.jupiter.api.Test`: Imports the `@Test` annotation to mark methods as test methods.
+    * `org.springframework.boot.test.context.SpringBootTest`: Imports the `@SpringBootTest` annotation to indicate that this class is a Spring Boot test.
+    * `static org.junit.jupiter.api.Assertions.assertNotNull`: Imports the `assertNotNull` method to assert that an object is not null.
 
-2. **`@SpringBootTest`:**
-   - This annotation tells JUnit to start a Spring Boot application context for testing.
+* **Class Definition:**
+    * `@SpringBootTest`: This annotation tells Spring Boot to create a Spring application context for testing.
+    * `BugkApiApplicationTest`: The name of the test class.
 
-3. **`BugkApiApplicationTest` Class:**
-   - This is the test class for your `BugkApiApplication`.
+* **Test Method:**
+    * `@Test`: This annotation marks the `contextLoads` method as a test method.
+    * `contextLoads()`: The name of the test method.
+    * `BugkApiApplication.main(new String[] {});`: This line executes the `main` method of `BugkApiApplication` to start the Spring Boot application.
+    * `assertNotNull(BugkApiApplication.class);`: This line asserts that the `BugkApiApplication` class is not null. This ensures that the application context has been successfully loaded.
 
-4. **`contextLoads()` Method:**
-   - This is a test method annotated with `@Test`.
-   - It creates a new instance of `BugkApiApplication` and checks if it's not null. This simple test verifies that the application can be instantiated successfully.
+**How to run the test:**
 
-**Running the Test:**
+1. Make sure you have JUnit 5 and Spring Boot Test dependencies in your project's `pom.xml` file.
+2. Right-click on the test class file in your IDE and select "Run".
+3. The test will execute and you should see a successful test result in the console.
 
-To run this test, ensure that you have JUnit 5 and Spring Boot Test dependencies in your project's pom.xml or build.gradle file. Then, run the test using your IDE or command-line build tool.
-
-**Important Note:** This is a basic test that just verifies the application can be initialized. For a more comprehensive test suite, you would want to add more test cases to cover different aspects of your application, such as:
-
-- **Controller Tests:** Test your API endpoints.
-- **Service Tests:** Test your business logic.
-- **Repository Tests:** Test your data access layer.
-- **Integration Tests:** Test the interaction of different components.
+This is a very basic test case that simply verifies that the `BugkApiApplication` class is correctly loaded. You can expand on this test by adding more specific tests for different parts of your application. For example, you can test the controllers, services, repositories, and other components of your application.

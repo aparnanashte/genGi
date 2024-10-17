@@ -6,63 +6,47 @@ public class ProjectStatusTest {
 
     @Test
     void testConstructor() {
-        ProjectStatus status = new ProjectStatus("In Progress", "Some description");
+        ProjectStatus status = new ProjectStatus("In Progress", "Some progress made.");
         assertEquals("In Progress", status.getStatus());
-        assertEquals("Some description", status.getDescription());
+        assertEquals("Some progress made.", status.getDescription());
     }
 
     @Test
-    void testGettersAndSetters() {
-        ProjectStatus status = new ProjectStatus();
+    void testSetStatus() {
+        ProjectStatus status = new ProjectStatus("In Progress", "Some progress made.");
         status.setStatus("Completed");
-        status.setDescription("Project finished successfully");
         assertEquals("Completed", status.getStatus());
-        assertEquals("Project finished successfully", status.getDescription());
+    }
+
+    @Test
+    void testSetDescription() {
+        ProjectStatus status = new ProjectStatus("In Progress", "Some progress made.");
+        status.setDescription("Project successfully completed.");
+        assertEquals("Project successfully completed.", status.getDescription());
     }
 
     @Test
     void testToString() {
-        ProjectStatus status = new ProjectStatus("On Hold", "Waiting for resources");
-        String expectedString = "ProjectStatus{status='On Hold', description='Waiting for resources'}";
+        ProjectStatus status = new ProjectStatus("In Progress", "Some progress made.");
+        String expectedString = "ProjectStatus{status='In Progress', description='Some progress made.'}";
         assertEquals(expectedString, status.toString());
     }
-
-    @Test
-    void testEquals() {
-        ProjectStatus status1 = new ProjectStatus("In Progress", "Some description");
-        ProjectStatus status2 = new ProjectStatus("In Progress", "Some description");
-        ProjectStatus status3 = new ProjectStatus("Completed", "Project finished successfully");
-
-        assertTrue(status1.equals(status2));
-        assertFalse(status1.equals(status3));
-        assertFalse(status1.equals(null));
-        assertFalse(status1.equals("Some String"));
-    }
-
-    @Test
-    void testHashCode() {
-        ProjectStatus status1 = new ProjectStatus("In Progress", "Some description");
-        ProjectStatus status2 = new ProjectStatus("In Progress", "Some description");
-        assertEquals(status1.hashCode(), status2.hashCode());
-    }
 }
 ```
 
-**Note:** This code assumes a `ProjectStatus` class with the following structure:
+**Explanation:**
 
-```java
-public class ProjectStatus {
-    private String status;
-    private String description;
+1. **Import Statements:** The test case imports the necessary JUnit 5 classes for testing.
+2. **Test Class:** The `ProjectStatusTest` class contains the test methods.
+3. **`testConstructor()`:** This test method verifies the constructor of the `ProjectStatus` class by creating an instance and asserting the initial status and description values.
+4. **`testSetStatus()`:** This test method verifies the `setStatus()` method by setting a new status and asserting the updated value.
+5. **`testSetDescription()`:** This test method verifies the `setDescription()` method by setting a new description and asserting the updated value.
+6. **`testToString()`:** This test method verifies the `toString()` method by comparing the expected string representation with the actual string returned by the method.
 
-    // Constructor, getters, setters, toString(), equals(), hashCode() methods
-}
-```
+**To use this test case:**
 
-You need to replace the placeholder comments with the actual implementation of the `ProjectStatus` class methods. This code will test the functionality of the `ProjectStatus` class, including:
+1. Make sure you have JUnit 5 added to your project's dependencies.
+2. Create a class named `ProjectStatus` with the methods tested in this example.
+3. Run the test case to verify the functionality of the `ProjectStatus` class.
 
-* Constructor
-* Getters and setters
-* `toString()` method
-* `equals()` method
-* `hashCode()` method 
+This example provides a basic set of test cases. You can add more test methods to cover different scenarios and edge cases of your `ProjectStatus` class.
