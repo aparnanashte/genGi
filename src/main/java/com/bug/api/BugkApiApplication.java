@@ -77,27 +77,16 @@ String projectId = "glb-fs-wgh-app-dev";
 			e.printStackTrace();
 		}
 
-		// Clone the repository
-		/*
-		 * if (Files.notExists(Paths.get(workingDir))) { git =
-		 * Git.cloneRepository().setURI(repoUrl).setDirectory(new File(workingDir))
-		 * .setCredentialsProvider(credentialsProvider).call(); }else {
-		 * git.pull().setCredentialsProvider(credentialsProvider).call(); }
-		 */
+		
 
 		// Read the specific file from the cloned repo
-		String newDir = workingDir+"/GenratedResult";            
-		/*if (newDir.mkdir()) {
-			System.out.println("Directory created: " + newDir.getAbsolutePath());
-		} else {
-			System.out.println("Failed to create directory or it already exists.");
-		}*/
+		
 		List<String> fieNames = FileFinder.findJavaFiles(workingDir);
 		String testfileName = null;
 		for (String name : fieNames) {
 			String name1= name.substring(name.lastIndexOf("/"),name.lastIndexOf("."));
 			textPrompt = "Genrate Junit Test case for " + name1 + "class along with import statement";
-			testfileName = newDir + "/" + name1 + "Test.java";
+			testfileName = workingDir + "/" + name1 + "Test.java";
 
 			try {
 				output = textInput(projectId, location, modelName, textPrompt);
