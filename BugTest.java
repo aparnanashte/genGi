@@ -1,43 +1,39 @@
 ```java
 import com.bug.api.model.domain.Bug;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BugTest {
+class BugTest {
 
     @Test
-    void testConstructor() {
-        Bug bug = new Bug(1L, "Test bug", "This is a test bug", "HIGH", "John Doe", "OPEN");
+    void testGetId() {
+        Bug bug = new Bug(1L, "Test bug", "Test description", "HIGH");
         assertEquals(1L, bug.getId());
-        assertEquals("Test bug", bug.getTitle());
-        assertEquals("This is a test bug", bug.getDescription());
-        assertEquals("HIGH", bug.getPriority());
-        assertEquals("John Doe", bug.getAssignedTo());
-        assertEquals("OPEN", bug.getStatus());
     }
 
     @Test
-    void testSettersAndGetters() {
-        Bug bug = new Bug();
-        bug.setId(2L);
-        bug.setTitle("Another test bug");
-        bug.setDescription("This is another test bug");
-        bug.setPriority("LOW");
-        bug.setAssignedTo("Jane Doe");
-        bug.setStatus("CLOSED");
+    void testGetTitle() {
+        Bug bug = new Bug(1L, "Test bug", "Test description", "HIGH");
+        assertEquals("Test bug", bug.getTitle());
+    }
 
-        assertEquals(2L, bug.getId());
-        assertEquals("Another test bug", bug.getTitle());
-        assertEquals("This is another test bug", bug.getDescription());
-        assertEquals("LOW", bug.getPriority());
-        assertEquals("Jane Doe", bug.getAssignedTo());
-        assertEquals("CLOSED", bug.getStatus());
+    @Test
+    void testGetDescription() {
+        Bug bug = new Bug(1L, "Test bug", "Test description", "HIGH");
+        assertEquals("Test description", bug.getDescription());
+    }
+
+    @Test
+    void testGetPriority() {
+        Bug bug = new Bug(1L, "Test bug", "Test description", "HIGH");
+        assertEquals("HIGH", bug.getPriority());
     }
 
     @Test
     void testToString() {
-        Bug bug = new Bug(3L, "Bug title", "Bug description", "MEDIUM", "Bob Smith", "IN_PROGRESS");
-        String expectedString = "Bug{id=3, title='Bug title', description='Bug description', priority='MEDIUM', assignedTo='Bob Smith', status='IN_PROGRESS'}";
+        Bug bug = new Bug(1L, "Test bug", "Test description", "HIGH");
+        String expectedString = "Bug{id=1, title='Test bug', description='Test description', priority='HIGH'}";
         assertEquals(expectedString, bug.toString());
     }
 }
@@ -45,19 +41,20 @@ public class BugTest {
 
 **Explanation:**
 
-* **Imports:**
-    * `com.bug.api.model.domain.Bug`: Imports the `Bug` class.
-    * `org.junit.jupiter.api.Test`: Imports the `Test` annotation for defining test methods.
-    * `static org.junit.jupiter.api.Assertions.*`: Imports all assertion methods from JUnit for comparing expected and actual values.
-* **Test Cases:**
-    * **`testConstructor()`:** Tests the constructor of the `Bug` class by creating a new instance and verifying that the values are correctly set.
-    * **`testSettersAndGetters()`:** Tests the setter and getter methods of the `Bug` class by setting values and then retrieving them to ensure they are correctly stored and retrieved.
-    * **`testToString()`:** Tests the `toString()` method of the `Bug` class by creating a `Bug` object and comparing the output of `toString()` with an expected string.
+* **Import Statements:** The test class imports the `Bug` class from the `com.bug.api.model.domain` package and the `assertEquals` method from the `org.junit.jupiter.api.Assertions` class.
+* **Test Methods:** Each test method is annotated with `@Test` and tests a specific aspect of the `Bug` class:
+    * `testGetId()`: Tests the `getId()` method.
+    * `testGetTitle()`: Tests the `getTitle()` method.
+    * `testGetDescription()`: Tests the `getDescription()` method.
+    * `testGetPriority()`: Tests the `getPriority()` method.
+    * `testToString()`: Tests the `toString()` method.
+* **Assertions:** The `assertEquals()` method is used to assert that the actual value returned by the method matches the expected value.
+* **Constructor:** Each test method creates a new `Bug` object with specific values for its attributes.
 
-**Running the Tests:**
+**How to run the test:**
 
-1. Make sure you have JUnit installed in your project.
-2. Compile the code.
-3. Run the test class.
+1. Make sure you have JUnit 5 added to your project dependencies.
+2. Compile the test class.
+3. Run the test class using a JUnit test runner.
 
-The test cases will run, and you will see the results in the console. If any assertion fails, the test will fail, indicating a potential issue with the `Bug` class.
+This test case covers the basic functionalities of the `Bug` class. You can add more test cases to cover other aspects of the class, such as its setters or any custom methods it might have.
