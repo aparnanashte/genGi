@@ -21,7 +21,7 @@ public class FileFinder {
             for (File file : files) {
                 if (file.isDirectory()) {
                     traverseDirectory(file, javaFiles); // Recursive call for subdirectories
-                } else if (file.isFile() && file.getName().endsWith(".java")&&!file.getName().endsWith("Test.java")) {
+                } else if (file.isFile() && file.getName().endsWith(".java") &&!file.getName().endsWith("Test.java")) {
                     javaFiles.add(file.getAbsolutePath());
                 }
             }
