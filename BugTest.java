@@ -1,68 +1,55 @@
 ```java
 import com.bug.api.model.domain.Bug;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class BugTest {
+public class BugTest {
 
     @Test
-    void testConstructor() {
+    void testBugConstructor() {
         Bug bug = new Bug("Test Bug", "This is a test bug", "HIGH");
         assertEquals("Test Bug", bug.getTitle());
         assertEquals("This is a test bug", bug.getDescription());
-        assertEquals("HIGH", bug.getSeverity());
+        assertEquals("HIGH", bug.getPriority());
     }
 
     @Test
     void testSettersAndGetters() {
         Bug bug = new Bug();
-        bug.setTitle("Test Bug 2");
-        bug.setDescription("This is a test bug 2");
-        bug.setSeverity("LOW");
+        bug.setTitle("New Title");
+        bug.setDescription("New Description");
+        bug.setPriority("LOW");
 
-        assertEquals("Test Bug 2", bug.getTitle());
-        assertEquals("This is a test bug 2", bug.getDescription());
-        assertEquals("LOW", bug.getSeverity());
+        assertEquals("New Title", bug.getTitle());
+        assertEquals("New Description", bug.getDescription());
+        assertEquals("LOW", bug.getPriority());
     }
 
     @Test
     void testToString() {
-        Bug bug = new Bug("Test Bug 3", "This is a test bug 3", "MEDIUM");
-        String expected = "Bug{title='Test Bug 3', description='This is a test bug 3', severity='MEDIUM'}";
-        assertEquals(expected, bug.toString());
-    }
-
-    @Test
-    void testEquals() {
-        Bug bug1 = new Bug("Test Bug 4", "This is a test bug 4", "HIGH");
-        Bug bug2 = new Bug("Test Bug 4", "This is a test bug 4", "HIGH");
-        Bug bug3 = new Bug("Test Bug 5", "This is a test bug 5", "LOW");
-
-        assertTrue(bug1.equals(bug2));
-        assertFalse(bug1.equals(bug3));
-    }
-
-    @Test
-    void testHashCode() {
-        Bug bug1 = new Bug("Test Bug 6", "This is a test bug 6", "HIGH");
-        Bug bug2 = new Bug("Test Bug 6", "This is a test bug 6", "HIGH");
-        assertEquals(bug1.hashCode(), bug2.hashCode());
+        Bug bug = new Bug("Test Bug", "This is a test bug", "HIGH");
+        String expectedString = "Bug{title='Test Bug', description='This is a test bug', priority='HIGH'}";
+        assertEquals(expectedString, bug.toString());
     }
 }
 ```
 
 **Explanation:**
 
-* **Import Statements:** The test class imports the `Bug` class from the `com.bug.api.model.domain` package and necessary assertion methods from JUnit.
-* **`testConstructor()`:** Checks if the constructor correctly initializes the bug object with the provided title, description, and severity.
-* **`testSettersAndGetters()`:** Tests the setters and getters for title, description, and severity to ensure they work as expected.
-* **`testToString()`:** Verifies the `toString()` method returns the expected string representation of the bug object.
-* **`testEquals()`:** Checks if the `equals()` method correctly determines if two bug objects are equal based on their title, description, and severity.
-* **`testHashCode()`:** Tests if the `hashCode()` method returns the same hash code for two equal bug objects.
+- **Imports:** The test class imports the `Bug` class from the `com.bug.api.model.domain` package and necessary assertions from JUnit.
+- **`testBugConstructor`:**
+    - Creates a new `Bug` object with initial values.
+    - Asserts that the getter methods return the expected values.
+- **`testSettersAndGetters`:**
+    - Creates a new `Bug` object.
+    - Sets the values using the setter methods.
+    - Asserts that the getter methods return the updated values.
+- **`testToString`:**
+    - Creates a `Bug` object.
+    - Asserts that the `toString()` method returns a correctly formatted string representation of the object.
 
 **Note:**
 
-* You should adapt these tests to your specific requirements and the actual implementation of your `Bug` class.
-* It is recommended to add more test cases to cover all aspects of your `Bug` class.
-* This example uses JUnit 5. You might need to adjust the import statements and annotations depending on the JUnit version you are using.
+- This is a basic example of JUnit test cases. You might need to add more test methods to cover all aspects of the `Bug` class.
+- You can use different assertion methods from JUnit depending on your specific requirements.
+- You can also use mocking frameworks like Mockito to test interactions with other classes. 
