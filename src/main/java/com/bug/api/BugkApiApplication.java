@@ -10,6 +10,8 @@ import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.google.cloud.secretmanager.v1.SecretManagerServiceClient;
+import com.google.cloud.secretmanager.v1.SecretVersionName;
 
 @SpringBootApplication
 public class BugkApiApplication {
@@ -38,10 +40,25 @@ public class BugkApiApplication {
 			}
 
 			String username = "aparnanashte@gmail.com";
-			String password = "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";
-			git.add().addFilepattern(".").call();
-	        git.commit().setMessage("Commit messag2222").call();
-			CredentialsProvider credentialsProvider = new UsernamePasswordCredentialsProvider(username, password);
+			  String projectId = "glb-fs-wgh-app-dev";
+	        String secretName = "github-access-token-fs-4-19";
+
+	        // Access Secret Manager
+	        SecretManagerServiceClient client = null;
+			try {
+				client = SecretManagerServiceClient.create();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        SecretVersionName secretVersionName = SecretVersionName.of(projectId, secretName,"1");
+	        String accessToken = client.accessSecretVersion(secretVersionName).getPayload().getData().toStringUtf8();
+
+	        
+
+			
+
+			CredentialsProvider credentialsProvider = new UsernamePasswordCredentialsProvider(username, accessToken);
 
 			git.push().setCredentialsProvider(credentialsProvider).call();
 
