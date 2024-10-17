@@ -116,7 +116,6 @@ String projectId = "glb-fs-wgh-app-dev";
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 			String filecontent = output;
 
 			try (FileWriter writer = new FileWriter(testfileName)) {
