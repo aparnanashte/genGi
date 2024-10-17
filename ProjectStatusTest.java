@@ -5,78 +5,88 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ProjectStatusTest {
 
     @Test
-    void testGetStatus() {
+    void testConstructor() {
         // Arrange
-        ProjectStatus status = new ProjectStatus("InProgress");
+        String name = "Test Project";
+        String description = "Test project description";
+        ProjectStatus.Status status = ProjectStatus.Status.IN_PROGRESS;
 
         // Act
-        String actualStatus = status.getStatus();
+        ProjectStatus projectStatus = new ProjectStatus(name, description, status);
 
         // Assert
-        assertEquals("InProgress", actualStatus);
+        assertEquals(name, projectStatus.getName());
+        assertEquals(description, projectStatus.getDescription());
+        assertEquals(status, projectStatus.getStatus());
     }
 
     @Test
-    void testSetStatus() {
+    void testGettersAndSetters() {
         // Arrange
-        ProjectStatus status = new ProjectStatus("Completed");
+        ProjectStatus projectStatus = new ProjectStatus();
 
         // Act
-        status.setStatus("In Review");
+        projectStatus.setName("Test Project");
+        projectStatus.setDescription("Test project description");
+        projectStatus.setStatus(ProjectStatus.Status.COMPLETED);
 
         // Assert
-        assertEquals("In Review", status.getStatus());
-    }
-
-    @Test
-    void testEquals() {
-        // Arrange
-        ProjectStatus status1 = new ProjectStatus("Completed");
-        ProjectStatus status2 = new ProjectStatus("Completed");
-        ProjectStatus status3 = new ProjectStatus("In Progress");
-
-        // Assert
-        assertTrue(status1.equals(status2));
-        assertFalse(status1.equals(status3));
-    }
-
-    @Test
-    void testHashCode() {
-        // Arrange
-        ProjectStatus status1 = new ProjectStatus("Completed");
-        ProjectStatus status2 = new ProjectStatus("Completed");
-
-        // Assert
-        assertEquals(status1.hashCode(), status2.hashCode());
+        assertEquals("Test Project", projectStatus.getName());
+        assertEquals("Test project description", projectStatus.getDescription());
+        assertEquals(ProjectStatus.Status.COMPLETED, projectStatus.getStatus());
     }
 
     @Test
     void testToString() {
         // Arrange
-        ProjectStatus status = new ProjectStatus("In Review");
+        ProjectStatus projectStatus = new ProjectStatus("Test Project", "Test project description", ProjectStatus.Status.IN_PROGRESS);
 
         // Act
-        String actualString = status.toString();
+        String toString = projectStatus.toString();
 
         // Assert
-        assertEquals("ProjectStatus{status='In Review'}", actualString);
+        assertTrue(toString.contains("Test Project"));
+        assertTrue(toString.contains("Test project description"));
+        assertTrue(toString.contains("IN_PROGRESS"));
     }
 }
 ```
 
-**Import Statements:**
+**Explanation:**
+
+* **Import Statement:**  Imports the necessary JUnit 5 classes for testing.
+* **Test Class:**  Creates a test class named `ProjectStatusTest` to hold the test methods.
+* **Test Methods:**
+    * `testConstructor()`:  Tests the constructor of the `ProjectStatus` class by creating an instance with known values and asserting the expected values.
+    * `testGettersAndSetters()`:  Tests the getter and setter methods of the `ProjectStatus` class by setting values and then retrieving them to verify they match.
+    * `testToString()`:  Tests the `toString()` method of the `ProjectStatus` class by creating an instance, calling `toString()`, and asserting that the string representation contains the expected values.
+
+**Assumptions:**
+
+* You have a `ProjectStatus` class with the following structure:
 
 ```java
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+public class ProjectStatus {
+
+    private String name;
+    private String description;
+    private Status status;
+
+    // Constructor, getters, setters, and toString() method
+    // ...
+
+    public enum Status {
+        IN_PROGRESS,
+        COMPLETED,
+        CANCELLED
+    }
+}
 ```
 
-**Notes:**
+**How to Run the Test:**
 
-* This test case assumes you have a `ProjectStatus` class with a `status` property.
-* The test methods cover the core functionalities of the `ProjectStatus` class, including getting and setting the status, checking for equality, and generating a string representation.
-* You can add more test cases to cover additional functionality or edge cases in your `ProjectStatus` class.
-* Remember to replace the placeholder comments with appropriate descriptions and assertions based on your actual implementation.
-* You can use different testing frameworks, such as JUnit 4 or TestNG, and adjust the code accordingly.
+1. Ensure you have JUnit 5 installed in your project.
+2. Compile and run the `ProjectStatusTest` class.
+3. The tests will be executed, and you can see the results in your IDE or test runner.
 
-This is a basic example, and you might need to adjust it to fit your specific needs and the actual implementation of your `ProjectStatus` class. 
+This is a basic example, and you may need to add more test cases depending on the complexity of your `ProjectStatus` class and the functionality you want to test.

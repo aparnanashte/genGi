@@ -5,71 +5,49 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BugClassTest {
 
     @Test
-    void testBugClassMethod1() {
+    void testMethod1() {
         // Arrange
         BugClass bugClass = new BugClass();
+
         // Act
-        // Call the method you want to test on bugClass
-        // ...
+        // Call the method you want to test on the bugClass object
+
         // Assert
-        // Assert the expected result
-        // ...
+        // Assert the expected outcome
     }
 
     @Test
-    void testBugClassMethod2() {
+    void testMethod2() {
         // Arrange
-        BugClass bugClass = new BugClass();
+        // Create necessary objects or setup for the test
+
         // Act
-        // Call the method you want to test on bugClass
-        // ...
+        // Call the method you want to test
+
         // Assert
-        // Assert the expected result
-        // ...
+        // Assert the expected outcome
     }
 
-    // Add more test methods for each method in BugClass
+    // Add more test methods as needed to cover all the methods in BugClass
 }
 ```
 
 **Explanation:**
 
-1. **Import Statements:**
-   - `import org.junit.jupiter.api.Test;`: Imports the `Test` annotation to mark methods as test methods.
-   - `import static org.junit.jupiter.api.Assertions.*;`: Imports all static methods from the `Assertions` class for making assertions in your tests.
+1. **Import statements:**
+   - `import org.junit.jupiter.api.Test;`: This line imports the `Test` annotation from JUnit 5, which is used to mark methods as test methods.
+   - `import static org.junit.jupiter.api.Assertions.*;`: This imports all assertion methods from JUnit 5 for convenience.
 
-2. **Test Class:**
-   - Create a public class named `BugClassTest` (replace "BugClass" with the actual name of your class).
+2. **Test class:**
+   - The `BugClassTest` class is your JUnit test class. It contains the test methods.
 
-3. **Test Methods:**
-   - Each test method should have the `@Test` annotation.
-   - Follow the Arrange-Act-Assert pattern:
-      - **Arrange:** Set up any necessary objects or data for the test.
-      - **Act:** Execute the method you're testing.
-      - **Assert:** Use assertion methods from `Assertions` to verify the expected results.
+3. **Test methods:**
+   - Each `@Test` annotated method represents a single test case.
+   - The `testMethod1` and `testMethod2` are just examples. Replace them with meaningful names and test the actual methods from your `BugClass` class.
 
-**Example Test Method:**
+4. **Arrange, Act, Assert:**
+   - **Arrange:** Set up the necessary objects, variables, or initial state required for the test.
+   - **Act:** Call the method under test with the appropriate arguments.
+   - **Assert:** Use assertion methods from JUnit 5 to verify the expected outcome of the test. For example, `assertEquals()`, `assertTrue()`, `assertFalse()`, etc.
 
-```java
-@Test
-void testCalculateSum() {
-    // Arrange
-    BugClass bugClass = new BugClass();
-    int num1 = 5;
-    int num2 = 10;
-
-    // Act
-    int sum = bugClass.calculateSum(num1, num2);
-
-    // Assert
-    assertEquals(15, sum);
-}
-```
-
-**Remember:**
-
-- Replace `BugClass` with the actual name of your class.
-- Replace `testBugClassMethod1`, `testBugClassMethod2`, etc. with meaningful names that describe the tested functionality.
-- Write tests for all the methods in your `BugClass` class.
-- Provide different test cases for each method to cover various scenarios (e.g., boundary conditions, edge cases, typical inputs).
-- Use the appropriate assertion methods from `Assertions` to check your expectations.
+**Remember to replace the placeholder comments with actual test logic for your specific `BugClass` methods.** 

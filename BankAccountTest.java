@@ -14,8 +14,8 @@ public class BankAccountTest {
     @Test
     void testWithdraw() {
         BankAccount account = new BankAccount(100);
-        account.withdraw(20);
-        assertEquals(80, account.getBalance());
+        account.withdraw(25);
+        assertEquals(75, account.getBalance());
     }
 
     @Test
@@ -30,59 +30,34 @@ public class BankAccountTest {
         assertEquals(100, account.getBalance());
     }
 
-    // Add more test cases as needed, for example:
-    // - Test for negative deposit
-    // - Test for withdraw with zero balance
-    // - Test for edge cases
-}
-```
-
-**BankAccount class:**
-
-```java
-public class BankAccount {
-
-    private double balance;
-
-    public BankAccount(double initialBalance) {
-        this.balance = initialBalance;
-    }
-
-    public void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount;
-        } else {
-            throw new IllegalArgumentException("Deposit amount must be positive.");
-        }
-    }
-
-    public void withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
-        } else {
-            throw new IllegalArgumentException("Insufficient funds or invalid withdrawal amount.");
-        }
-    }
-
-    public double getBalance() {
-        return balance;
-    }
+    // Add more test cases as needed...
 }
 ```
 
 **Explanation:**
 
-* **Import Statements:** The code imports the necessary JUnit 5 classes (`@Test`, `assertEquals`, `assertThrows`) for writing tests.
-* **Test Class:** The `BankAccountTest` class contains multiple test methods for different scenarios of the `BankAccount` class.
-* **Test Methods:** Each test method tests a specific functionality of the `BankAccount` class.
-    * **`testDeposit()`:** Tests depositing a positive amount and checks if the balance is updated correctly.
-    * **`testWithdraw()`:** Tests withdrawing a valid amount and checks if the balance is updated correctly.
-    * **`testWithdrawInsufficientFunds()`:** Tests withdrawing an amount exceeding the balance and asserts that an `IllegalArgumentException` is thrown.
-    * **`testGetBalance()`:** Tests retrieving the current balance.
+1. **Import Statements:**
+   - `import org.junit.jupiter.api.Test;`: Imports the `Test` annotation from JUnit 5.
+   - `import static org.junit.jupiter.api.Assertions.*;`: Imports static methods from the `Assertions` class for performing assertions.
 
-**Running the Tests:**
+2. **Test Class:**
+   - `public class BankAccountTest { ... }`: Defines a test class named `BankAccountTest`.
 
-1. Save the `BankAccountTest.java` and `BankAccount.java` files.
-2. Use a JUnit test runner (e.g., in an IDE like Eclipse or IntelliJ) to execute the tests.
+3. **Test Methods:**
+   - Each test method is annotated with `@Test`.
+   - **`testDeposit()`**: Tests the `deposit()` method by depositing 50 and verifying the updated balance.
+   - **`testWithdraw()`**: Tests the `withdraw()` method by withdrawing 25 and verifying the updated balance.
+   - **`testWithdrawInsufficientFunds()`**: Tests the scenario where insufficient funds are available for withdrawal. It uses `assertThrows()` to ensure an `IllegalArgumentException` is thrown.
+   - **`testGetBalance()`**: Tests the `getBalance()` method by verifying the initial balance.
 
-**Note:** This example assumes that the `BankAccount` class is defined in the same package as the test class. You may need to adjust the import statements and class path if your project structure is different.
+**How to run the tests:**
+
+1. Make sure you have JUnit 5 in your project's dependencies.
+2. Save the code as `BankAccountTest.java` in your project.
+3. Run the test class from your IDE or using a command-line test runner.
+
+**Note:**
+
+- The `BankAccount` class should be defined in a separate file, and its methods should be accessible from the test class.
+- You can add more test cases to cover different scenarios and edge cases of your `BankAccount` class.
+- Replace the placeholder `// Add more test cases as needed...` with your additional test methods.

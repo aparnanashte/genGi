@@ -7,50 +7,50 @@ public class ProjectClassTest {
     @Test
     void testMethod1() {
         // Arrange
-        // Create an instance of the ProjectClass
-        ProjectClass projectClass = new ProjectClass();
+        // Set up the input data or objects for the test method
 
         // Act
-        // Call the method to be tested
-        // ...
+        // Call the method you want to test
 
         // Assert
-        // Verify the expected outcome
-        // ...
+        // Verify the expected outcome of the method
     }
 
     @Test
     void testMethod2() {
         // Arrange
-        // ...
+        // Set up the input data or objects for the test method
 
         // Act
-        // ...
+        // Call the method you want to test
 
         // Assert
-        // ...
+        // Verify the expected outcome of the method
     }
 
-    // Add more test cases for other methods in ProjectClass
+    // Add more test methods for other methods in your ProjectClass class
 }
 ```
 
 **Explanation:**
 
 1. **Import statement:**
-   - `import org.junit.jupiter.api.Test;` imports the `Test` annotation from JUnit 5 for marking methods as test cases.
-   - `import static org.junit.jupiter.api.Assertions.*;` imports the assertion methods from JUnit 5 for verifying test results.
+   - `import org.junit.jupiter.api.Test;` imports the `Test` annotation from JUnit 5, which marks a method as a test method.
+   - `import static org.junit.jupiter.api.Assertions.*;` imports all the assertion methods from JUnit 5, allowing you to write assertions in your test methods.
 
 2. **Test Class:**
-   - The `ProjectClassTest` class is a JUnit test class, named after the class being tested.
+   - The `ProjectClassTest` class is the test class. It should have a name that clearly indicates its purpose.
 
 3. **Test Methods:**
-   - Each method annotated with `@Test` represents a test case.
-   - **Arrange:** This section sets up the necessary data and objects before executing the method being tested.
-   - **Act:** This section performs the action or method call being tested.
-   - **Assert:** This section uses assertion methods to verify the expected outcome of the action.
+   - Each test method should test a specific functionality or behavior of your `ProjectClass` class.
+   - The `@Test` annotation is used to mark each method as a test method.
 
-**Example Test Case:**
+4. **Test Structure (Arrange-Act-Assert):**
+   - **Arrange:** Set up the necessary input data or objects required for the test method. This step prepares the environment for the test.
+   - **Act:** Call the method you want to test, providing the necessary input data. This step executes the code you want to test.
+   - **Assert:** Use assertion methods to verify the expected outcome of the method call. This step checks if the actual output matches the expected output.
+
+**Example Test Case (Assuming you have a method `calculateSum` in your `ProjectClass`):**
 
 ```java
 import org.junit.jupiter.api.Test;
@@ -74,11 +74,9 @@ public class ProjectClassTest {
 }
 ```
 
-**Remember to:**
+**To use this code:**
 
-- Replace `ProjectClass` with the actual name of your class.
-- Replace `testMethod1`, `testMethod2`, etc., with meaningful names for your test cases.
-- Implement the Arrange, Act, Assert steps specific to each test case.
-- Use appropriate assertion methods to verify the expected outcomes.
-
-This is a basic structure for writing JUnit test cases. You can add more tests, different types of assertions, and more complex logic depending on the methods and functionality of your `ProjectClass`.
+1. Create a new JUnit test class in your project.
+2. Replace `ProjectClass` with the actual name of your class.
+3. Add more test methods for other methods in your class.
+4. Run the tests to verify the functionality of your class.
