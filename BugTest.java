@@ -1,71 +1,66 @@
 ```java
+import com.bug.api.model.domain.Bug;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
-import com.bug.api.model.domain.Bug;
 
 public class BugTest {
 
     @Test
     void testBugConstructor() {
-        // Arrange
-        String title = "Test Bug";
-        String description = "This is a test bug.";
-        Bug bug = new Bug(title, description);
-
-        // Assert
-        assertEquals(title, bug.getTitle());
-        assertEquals(description, bug.getDescription());
+        Bug bug = new Bug(1L, "Test Bug", "This is a test bug.", "HIGH", "PENDING");
+        assertEquals(1L, bug.getId());
+        assertEquals("Test Bug", bug.getTitle());
+        assertEquals("This is a test bug.", bug.getDescription());
+        assertEquals("HIGH", bug.getPriority());
+        assertEquals("PENDING", bug.getStatus());
     }
 
     @Test
-    void testBugGettersAndSetters() {
-        // Arrange
+    void testSettersAndGetters() {
         Bug bug = new Bug();
-        String title = "Test Bug 2";
-        String description = "This is another test bug.";
+        bug.setId(1L);
+        bug.setTitle("Test Bug");
+        bug.setDescription("This is a test bug.");
+        bug.setPriority("HIGH");
+        bug.setStatus("PENDING");
 
-        // Act
-        bug.setTitle(title);
-        bug.setDescription(description);
-
-        // Assert
-        assertEquals(title, bug.getTitle());
-        assertEquals(description, bug.getDescription());
+        assertEquals(1L, bug.getId());
+        assertEquals("Test Bug", bug.getTitle());
+        assertEquals("This is a test bug.", bug.getDescription());
+        assertEquals("HIGH", bug.getPriority());
+        assertEquals("PENDING", bug.getStatus());
     }
 
     @Test
-    void testBugToString() {
-        // Arrange
-        Bug bug = new Bug("Test Bug 3", "This is the third test bug.");
-
-        // Act
-        String expectedString = "Bug{title='Test Bug 3', description='This is the third test bug.'}";
-        String actualString = bug.toString();
-
-        // Assert
-        assertEquals(expectedString, actualString);
+    void testToString() {
+        Bug bug = new Bug(1L, "Test Bug", "This is a test bug.", "HIGH", "PENDING");
+        String expectedString = "Bug{id=1, title='Test Bug', description='This is a test bug.', priority='HIGH', status='PENDING'}";
+        assertEquals(expectedString, bug.toString());
     }
 }
 ```
 
-**Explanation:**
+**Import Statements:**
 
-1. **Imports:** The code imports the necessary classes:
-   - `org.junit.jupiter.api.Test`: For annotating test methods.
-   - `static org.junit.jupiter.api.Assertions.*`: For using assertion methods.
-   - `com.bug.api.model.domain.Bug`: The class under test.
+```java
+import com.bug.api.model.domain.Bug;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+```
 
-2. **Test Class:** The `BugTest` class is created to hold the test cases.
+**Test Cases:**
 
-3. **Test Methods:**
-   - **`testBugConstructor()`:** Tests the constructor by creating a `Bug` object and verifying its title and description.
-   - **`testBugGettersAndSetters()`:** Tests the getter and setter methods by setting values and then retrieving them.
-   - **`testBugToString()`:** Tests the `toString()` method by comparing the expected string representation with the actual output.
+- **testBugConstructor()**: Tests the constructor of the Bug class by creating a new Bug object and asserting the values of its fields.
+- **testSettersAndGetters()**: Tests the setters and getters of the Bug class by setting the values of the fields and then asserting that the getters return the correct values.
+- **testToString()**: Tests the toString() method of the Bug class by creating a new Bug object and asserting that the toString() method returns the expected string representation of the object.
 
-**Note:** This is just a basic example. You should add more tests based on the specific requirements of your `Bug` class. For example, you could test:
+**Assumptions:**
 
-- Other attributes of the `Bug` class.
-- Different states of the bug (e.g., open, closed).
-- Validation logic (e.g., ensuring the title is not empty).
-- Relationships with other classes (e.g., a `User` class that assigns the bug). 
+- The Bug class has a constructor that accepts the following parameters: id, title, description, priority, and status.
+- The Bug class has setters and getters for all of its fields.
+- The Bug class has a toString() method that returns a string representation of the object.
+
+**Note:**
+
+- You will need to replace `com.bug.api.model.domain.Bug` with the actual package and class name of your Bug class.
+- You may need to add more test cases depending on the specific functionality of your Bug class.
