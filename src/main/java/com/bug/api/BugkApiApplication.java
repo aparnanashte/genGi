@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.MergeCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
@@ -56,18 +56,46 @@ String projectId = "glb-fs-wgh-app-dev";
 		System.out.println("accessToken: " + accessToken);
 		CredentialsProvider credentialsProvider = new UsernamePasswordCredentialsProvider("aparnanashte@gmail.com",
 				accessToken);
+		
+		
+		
+		
+		
 
 		File localDir = new File(workingDir);
 		Git git = null;
 		try {
 
 			if (localDir.exists() && localDir.isDirectory()) {
-				 Repository repository  = Git.open(localDir).getRepository();
-				  git = new Git(repository);
-				git.checkout().setName("master");
-				MergeCommand merge = git.merge();
-	            merge.include(repository.resolve("main")).call();
-				System.out.println("Pulled the latest changes.");
+				
+				
+				  // Open the repository
+	            FileRepositoryBuilder builder = new FileRepositoryBuilder();
+	            Repository repository = builder.setGitDir(new File("https://github.com/aparnanashte/genGi.git"))
+	                    .readEnvironment()
+	                    .findGitDir()
+	                    .build();
+
+	             git = new Git(repository) ;
+	                // Fetch from the remote main branch
+	                git.fetch().setRemote("origin").setRefSpecs("refs/heads/" + "main" + ":refs/remotes/origin/" + "main").call();
+
+	                // Checkout the target branch
+	                git.checkout().setName("master").call();
+
+	                // Merge changes from the main branch
+	                git.merge()
+	                        .include(repository.findRef("origin/" + "main"))
+	                        .setMessage("Merging changes from " + "main" + " into " + "master")
+	                        .call();
+
+	                System.out.println("Merge from " + "main" + " to " + "master" + " completed successfully.");
+	            
+				
+/*
+				git = Git.open(localDir);
+				git.pull().call();
+				System.out.println("Pulled the latest changes.");*/
 
 			} else {
 				git = Git.cloneRepository().setURI(repoUrl).setDirectory(new File(workingDir))
