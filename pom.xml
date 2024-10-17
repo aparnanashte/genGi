@@ -31,6 +31,13 @@
  		 	<artifactId>google-cloud-vertexai</artifactId>
  			 <version>0.4.0</version>
 		</dependency>
+		
+  		<dependency>
+   		   <groupId>com.google.cloud</groupId>
+           <artifactId>google-cloud-secretmanager</artifactId>
+            <version>2.52.0</version>
+       </dependency>
+
 		 <dependency>
             <groupId>org.eclipse.jgit</groupId>
             <artifactId>org.eclipse.jgit</artifactId>
