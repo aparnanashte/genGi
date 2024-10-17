@@ -17,7 +17,7 @@ import com.google.cloud.vertexai.api.GenerateContentResponse;
 import com.google.cloud.vertexai.generativeai.GenerativeModel;
 import com.google.cloud.vertexai.generativeai.ResponseHandler;
 
-@SpringBootApplication
+
 public class BugkApiApplication {
 	public static void main(String[] args) {
 String projectId = "glb-fs-wgh-app-dev";
