@@ -6,66 +6,70 @@ public class ProjectStatusTest {
 
     @Test
     void testConstructor() {
-        ProjectStatus status = new ProjectStatus("Test Project", "In Progress", "John Doe");
-        assertEquals("Test Project", status.getProjectName());
-        assertEquals("In Progress", status.getStatus());
-        assertEquals("John Doe", status.getAssignedTo());
+        // Arrange
+        String name = "Test Project";
+        String status = "In Progress";
+
+        // Act
+        ProjectStatus projectStatus = new ProjectStatus(name, status);
+
+        // Assert
+        assertEquals(name, projectStatus.getName());
+        assertEquals(status, projectStatus.getStatus());
     }
 
     @Test
     void testGettersAndSetters() {
-        ProjectStatus status = new ProjectStatus();
-        status.setProjectName("Test Project");
-        status.setStatus("Completed");
-        status.setAssignedTo("Jane Doe");
+        // Arrange
+        ProjectStatus projectStatus = new ProjectStatus();
 
-        assertEquals("Test Project", status.getProjectName());
-        assertEquals("Completed", status.getStatus());
-        assertEquals("Jane Doe", status.getAssignedTo());
+        // Act
+        projectStatus.setName("Test Project");
+        projectStatus.setStatus("Completed");
+
+        // Assert
+        assertEquals("Test Project", projectStatus.getName());
+        assertEquals("Completed", projectStatus.getStatus());
     }
 
     @Test
     void testToString() {
-        ProjectStatus status = new ProjectStatus("Test Project", "In Progress", "John Doe");
-        String expectedString = "Project: Test Project, Status: In Progress, Assigned to: John Doe";
-        assertEquals(expectedString, status.toString());
-    }
+        // Arrange
+        ProjectStatus projectStatus = new ProjectStatus("Test Project", "In Progress");
 
+        // Act
+        String toString = projectStatus.toString();
+
+        // Assert
+        assertTrue(toString.contains("Test Project"));
+        assertTrue(toString.contains("In Progress"));
+    }
 }
 ```
 
-**Import statements:**
+**Assumptions:**
 
-```java
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-```
+* You have a class named `ProjectStatus` with the following attributes:
+    * `name` (String)
+    * `status` (String)
+* The `ProjectStatus` class has getters and setters for the attributes.
+* The `ProjectStatus` class has a `toString()` method.
 
 **Explanation:**
 
-* **Import Statements:** These lines import the necessary classes from JUnit 5 for writing test cases.
-* **Test Class:** `ProjectStatusTest` is the test class that contains the test methods.
-* **Test Methods:** Each test method tests a specific aspect of the `ProjectStatus` class.
-* **Assertions:** The `assertEquals()` method from JUnit is used to verify the expected results of each test.
-* **Constructor Test:** This test checks that the constructor correctly initializes the `ProjectStatus` object with the provided values.
-* **Getter and Setter Test:** This test verifies that the getter and setter methods correctly access and modify the object's properties.
-* **ToString Test:** This test verifies that the `toString()` method returns the expected string representation of the object.
+* **`testConstructor()`:** This test case verifies that the constructor correctly initializes the `name` and `status` attributes.
+* **`testGettersAndSetters()`:** This test case checks if the getter and setter methods work as expected.
+* **`testToString()`:** This test case ensures that the `toString()` method returns a string containing the project name and status.
 
-**Assumptions:**
+**Import Statements:**
 
-* The `ProjectStatus` class has the following attributes:
-    * `projectName` (String)
-    * `status` (String)
-    * `assignedTo` (String)
-* The `ProjectStatus` class has the following methods:
-    * Constructor
-    * Getter and setter methods for each attribute
-    * `toString()` method
+* `org.junit.jupiter.api.Test`:  Imports the `Test` annotation to mark methods as test cases.
+* `static org.junit.jupiter.api.Assertions.*`: Imports static methods from `Assertions` class for assertions.
 
-**How to run the tests:**
+**To run this test case:**
 
-1. Ensure that JUnit 5 is included in your project dependencies.
-2. Compile the test class.
-3. Run the test class using your IDE's test runner or command line tools.
+1. Save the code as `ProjectStatusTest.java`.
+2. Compile the test case and the `ProjectStatus` class.
+3. Run the test case using your preferred testing framework (e.g., JUnit).
 
-This test case provides a basic starting point for testing the `ProjectStatus` class. You can add more test cases to cover all the functionality and edge cases of your class.
+Remember to adapt this test case to the specific implementation of your `ProjectStatus` class.

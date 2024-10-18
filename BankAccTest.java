@@ -2,64 +2,80 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BankAccTest {
+public class BankAccclassTest {
 
+    // Test case for deposit method
     @Test
-    void testDeposit() {
-        BankAcc account = new BankAcc("John Doe", 1000);
+    public void testDeposit() {
+        BankAccclass account = new BankAccclass("John Doe", 1000);
         account.deposit(500);
         assertEquals(1500, account.getBalance());
     }
 
+    // Test case for withdraw method
     @Test
-    void testWithdraw() {
-        BankAcc account = new BankAcc("John Doe", 1000);
+    public void testWithdraw() {
+        BankAccclass account = new BankAccclass("Jane Doe", 1000);
         account.withdraw(200);
         assertEquals(800, account.getBalance());
     }
 
+    // Test case for withdraw method with insufficient funds
     @Test
-    void testWithdrawInsufficientFunds() {
-        BankAcc account = new BankAcc("John Doe", 1000);
-        assertFalse(account.withdraw(1500));
+    public void testWithdrawInsufficientFunds() {
+        BankAccclass account = new BankAccclass("John Doe", 1000);
+        try {
+            account.withdraw(1500);
+            fail("Expected InsufficientFundsException");
+        } catch (InsufficientFundsException e) {
+            // Expected exception
+        }
+    }
+
+    // Test case for getBalance method
+    @Test
+    public void testGetBalance() {
+        BankAccclass account = new BankAccclass("Jane Doe", 1000);
         assertEquals(1000, account.getBalance());
     }
 
+    // Test case for getAccountName method
     @Test
-    void testGetBalance() {
-        BankAcc account = new BankAcc("John Doe", 1000);
-        assertEquals(1000, account.getBalance());
-    }
-
-    @Test
-    void testGetName() {
-        BankAcc account = new BankAcc("John Doe", 1000);
-        assertEquals("John Doe", account.getName());
+    public void testGetAccountName() {
+        BankAccclass account = new BankAccclass("John Doe", 1000);
+        assertEquals("John Doe", account.getAccountName());
     }
 }
 ```
 
+**Import Statements:**
+
+```java
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+```
+
 **Explanation:**
 
-* **Import Statements:**
-    * `import org.junit.jupiter.api.Test;` imports the `Test` annotation for marking test methods.
-    * `import static org.junit.jupiter.api.Assertions.*;` imports static methods from `Assertions` class for assertions.
-* **Test Class:**
-    * `BankAccTest` is the test class name.
-* **Test Methods:**
-    * Each method represents a test case.
-    * Each method is annotated with `@Test`.
-* **Test Logic:**
-    * Each test method creates a `BankAcc` object with initial balance and name.
-    * Test methods perform operations like `deposit`, `withdraw`, and get methods.
-    * Assertions are used to verify the expected behavior of the methods using methods like `assertEquals`, `assertFalse`.
+* **BankAccclassTest:** This is the name of the test class.
+* **@Test:** This annotation marks a method as a test method.
+* **assertEquals(expected, actual):** This assertion method verifies that the expected value matches the actual value.
+* **fail(message):** This method fails the test with the given message.
+* **InsufficientFundsException:** This exception is thrown when an attempt is made to withdraw more money than available in the account.
 
 **Assumptions:**
 
-* The `BankAcc` class has methods like `deposit`, `withdraw`, `getBalance`, and `getName`.
-* The `BankAcc` class has a constructor that takes the account holder's name and initial balance.
+* You have a class named `BankAccclass` with the following methods:
+    * `deposit(double amount)`: Deposits money into the account.
+    * `withdraw(double amount)`: Withdraws money from the account.
+    * `getBalance()`: Returns the current balance.
+    * `getAccountName()`: Returns the account holder's name.
+* You have a class named `InsufficientFundsException` that is thrown when there are insufficient funds to withdraw.
 
-**Note:**
+**To run the test cases:**
 
-* Replace `BankAcc` with the actual name of your bank account class.
-* Add more test cases based on the functionalities of your `BankAcc` class.
+1. Save the code as `BankAccclassTest.java`.
+2. Compile the code using `javac BankAccclassTest.java`.
+3. Run the test cases using `java -cp . org.junit.jupiter.engine.JUnitPlatform BankAccclassTest`.
+
+**Note:** Replace `BankAccclass` and `InsufficientFundsException` with the actual names of your classes.

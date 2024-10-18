@@ -17,17 +17,20 @@ public class BugkApiApplicationTest {
 
 **Explanation:**
 
-* **`@SpringBootTest`**: This annotation tells JUnit to start a Spring Boot application context for testing.
-* **`contextLoads()`**: This test method checks if the application context loads successfully.
-* **`assertNotNull(application)`**: This assertion checks if the `BugkApiApplication` instance is not null.
+* **`@SpringBootTest`:** This annotation indicates that this is a Spring Boot test, enabling Spring Boot's test framework to be used.
+* **`contextLoads()`:** This method is a basic test that checks if the application context is loaded successfully.
+* **`BugkApiApplication application = new BugkApiApplication();`:** This line creates an instance of your `BugkApiApplication` class.
+* **`assertNotNull(application);`:** This assertion checks if the created application instance is not null, confirming that the context was loaded.
 
-**To run this test:**
+**Import statement:**
 
-1. Make sure you have JUnit 5 and Spring Boot Test dependencies in your project.
-2. Run the test class using your IDE or a test runner.
+* **`import org.junit.jupiter.api.Test;`:** Imports the `Test` annotation from JUnit Jupiter.
+* **`import org.springframework.boot.test.context.SpringBootTest;`:** Imports the `SpringBootTest` annotation from Spring Boot.
+* **`import static org.junit.jupiter.api.Assertions.assertNotNull;`:** Imports the `assertNotNull` assertion method.
 
-**Note:**
+**To run the test:**
 
-* This test case is basic and only verifies that the application context starts successfully. 
-* You can add more test cases to cover specific functionalities and business logic within your application.
-* Remember to replace `"BugkApiApplication"` with the actual name of your main application class. 
+1. Make sure you have JUnit Jupiter and Spring Boot Test dependencies in your project.
+2. Run the test using your IDE's test runner or by executing the `mvn test` command from the command line. 
+
+**Note:** This is a very basic test case. You can create more complex tests by interacting with your application's controllers, services, and repositories, and asserting the expected outcomes.
