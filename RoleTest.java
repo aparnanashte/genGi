@@ -2,63 +2,73 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-// Replace with your actual class name
+// Replace "your.package.name" with the actual package name for your Roleclass
+import your.package.name.Roleclass;
+
 public class RoleclassTest {
 
-    // Add your test methods here
     @Test
-    void testMethod1() {
-        // Arrange
-        // ...
+    void testConstructor() {
+        // Create a Roleclass object with a valid name
+        Roleclass roleclass = new Roleclass("Admin");
 
-        // Act
-        // ...
-
-        // Assert
-        // ...
+        // Assert that the name is correctly set
+        assertEquals("Admin", roleclass.getName());
     }
 
-    // Add more test methods as needed
+    @Test
+    void testGetName() {
+        // Create a Roleclass object
+        Roleclass roleclass = new Roleclass("Manager");
+
+        // Assert that getName() returns the correct name
+        assertEquals("Manager", roleclass.getName());
+    }
+
+    @Test
+    void testSetPermissions() {
+        // Create a Roleclass object
+        Roleclass roleclass = new Roleclass("User");
+
+        // Set some permissions
+        roleclass.setPermissions("read", "write");
+
+        // Assert that the permissions are correctly set
+        assertTrue(roleclass.hasPermissions("read"));
+        assertTrue(roleclass.hasPermissions("write"));
+    }
+
+    @Test
+    void testHasPermissions() {
+        // Create a Roleclass object with some permissions
+        Roleclass roleclass = new Roleclass("User");
+        roleclass.setPermissions("read", "write");
+
+        // Assert that hasPermissions() returns true for existing permissions
+        assertTrue(roleclass.hasPermissions("read"));
+        assertTrue(roleclass.hasPermissions("write"));
+
+        // Assert that hasPermissions() returns false for non-existing permissions
+        assertFalse(roleclass.hasPermissions("delete"));
+    }
+
+    // Add more test cases based on the functionality of your Roleclass
 }
 ```
 
 **Explanation:**
 
-* **Import Statements:**
-    * `org.junit.jupiter.api.Test`: This imports the `@Test` annotation for marking test methods.
-    * `static org.junit.jupiter.api.Assertions.*`: This imports all static methods from the `Assertions` class, providing assertion methods like `assertEquals()`, `assertTrue()`, etc.
-* **Class Declaration:**
-    * Replace `"Roleclass"` with the actual name of the class you want to test.
-* **Test Methods:**
-    * Each test method should be annotated with `@Test`.
-    * Inside each method:
-        * **Arrange:** Set up the necessary data and objects for the test.
-        * **Act:** Call the method or code you want to test.
-        * **Assert:** Verify the results of the test using assertion methods from the `Assertions` class.
+1. **Import Statements:** The test class imports the `Roleclass` class from its package.
+2. **Test Class:** The `RoleclassTest` class contains multiple test methods.
+3. **Test Methods:** Each test method tests a specific aspect of the `Roleclass` class.
+4. **Assertions:** The test methods use assertions to check if the expected behavior is met.
+5. **Constructors:** The `testConstructor()` method tests the initialization of `Roleclass` objects.
+6. **Getters:** The `testGetName()` method tests the `getName()` method.
+7. **Setters:** The `testSetPermissions()` method tests the `setPermissions()` method.
+8. **Functionality Tests:** The `testHasPermissions()` method tests the `hasPermissions()` method.
 
-**Example Test Method:**
+**Remember to:**
 
-```java
-@Test
-void testGetRoleByName() {
-    // Arrange
-    Roleclass roleclass = new Roleclass();
-    String roleName = "Admin";
-
-    // Act
-    Role role = roleclass.getRoleByName(roleName);
-
-    // Assert
-    assertNotNull(role);
-    assertEquals(roleName, role.getName());
-}
-```
-
-This example tests the `getRoleByName()` method, which should return a `Role` object with the specified name. The test sets up the `roleclass` object, calls `getRoleByName()`, and then asserts that the returned `role` is not null and has the expected name.
-
-**Remember:**
-
-* Replace the example test method and assertions with actual tests based on your `Roleclass` class's functionality.
-* Add more test methods to cover all important aspects of the class.
-* Make sure your tests are independent and have proper setup and teardown logic.
-* Use meaningful test names to describe the tested functionality.
+- Replace `your.package.name` with the actual package name for your `Roleclass` class.
+- Add more test cases to cover all the functionality of your `Roleclass` class.
+- Use appropriate assertions to check the expected results of your tests.

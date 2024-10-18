@@ -7,61 +7,34 @@ public class BugClassTest {
     @Test
     void testBugMethod() {
         // Arrange
-        BugClass bugClass = new BugClass();
-
+        BugClass bug = new BugClass();
         // Act
-        // Call the method you want to test
-        // Example: String result = bugClass.bugMethod("input");
-
+        // ... call the method you want to test
         // Assert
-        // Verify the expected outcome of the method call
-        // Example: assertEquals("expected result", result);
+        // ... assert the expected result
     }
-
-    // Add more test methods as needed
 }
 ```
 
 **Explanation:**
 
-* **Import statement:** The `import` statement imports the necessary JUnit classes for writing test cases.
-* **Test class:** The `BugClassTest` class is the test class, containing test methods for the `BugClass`.
-* **Test method:** The `testBugMethod` is a test method that tests the `bugMethod` of the `BugClass`.
-* **Arrange:** This section sets up the necessary data and objects for the test.
-* **Act:** This section calls the method being tested with the setup data.
-* **Assert:** This section verifies the expected outcome of the method call using JUnit assertions.
+* **Import statements:**
+    * `org.junit.jupiter.api.Test`: This import is necessary to use the `@Test` annotation.
+    * `static org.junit.jupiter.api.Assertions.*`: This imports all static methods from the `Assertions` class, which provides methods for making assertions in your tests.
+* **`BugClassTest` class:** This is the name of your test class. You can change it to your preference.
+* **`@Test` annotation:** This annotation marks a method as a test method.
+* **`testBugMethod()` method:** This is the name of your test method. You should replace `testBugMethod()` with a descriptive name related to the method you are testing.
+* **`Arrange`:** This section is where you set up the conditions for your test, including creating any necessary objects and initializing variables.
+* **`Act`:** This section is where you execute the method you want to test.
+* **`Assert`:** This section is where you make assertions about the result of the method call. You can use methods from the `Assertions` class to perform various types of assertions, such as `assertEquals()`, `assertTrue()`, `assertFalse()`, etc.
 
-**Example:**
+**To use this test case:**
 
-Let's say the `BugClass` has a method called `calculateSum` that takes two integers as input and returns their sum.
+1. Replace `BugClass` with the actual name of your class.
+2. Replace the comments in the `Act` and `Assert` sections with your actual code for calling the method and making assertions.
+3. Save the file as `BugClassTest.java`.
+4. Run the test case from your IDE or command line.
 
-```java
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+**Note:**
 
-public class BugClassTest {
-
-    @Test
-    void testCalculateSum() {
-        // Arrange
-        BugClass bugClass = new BugClass();
-        int num1 = 5;
-        int num2 = 10;
-
-        // Act
-        int result = bugClass.calculateSum(num1, num2);
-
-        // Assert
-        assertEquals(15, result);
-    }
-}
-```
-
-This test method calls the `calculateSum` method with inputs 5 and 10 and asserts that the returned result is 15.
-
-**Remember to:**
-
-* Replace `BugClass` with the actual name of your class.
-* Replace `bugMethod` with the name of the method you want to test.
-* Adjust the `Arrange`, `Act`, and `Assert` sections according to the method you are testing.
-* Add more test methods to cover different scenarios and edge cases.
+This is a basic example of a JUnit test case. You can create more complex test cases with multiple methods, parameters, and data providers.

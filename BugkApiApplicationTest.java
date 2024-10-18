@@ -2,37 +2,58 @@
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class BugkApiApplicationTest {
+class BugkApiApplicationTest {
 
     @Test
     void contextLoads() {
-        BugkApiApplication application = new BugkApiApplication();
-        assertNotNull(application);
     }
 }
 ```
 
 **Explanation:**
 
-1. **Import Statements:**
-   - `org.junit.jupiter.api.Test`: Imports the `Test` annotation for marking a method as a test.
-   - `org.springframework.boot.test.context.SpringBootTest`: Enables Spring Boot's test environment for running tests.
-   - `static org.junit.jupiter.api.Assertions.assertNotNull`: Imports the `assertNotNull` assertion method.
+* **`@SpringBootTest`:** This annotation tells JUnit to start a Spring application context for testing.
+* **`contextLoads()`:** This is a simple test method that checks if the Spring context can be loaded successfully. It doesn't assert anything, but it's a good starting point to ensure the application is running properly. 
 
-2. **`@SpringBootTest` annotation:**
-   - Marks the test class to be run with Spring Boot's test environment. This automatically loads the application context and provides access to Spring beans for testing.
+**How to run the test:**
 
-3. **`contextLoads` test method:**
-   - Annotated with `@Test`, indicating this method is a test.
-   - Creates an instance of `BugkApiApplication`.
-   - Uses `assertNotNull` to assert that the created instance is not null, confirming that the application context has been successfully loaded.
+1. **Add JUnit 5 dependencies:** Make sure you have the JUnit 5 dependencies in your project's `pom.xml` (Maven) or `build.gradle` (Gradle).
+2. **Run the test:** You can run the test using your IDE or from the command line.
 
-**To run this test:**
+**Additional Tips:**
 
-1. Make sure you have JUnit 5 and Spring Boot Test dependencies in your project.
-2. Run the test class as a JUnit test.
+* **More Specific Tests:**  Add more specific test cases that target individual components or functionalities of your `BugkApiApplication` class. For example, you might test controller methods, service logic, or database interactions.
+* **Mock Dependencies:** If your application depends on external services (e.g., databases, REST APIs), consider using mocking frameworks like Mockito to simulate their behavior and avoid external dependencies in your tests.
+* **Assertions:** Use JUnit assertions (e.g., `assertEquals`, `assertTrue`, `assertNull`) to verify the expected behavior of your application code.
 
-This test case is a very basic one and only verifies that the application context is loaded. You can add more complex tests to cover specific functionalities of your application.
+**Example of a more specific test:**
+
+```java
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
+class BugkApiApplicationTest {
+
+    @Autowired
+    private MyService myService; // Replace with your actual service
+
+    @Test
+    void testMyServiceMethod() {
+        // Arrange (setup test data)
+        // ...
+
+        // Act (call the service method)
+        MyResult result = myService.myMethod(input); // Replace with your actual method and input
+
+        // Assert (verify the result)
+        assertEquals(expectedValue, result.getValue());
+    }
+}
+``` 

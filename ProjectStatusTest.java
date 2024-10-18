@@ -2,98 +2,78 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-// Import the class you want to test
-import your.package.name.ProjectStatus;
-
 public class ProjectStatusTest {
 
-    // Test for the constructor
     @Test
     void testConstructor() {
-        // Create an instance of ProjectStatus with expected values
-        ProjectStatus projectStatus = new ProjectStatus("Project Name", "InProgress");
+        // Arrange
+        String name = "In Progress";
+        String description = "Project is currently being worked on.";
 
-        // Assert that the object has the expected values
-        assertEquals("Project Name", projectStatus.getProjectName());
-        assertEquals("InProgress", projectStatus.getStatus());
+        // Act
+        ProjectStatus projectStatus = new ProjectStatus(name, description);
+
+        // Assert
+        assertEquals(name, projectStatus.getName());
+        assertEquals(description, projectStatus.getDescription());
     }
 
-    // Test for the getProjectName() method
     @Test
-    void testGetProjectName() {
-        // Create an instance of ProjectStatus
-        ProjectStatus projectStatus = new ProjectStatus("Project Name", "InProgress");
+    void testGetters() {
+        // Arrange
+        ProjectStatus projectStatus = new ProjectStatus("Completed", "Project is finished.");
 
-        // Assert that the getProjectName() method returns the correct project name
-        assertEquals("Project Name", projectStatus.getProjectName());
+        // Act & Assert
+        assertEquals("Completed", projectStatus.getName());
+        assertEquals("Project is finished.", projectStatus.getDescription());
     }
 
-    // Test for the getStatus() method
     @Test
-    void testGetStatus() {
-        // Create an instance of ProjectStatus
-        ProjectStatus projectStatus = new ProjectStatus("Project Name", "InProgress");
+    void testSetters() {
+        // Arrange
+        ProjectStatus projectStatus = new ProjectStatus("In Progress", "Project is currently being worked on.");
 
-        // Assert that the getStatus() method returns the correct status
-        assertEquals("InProgress", projectStatus.getStatus());
+        // Act
+        projectStatus.setName("On Hold");
+        projectStatus.setDescription("Project is temporarily paused.");
+
+        // Assert
+        assertEquals("On Hold", projectStatus.getName());
+        assertEquals("Project is temporarily paused.", projectStatus.getDescription());
     }
 
-    // Test for the setProjectName() method
     @Test
-    void testSetProjectName() {
-        // Create an instance of ProjectStatus
-        ProjectStatus projectStatus = new ProjectStatus("Project Name", "InProgress");
+    void testToString() {
+        // Arrange
+        ProjectStatus projectStatus = new ProjectStatus("Completed", "Project is finished.");
 
-        // Set a new project name
-        projectStatus.setProjectName("New Project Name");
+        // Act
+        String toStringOutput = projectStatus.toString();
 
-        // Assert that the project name has been updated
-        assertEquals("New Project Name", projectStatus.getProjectName());
+        // Assert
+        assertTrue(toStringOutput.contains("Completed"));
+        assertTrue(toStringOutput.contains("Project is finished."));
     }
-
-    // Test for the setStatus() method
-    @Test
-    void testSetStatus() {
-        // Create an instance of ProjectStatus
-        ProjectStatus projectStatus = new ProjectStatus("Project Name", "InProgress");
-
-        // Set a new status
-        projectStatus.setStatus("Completed");
-
-        // Assert that the status has been updated
-        assertEquals("Completed", projectStatus.getStatus());
-    }
-
-    // Add more test cases as needed based on the methods and functionality in your ProjectStatus class
 }
+```
+
+**Import statement:**
+
+```java
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 ```
 
 **Explanation:**
 
-1. **Import Statements:**
-   - `import org.junit.jupiter.api.Test;` imports the `Test` annotation from JUnit 5 to mark test methods.
-   - `import static org.junit.jupiter.api.Assertions.*;` imports static assertions from JUnit 5 to use assertion methods like `assertEquals`, `assertTrue`, etc.
-   - `import your.package.name.ProjectStatus;` imports the `ProjectStatus` class from your project.
+* **`@Test` annotation:** Marks each method as a test case.
+* **`assertEquals()`:** Asserts that two values are equal.
+* **`assertTrue()`:** Asserts that a condition is true.
+* **`toStringOutput.contains()`:** Checks if a string contains a specific substring.
+* **`ProjectStatus` class:** This is assumed to be the class you are testing. Replace this with the actual class name.
 
-2. **Test Class:**
-   - The class `ProjectStatusTest` contains the test methods for the `ProjectStatus` class.
+**Note:**
 
-3. **Test Methods:**
-   - Each test method is annotated with `@Test`.
-   - Test methods typically follow the "Arrange, Act, Assert" pattern:
-     - **Arrange:** Set up the necessary objects and data for the test.
-     - **Act:** Call the method you want to test.
-     - **Assert:** Verify the expected outcome of the method call using assertion methods.
-
-4. **Test Cases:**
-   - **testConstructor():** Tests the constructor by creating a `ProjectStatus` object and verifying its initial state.
-   - **testGetProjectName():** Tests the `getProjectName()` method by checking if it returns the correct project name.
-   - **testGetStatus():** Tests the `getStatus()` method by checking if it returns the correct status.
-   - **testSetProjectName():** Tests the `setProjectName()` method by setting a new project name and verifying the update.
-   - **testSetStatus():** Tests the `setStatus()` method by setting a new status and verifying the update.
-
-**Remember to:**
-
-- Replace `your.package.name` with the actual package name of your `ProjectStatus` class.
-- Add more test cases to cover all the methods and functionality of your `ProjectStatus` class.
-- Consider using different test data to ensure comprehensive testing.
+* You need to replace the placeholder comments with actual assertions based on the expected behavior of the `ProjectStatus` class.
+* You may need to add more test cases depending on the functionality of the `ProjectStatus` class.
+* This example assumes that the `ProjectStatus` class has a constructor, getters, setters, and a `toString()` method. If your class has different methods, you will need to adjust the test cases accordingly.

@@ -5,57 +5,55 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BugStatusTest {
 
     @Test
-    void testBugStatus_Open() {
-        BugStatus bugStatus = BugStatus.OPEN;
-        assertEquals("OPEN", bugStatus.name());
-        assertEquals(BugStatus.OPEN, BugStatus.valueOf("OPEN"));
+    void testBugStatusToString() {
+        BugStatus status = new BugStatus("Open");
+        assertEquals("Open", status.toString());
     }
 
     @Test
-    void testBugStatus_InProgress() {
-        BugStatus bugStatus = BugStatus.IN_PROGRESS;
-        assertEquals("IN_PROGRESS", bugStatus.name());
-        assertEquals(BugStatus.IN_PROGRESS, BugStatus.valueOf("IN_PROGRESS"));
+    void testBugStatusEquals() {
+        BugStatus status1 = new BugStatus("Open");
+        BugStatus status2 = new BugStatus("Open");
+        assertTrue(status1.equals(status2));
     }
 
     @Test
-    void testBugStatus_Resolved() {
-        BugStatus bugStatus = BugStatus.RESOLVED;
-        assertEquals("RESOLVED", bugStatus.name());
-        assertEquals(BugStatus.RESOLVED, BugStatus.valueOf("RESOLVED"));
+    void testBugStatusNotEquals() {
+        BugStatus status1 = new BugStatus("Open");
+        BugStatus status2 = new BugStatus("Closed");
+        assertFalse(status1.equals(status2));
     }
 
     @Test
-    void testBugStatus_Closed() {
-        BugStatus bugStatus = BugStatus.CLOSED;
-        assertEquals("CLOSED", bugStatus.name());
-        assertEquals(BugStatus.CLOSED, BugStatus.valueOf("CLOSED"));
+    void testBugStatusHashCode() {
+        BugStatus status1 = new BugStatus("Open");
+        BugStatus status2 = new BugStatus("Open");
+        assertEquals(status1.hashCode(), status2.hashCode());
     }
 }
 ```
 
-**Assumptions:**
-
-* You have a `BugStatus` enum class defined in your project with the following values: `OPEN`, `IN_PROGRESS`, `RESOLVED`, and `CLOSED`.
-* The `BugStatus` enum class has a `name()` method to retrieve the string representation of the status and a `valueOf(String)` method to get the enum value from a string.
-
 **Explanation:**
 
-The test cases cover the following:
+* **Import Statements:**
+    * `org.junit.jupiter.api.Test`: Import the `Test` annotation for marking test methods.
+    * `static org.junit.jupiter.api.Assertions.*`: Import static methods for assertions from JUnit Jupiter.
+* **Test Class:**
+    * `BugStatusTest`: Name of the test class.
+* **Test Methods:**
+    * `testBugStatusToString()`: Tests the `toString()` method of the `BugStatus` class, asserting that it returns the correct string representation of the status.
+    * `testBugStatusEquals()`: Tests the `equals()` method, asserting that two `BugStatus` objects with the same status are considered equal.
+    * `testBugStatusNotEquals()`: Tests the `equals()` method, asserting that two `BugStatus` objects with different statuses are not considered equal.
+    * `testBugStatusHashCode()`: Tests the `hashCode()` method, asserting that two `BugStatus` objects with the same status have the same hash code.
 
-* **`testBugStatus_Open()`:** Tests the `BugStatus.OPEN` value.
-* **`testBugStatus_InProgress()`:** Tests the `BugStatus.IN_PROGRESS` value.
-* **`testBugStatus_Resolved()`:** Tests the `BugStatus.RESOLVED` value.
-* **`testBugStatus_Closed()`:** Tests the `BugStatus.CLOSED` value.
+**Notes:**
 
-For each test case, we:
+* This test case assumes a `BugStatus` class with a constructor that takes a `String` status as an argument.
+* You can modify the test cases to include other methods or properties of the `BugStatus` class.
+* Replace `"Open"` and `"Closed"` with the actual status values used in your application.
 
-* Create an instance of the `BugStatus` enum.
-* Use `assertEquals()` to verify that the `name()` method returns the expected string representation of the enum value.
-* Use `assertEquals()` to verify that the `valueOf()` method returns the expected enum value when given the corresponding string representation.
+**To run these tests:**
 
-**Note:**
-
-* This test case assumes a basic `BugStatus` enum with the specified values. You may need to adjust the test cases if your `BugStatus` enum has different values or methods.
-* Make sure to replace `"BugStatus"` with the actual name of your enum class.
-* You can add more test cases as needed to ensure that the enum class works as expected.
+1. Ensure you have JUnit Jupiter installed.
+2. Compile the `BugStatus` class and the `BugStatusTest` class.
+3. Run the test class using a JUnit test runner.

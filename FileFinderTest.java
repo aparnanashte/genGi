@@ -5,87 +5,87 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FileFinderTest {
 
     @Test
-    void testFindFile_ExistingFile() {
+    void testFindFiles_ExistingFile_ReturnsFile() {
         // Arrange
-        String directory = "/path/to/directory"; // Replace with your test directory
-        String fileName = "test.txt"; 
+        String directoryPath = "/path/to/directory";
+        String fileName = "test.txt";
+        // Assuming FileFinder has a findFiles(String directoryPath, String fileName) method
         FileFinder fileFinder = new FileFinder();
 
         // Act
-        String filePath = fileFinder.findFile(directory, fileName);
+        File foundFile = fileFinder.findFiles(directoryPath, fileName);
 
         // Assert
-        assertNotNull(filePath);
-        assertTrue(filePath.endsWith(fileName)); 
+        assertNotNull(foundFile);
+        assertEquals(fileName, foundFile.getName());
     }
 
     @Test
-    void testFindFile_NonExistingFile() {
+    void testFindFiles_NonExistingFile_ReturnsNull() {
         // Arrange
-        String directory = "/path/to/directory"; // Replace with your test directory
-        String fileName = "nonexistent.txt";
+        String directoryPath = "/path/to/directory";
+        String fileName = "non_existing_file.txt";
         FileFinder fileFinder = new FileFinder();
 
         // Act
-        String filePath = fileFinder.findFile(directory, fileName);
+        File foundFile = fileFinder.findFiles(directoryPath, fileName);
 
         // Assert
-        assertNull(filePath);
+        assertNull(foundFile);
     }
 
     @Test
-    void testFindFile_InvalidDirectory() {
+    void testFindFiles_EmptyDirectory_ReturnsNull() {
         // Arrange
-        String directory = "/invalid/directory";
+        String directoryPath = "/path/to/empty/directory";
         String fileName = "test.txt";
         FileFinder fileFinder = new FileFinder();
 
         // Act
-        String filePath = fileFinder.findFile(directory, fileName);
+        File foundFile = fileFinder.findFiles(directoryPath, fileName);
 
         // Assert
-        assertNull(filePath);
+        assertNull(foundFile);
     }
 
-    // Add more test cases as needed, for example:
-    // - Test with a directory containing multiple files with the same name
-    // - Test with a nested directory structure
-    // - Test with a file name containing special characters
+    @Test
+    void testFindFiles_InvalidDirectory_ThrowsException() {
+        // Arrange
+        String directoryPath = "/invalid/directory/path";
+        String fileName = "test.txt";
+        FileFinder fileFinder = new FileFinder();
+
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, () -> fileFinder.findFiles(directoryPath, fileName));
+    }
+
+    // Add more test cases as needed, covering different scenarios and edge cases.
 }
+```
+
+**Import Statements:**
+
+```java
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import java.io.File;
 ```
 
 **Explanation:**
 
-- **Import statements:**
-    - `import org.junit.jupiter.api.Test;` imports the `Test` annotation from JUnit 5, which marks methods as test methods.
-    - `import static org.junit.jupiter.api.Assertions.*;` imports static assertion methods from JUnit 5 for verifying expected results.
-
-- **Test cases:**
-    - `testFindFile_ExistingFile`:
-        - Arranges a test directory and a file name.
-        - Calls the `findFile` method to find the file.
-        - Asserts that the returned file path is not null and ends with the expected file name.
-    - `testFindFile_NonExistingFile`:
-        - Arranges a non-existent file name.
-        - Calls the `findFile` method.
-        - Asserts that the returned file path is null.
-    - `testFindFile_InvalidDirectory`:
-        - Arranges an invalid directory path.
-        - Calls the `findFile` method.
-        - Asserts that the returned file path is null.
-
-- **`FileFinder` class:**
-    - Replace `FileFinder` with the actual name of your class.
-    - You need to provide the actual implementation of the `findFile` method within this class.
+1. **Import Statements:** Import necessary classes from JUnit and Java.
+2. **Test Class:** Create a JUnit test class named `FileFinderTest`.
+3. **Test Methods:** Create test methods to cover different scenarios.
+4. **Arrange:** Set up the test data (directory path, file name, etc.) and create an instance of the `FileFinder` class.
+5. **Act:** Call the method under test (`findFiles`) and store the result.
+6. **Assert:** Use assertions to verify the expected outcome. 
+   - `assertNotNull`: Verify that a file was found.
+   - `assertEquals`: Verify that the found file has the expected name.
+   - `assertNull`: Verify that no file was found.
+   - `assertThrows`: Verify that an exception is thrown for invalid input.
 
 **Remember to:**
 
-- **Replace placeholders:**
-    - Replace `"/path/to/directory"` with the actual path to your test directory.
-    - Modify the test file names and directory paths according to your test requirements.
-- **Add more test cases:**
-    - Add additional test cases to cover various scenarios and edge cases.
-- **Implement `findFile` method:**
-    - Ensure that the `FileFinder` class contains the `findFile` method with the correct implementation.
-
-This example provides a starting point for your JUnit test case. Adapt it based on your specific requirements and the implementation of your `FileFinder` class.
+- Replace `/path/to/directory` and `/path/to/empty/directory` with actual directory paths.
+- Replace `FileFinder` with the actual class name.
+- Add more test cases to cover various scenarios and edge cases in your `FileFinder` class.
