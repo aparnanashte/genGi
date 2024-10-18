@@ -8,65 +8,49 @@ public class BugClassTest {
     void testMethod1() {
         // Arrange
         BugClass bugClass = new BugClass();
+
         // Act
-        // ... call the method you want to test
+        // Call the method you want to test
+        // Example: String result = bugClass.someMethod();
+
         // Assert
-        // ... assert the expected result
+        // Check the expected result
+        // Example: assertEquals("Expected result", result);
     }
 
     @Test
     void testMethod2() {
         // Arrange
-        // ...
+        BugClass bugClass = new BugClass();
+
         // Act
-        // ...
+        // Call the method you want to test
+        // Example: int result = bugClass.anotherMethod(input);
+
         // Assert
-        // ...
+        // Check the expected result
+        // Example: assertEquals(expectedValue, result);
     }
 
-    // Add more test methods for other methods in BugClass
+    // Add more test cases for other methods in BugClass
 }
 ```
 
 **Explanation:**
 
-1. **Import Statement:**
-   - `import org.junit.jupiter.api.Test;` imports the `Test` annotation from JUnit 5. This annotation marks methods as test methods.
-   - `import static org.junit.jupiter.api.Assertions.*;` imports all static assertion methods from JUnit 5. This makes it easier to write assertions in test methods.
+1. **Import statements:** This section imports the necessary classes for JUnit testing.
+2. **Test class:** `BugClassTest` is the test class, which contains all the test methods for the `BugClass`.
+3. **Test methods:** Each test method tests a specific functionality of the `BugClass`.
+    - **`@Test` annotation:** This annotation indicates that the method is a test method.
+    - **`Arrange`:** This section initializes the necessary objects and variables for the test.
+    - **`Act`:** This section executes the method being tested.
+    - **`Assert`:** This section verifies the expected outcome of the method using assertion methods provided by JUnit.
+    - **`assertEquals`:** This assertion method verifies if two values are equal. You can use other assertion methods like `assertTrue`, `assertFalse`, etc., depending on your test case.
 
-2. **Test Class:**
-   - `public class BugClassTest { ... }` defines a test class named `BugClassTest`. Test classes contain test methods for the class being tested (`BugClass` in this case).
+**To use this test case:**
 
-3. **Test Methods:**
-   - Each method annotated with `@Test` represents a single test case.
-   - **`testMethod1()` and `testMethod2()`** are placeholder names. Replace them with meaningful names describing the functionality being tested (e.g., `testCalculateSum()`, `testValidateInput()`).
+1. Replace the placeholder comments in the `testMethod1` and `testMethod2` methods with the actual code for your test cases.
+2. Make sure the `BugClass` is in the same package or accessible from the test class.
+3. Run the test case using your JUnit testing framework (e.g., Maven or Gradle).
 
-4. **Arrange, Act, Assert:**
-   - **Arrange:** This section sets up the necessary objects and data for the test.
-   - **Act:** This section executes the method under test.
-   - **Assert:** This section verifies the expected outcome using assertion methods.
-
-**Example Test Method:**
-
-```java
-@Test
-void testCalculateSum() {
-    // Arrange
-    BugClass bugClass = new BugClass();
-    int num1 = 5;
-    int num2 = 10;
-
-    // Act
-    int result = bugClass.calculateSum(num1, num2);
-
-    // Assert
-    assertEquals(15, result);
-}
-```
-
-**Important:**
-
-- Replace the placeholders (`// Arrange`, `// Act`, `// Assert`) with actual code based on the methods and functionality of your `BugClass`.
-- Write thorough test cases to cover all possible scenarios and edge cases.
-- Ensure that your test methods are independent and do not affect each other.
-- Name your test methods descriptively to understand what functionality they are testing.
+**Remember:** This is just a basic template. You need to adapt it to your specific class and methods. Write different test cases for each method and scenario you want to cover. You can also use different assertion methods based on the expected results.

@@ -5,43 +5,52 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BugStatusTest {
 
     @Test
-    void testToString() {
-        BugStatus status = BugStatus.OPEN;
-        assertEquals("OPEN", status.toString());
+    void testBugStatus_ValidStatus() {
+        BugStatus status = BugStatus.valueOf("OPEN");
+        assertEquals("OPEN", status.name());
+    }
 
-        status = BugStatus.IN_PROGRESS;
-        assertEquals("IN_PROGRESS", status.toString());
+    @Test
+    void testBugStatus_InvalidStatus() {
+        assertThrows(IllegalArgumentException.class, () -> BugStatus.valueOf("INVALID"));
+    }
 
-        status = BugStatus.RESOLVED;
-        assertEquals("RESOLVED", status.toString());
-
-        status = BugStatus.CLOSED;
-        assertEquals("CLOSED", status.toString());
+    @Test
+    void testBugStatus_ValidStatus_CaseInsensitive() {
+        BugStatus status = BugStatus.valueOf("open");
+        assertEquals("OPEN", status.name());
     }
 }
 ```
 
 **Explanation:**
 
-* **Import Statements:** We import `org.junit.jupiter.api.Test` for our test method and `static org.junit.jupiter.api.Assertions.*` to use the `assertEquals` method.
-* **Test Class:** The `BugStatusTest` class contains a test method to test the `toString()` method of the `BugStatus` class.
-* **Test Method:** The `testToString()` method checks that the `toString()` method returns the expected string for each status.
-* **Assertions:** The `assertEquals` method is used to verify that the actual string returned by `toString()` matches the expected string.
-
-**Assumption:**
-
-This test assumes that the `BugStatus` class has an enum with the following values:
-
-* OPEN
-* IN_PROGRESS
-* RESOLVED
-* CLOSED
-
-**To Run the Test:**
-
-1. Ensure you have JUnit 5 installed in your project.
-2. Compile and run the test class.
+* **Import Statements:**
+    * `org.junit.jupiter.api.Test`: Imports the `Test` annotation for marking test methods.
+    * `static org.junit.jupiter.api.Assertions.*`: Imports static methods from `Assertions` class for asserting test results.
+* **Test Class:**
+    * `BugStatusTest`: Defines the test class for testing the `BugStatus` class.
+* **Test Methods:**
+    * `testBugStatus_ValidStatus()`: Tests the `valueOf()` method with a valid status value ("OPEN").
+        * `assertEquals("OPEN", status.name())`: Asserts that the returned `BugStatus` object has the correct name ("OPEN").
+    * `testBugStatus_InvalidStatus()`: Tests the `valueOf()` method with an invalid status value ("INVALID").
+        * `assertThrows(IllegalArgumentException.class, () -> BugStatus.valueOf("INVALID"))`: Asserts that an `IllegalArgumentException` is thrown when an invalid status is provided.
+    * `testBugStatus_ValidStatus_CaseInsensitive()`: Tests the `valueOf()` method with a valid status value in lowercase ("open").
+        * `assertEquals("OPEN", status.name())`: Asserts that the returned `BugStatus` object has the correct name ("OPEN").
 
 **Note:**
 
-This is a basic test case. You can add more test cases to cover other methods or functionality of the `BugStatus` class.
+* This code assumes that you have a `BugStatus` class defined with the following code:
+
+```java
+public enum BugStatus {
+    OPEN,
+    IN_PROGRESS,
+    RESOLVED,
+    CLOSED
+}
+```
+
+* You can modify the test cases to cover additional scenarios and functionalities of your `BugStatus` class.
+* Make sure to replace `BugStatus` with the actual name of your enum class.
+* The test cases provided are basic examples. You can add more complex scenarios to your test suite.

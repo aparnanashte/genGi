@@ -2,80 +2,68 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+// Replace "BankAccclass" with your actual class name
 public class BankAccclassTest {
 
+    // Test case for deposit method
     @Test
     void testDeposit() {
-        // Arrange
-        BankAccclass bankAcc = new BankAccclass("John Doe", 1000);
+        // Create an instance of your class
+        BankAccclass bankAccount = new BankAccclass();
 
-        // Act
-        bankAcc.deposit(500);
+        // Call the deposit method
+        bankAccount.deposit(100);
 
-        // Assert
-        assertEquals(1500, bankAcc.getBalance());
+        // Assert that the balance is correct
+        assertEquals(100, bankAccount.getBalance());
     }
 
+    // Test case for withdraw method
     @Test
     void testWithdraw() {
-        // Arrange
-        BankAccclass bankAcc = new BankAccclass("Jane Doe", 1000);
+        // Create an instance of your class
+        BankAccclass bankAccount = new BankAccclass();
 
-        // Act
-        bankAcc.withdraw(200);
+        // Deposit some initial funds
+        bankAccount.deposit(200);
 
-        // Assert
-        assertEquals(800, bankAcc.getBalance());
+        // Call the withdraw method
+        bankAccount.withdraw(50);
+
+        // Assert that the balance is correct
+        assertEquals(150, bankAccount.getBalance());
     }
 
+    // Test case for withdraw with insufficient funds
     @Test
     void testWithdrawInsufficientFunds() {
-        // Arrange
-        BankAccclass bankAcc = new BankAccclass("John Doe", 1000);
+        // Create an instance of your class
+        BankAccclass bankAccount = new BankAccclass();
 
-        // Act & Assert
-        assertThrows(IllegalArgumentException.class, () -> bankAcc.withdraw(1500));
+        // Call the withdraw method with insufficient funds
+        boolean result = bankAccount.withdraw(100);
+
+        // Assert that the withdraw was unsuccessful
+        assertFalse(result);
     }
 
-    @Test
-    void testGetBalance() {
-        // Arrange
-        BankAccclass bankAcc = new BankAccclass("Jane Doe", 1000);
-
-        // Act & Assert
-        assertEquals(1000, bankAcc.getBalance());
-    }
-
-    @Test
-    void testGetName() {
-        // Arrange
-        BankAccclass bankAcc = new BankAccclass("John Doe", 1000);
-
-        // Act & Assert
-        assertEquals("John Doe", bankAcc.getName());
-    }
+    // Add more test cases for other methods in your class
+    // ...
 }
 ```
 
 **Explanation:**
 
-* **Import Statements:** The test case imports the necessary JUnit 5 classes.
-* **Test Class:** The `BankAccclassTest` class contains the test methods.
-* **Test Methods:** Each test method follows the Arrange-Act-Assert pattern:
-    * **Arrange:** Sets up the test by creating a `BankAccclass` object with initial values.
-    * **Act:** Executes the method under test.
-    * **Assert:** Verifies the expected outcome using assertions from JUnit.
-* **`testDeposit()`:** Tests that the `deposit()` method correctly adds funds to the balance.
-* **`testWithdraw()`:** Tests that the `withdraw()` method correctly subtracts funds from the balance.
-* **`testWithdrawInsufficientFunds()`:** Tests that the `withdraw()` method throws an `IllegalArgumentException` if the balance is insufficient.
-* **`testGetBalance()`:** Tests that the `getBalance()` method returns the correct balance.
-* **`testGetName()`:** Tests that the `getName()` method returns the correct account name.
+* **Import Statement:** The `import org.junit.jupiter.api.Test;` statement imports the necessary JUnit 5 annotations and assertion methods.
+* **Test Class:** The `BankAccclassTest` class is the test class that contains the test methods.
+* **Test Methods:** Each test method is annotated with `@Test`. They represent individual test cases.
+* **Assertions:** The `assertEquals()`, `assertFalse()` methods are used to assert the expected results of the test methods.
 
-**Note:** This test case assumes the existence of a `BankAccclass` class with the following methods:
+**To use this test case:**
 
-* `deposit(double amount)`: Adds the specified amount to the account balance.
-* `withdraw(double amount)`: Subtracts the specified amount from the account balance.
-* `getBalance()`: Returns the current account balance.
-* `getName()`: Returns the account holder's name.
+1. Replace "BankAccclass" with the actual name of your class.
+2. Create a new JUnit test class in your project.
+3. Copy and paste the code into the test class.
+4. Run the test class to execute the test cases.
 
-You can adjust the test cases based on the specific functionality and methods of your `BankAccclass` class.
+**Note:** This is just a basic example, you should add more test cases to cover all the methods and scenarios in your class. 

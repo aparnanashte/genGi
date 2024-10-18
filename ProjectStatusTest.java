@@ -6,74 +6,56 @@ public class ProjectStatusTest {
 
     @Test
     void testConstructor() {
-        // Arrange
-        String name = "Test Project";
-        String status = "In Progress";
-
-        // Act
-        ProjectStatus projectStatus = new ProjectStatus(name, status);
-
-        // Assert
-        assertEquals(name, projectStatus.getName());
-        assertEquals(status, projectStatus.getStatus());
+        ProjectStatus status = new ProjectStatus("In Progress", "Description of current progress");
+        assertEquals("In Progress", status.getStatus());
+        assertEquals("Description of current progress", status.getDescription());
     }
 
     @Test
-    void testGetters() {
-        // Arrange
-        ProjectStatus projectStatus = new ProjectStatus("Test Project", "Completed");
-
-        // Act
-        String name = projectStatus.getName();
-        String status = projectStatus.getStatus();
-
-        // Assert
-        assertEquals("Test Project", name);
-        assertEquals("Completed", status);
+    void testGetStatus() {
+        ProjectStatus status = new ProjectStatus("Completed", "Project successfully finished.");
+        assertEquals("Completed", status.getStatus());
     }
 
     @Test
-    void testSetters() {
-        // Arrange
-        ProjectStatus projectStatus = new ProjectStatus("Test Project", "In Progress");
+    void testSetStatus() {
+        ProjectStatus status = new ProjectStatus("In Progress", "");
+        status.setStatus("On Hold");
+        assertEquals("On Hold", status.getStatus());
+    }
 
-        // Act
-        projectStatus.setName("Updated Project");
-        projectStatus.setStatus("Completed");
+    @Test
+    void testGetDescription() {
+        ProjectStatus status = new ProjectStatus("In Progress", "Working on feature X.");
+        assertEquals("Working on feature X.", status.getDescription());
+    }
 
-        // Assert
-        assertEquals("Updated Project", projectStatus.getName());
-        assertEquals("Completed", projectStatus.getStatus());
+    @Test
+    void testSetDescription() {
+        ProjectStatus status = new ProjectStatus("In Progress", "");
+        status.setDescription("Waiting for external input.");
+        assertEquals("Waiting for external input.", status.getDescription());
+    }
+
+    @Test
+    void testToString() {
+        ProjectStatus status = new ProjectStatus("Completed", "All tasks completed and reviewed.");
+        String expectedString = "ProjectStatus{status='Completed', description='All tasks completed and reviewed.'}";
+        assertEquals(expectedString, status.toString());
     }
 }
 ```
 
-**Import Statements:**
-
-```java
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-```
-
 **Explanation:**
 
-1. **Import Statements:**
-   - `org.junit.jupiter.api.Test`: Imports the `Test` annotation from JUnit 5 for marking test methods.
-   - `static org.junit.jupiter.api.Assertions.*`: Imports static methods from `Assertions` class for making assertions in the tests.
+- The `@Test` annotation marks each method as a JUnit test case.
+- `assertEquals` asserts that the actual value matches the expected value.
+- The tests cover the constructor, getters, setters, and `toString` method.
 
-2. **Test Class:**
-   - `ProjectStatusTest`: The name of the test class should reflect the class being tested.
+**Important:**
 
-3. **Test Methods:**
-   - `testConstructor()`: Tests the constructor of the `ProjectStatus` class by creating an instance with specific values and verifying that the name and status are set correctly.
-   - `testGetters()`: Tests the getter methods of the `ProjectStatus` class by creating an instance and retrieving its name and status using the getter methods, then verifying that the values are as expected.
-   - `testSetters()`: Tests the setter methods of the `ProjectStatus` class by creating an instance, setting new values using the setter methods, and then verifying that the name and status have been updated accordingly.
+- Replace `ProjectStatus` with the actual name of your class.
+- Make sure your `ProjectStatus` class has the corresponding methods and properties.
+- You may need to add additional test cases depending on the specific functionality of your `ProjectStatus` class.
 
-**Assertions:**
-- `assertEquals()`: This method is used to verify that the actual value matches the expected value. It takes two arguments: the expected value and the actual value.
-
-**Note:**
-
-- You need to replace the placeholder `ProjectStatus` class with the actual class you want to test.
-- The test methods and assertions should cover all the functionalities of the `ProjectStatus` class.
-- You can add more test cases as needed to ensure complete test coverage.
+This example provides a basic test suite. You can extend it by adding more scenarios, edge cases, and boundary conditions to ensure comprehensive testing.
