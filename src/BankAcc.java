@@ -1,9 +1,9 @@
-public class BankAccount {
+public class BankAcc {
     private String accountNumber;
     private double balance;
 
     // Constructor
-    public BankAccount(String accountNumber, double initialBalance) {
+    public BankAcc(String accountNumber, double initialBalance) {
         this.accountNumber = accountNumber;
         this.balance = initialBalance;
     }
