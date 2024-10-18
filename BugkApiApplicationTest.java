@@ -2,26 +2,32 @@
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @SpringBootTest
 public class BugkApiApplicationTest {
 
     @Test
     void contextLoads() {
+        BugkApiApplication application = new BugkApiApplication();
+        assertNotNull(application);
     }
 }
 ```
 
 **Explanation:**
 
-* **`@SpringBootTest`**: This annotation indicates that the test class should be used to test a Spring Boot application.
-* **`contextLoads()`**: This is an empty test method that simply checks if the application context can be loaded successfully.
+* **`@SpringBootTest`**: This annotation tells JUnit to start a Spring Boot application context for testing.
+* **`contextLoads()`**: This test method checks if the application context loads successfully.
+* **`assertNotNull(application)`**: This assertion checks if the `BugkApiApplication` instance is not null.
 
-**To run the test case:**
+**To run this test:**
 
-1. Make sure you have JUnit and Spring Test dependencies in your project.
-2. Right-click on the test class and select "Run 'BugkApiApplicationTest' ".
-3. The test should run and pass if the application context is successfully loaded.
+1. Make sure you have JUnit 5 and Spring Boot Test dependencies in your project.
+2. Run the test class using your IDE or a test runner.
 
 **Note:**
 
-This is a basic test case that only checks if the application context can be loaded. You can add more test cases to test specific functionalities of your application.
+* This test case is basic and only verifies that the application context starts successfully. 
+* You can add more test cases to cover specific functionalities and business logic within your application.
+* Remember to replace `"BugkApiApplication"` with the actual name of your main application class. 
